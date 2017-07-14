@@ -1,0 +1,107 @@
+{
+  "account": {
+    "26XnlUyXL6QQ3B7phPEF28jB5Qt2": {
+      "account_id": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "avatar": "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/17309174_1451648118192501_7257638711077975293_n.jpg?oh=7d3a68823b8d6123a44a30e544a4dba6&oe=59E82413",
+      "name": "Tran Tien Tin",
+      "created_at": 1497787630826,
+      "modified_at": 1497787630826
+    }
+  },
+
+  "trip": {
+    "ZiKbIKQcdRYq3NfAoO8R91y7Eev2": {
+      "id": "ZiKbIKQcdRYq3NfAoO8R91y7Eev2",
+      "name": "CoderSchool Group 3 Trip",
+      "status": "PREPARE",
+      "start_time": 1497787630826,
+      "end_time": 1497787630826,
+      "members": {
+        "26XnlUyXL6QQ3B7phPEF28jB5Qt2": {
+          "account_id": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+          "avatar": "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/17309174_1451648118192501_7257638711077975293_n.jpg?oh=7d3a68823b8d6123a44a30e544a4dba6&oe=59E82413",
+          "name": "Tran Tien Tin",
+          "owner": true
+        }
+      },
+      "source": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "stops": [{
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      }, {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      }, {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      }],
+      "destination": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "created_at": 1497787630826,
+      "modified_at": 1497787630826
+    }
+  },
+
+  "trip_lobby": [{
+    "id": "ZiKbIKQcdRYq3NfAoO8R91y7Eev2",
+    "name": "CoderSchool Group 3 Trip",
+    "location": {
+      "lat": 10.7949361,
+      "lon": 106.6939804
+    },
+    "owner": {
+      "account_id": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "avatar": "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/17309174_1451648118192501_7257638711077975293_n.jpg?oh=7d3a68823b8d6123a44a30e544a4dba6&oe=59E82413",
+      "name": "Tran Tien Tin"
+    },
+    "created_at": 1497787630826,
+    "modified_at": 1497787630826
+  }],
+
+  "trip_member": {
+    "26XnlUyXL6QQ3B7phPEF28jB5Qt2": {
+      "ZiKbIKQcdRYq3NfAoO8R91y7Eev2": {
+        "id": "ZiKbIKQcdRYq3NfAoO8R91y7Eev2",
+        "name": "CoderSchool Group 3 Trip",
+        "status": "PREPARE",
+        "start_time": 1497787630826,
+        "end_time": 1497787630826
+      }
+    }
+  },
+
+  "trip_action": {
+    "ZiKbIKQcdRYq3NfAoO8R91y7Eev2": [{
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "action": "Alert",
+      "type": "Lost",
+      "created_at": 1497787630826,
+      "modified_at": 1497787630826
+    }, {
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "action": "Message",
+      "type": "Text",
+      "message": "Help me",
+      "created_at": 1497787630826,
+      "modified_at": 1497787630826
+    }, {
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "action": "Message",
+      "type": "Audio",
+      "message_url": "https://firebasestorage.googleapis.com/v0/b/fich-7e2b3.appspot.com/o/5966f978f03306.92919929.mp3?alt=media&token=e3b40903-996b-4114-9630-34e8639ce2c6",
+      "created_at": 1497787630826,
+      "modified_at": 1497787630826
+    }, {
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "action": "Alert",
+      "type": "BikeBroken",
+      "created_at": 1497787630826,
+      "modified_at": 1497787630826
+    }]
+  }
+}
