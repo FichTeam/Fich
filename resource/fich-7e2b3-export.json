@@ -4,6 +4,7 @@
       "account_id": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
       "avatar": "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/17309174_1451648118192501_7257638711077975293_n.jpg?oh=7d3a68823b8d6123a44a30e544a4dba6&oe=59E82413",
       "name": "Tran Tien Tin",
+      "phone_number": "0902675405",
       "created_at": 1497787630826,
       "modified_at": 1497787630826
     }
@@ -63,7 +64,7 @@
     "modified_at": 1497787630826
   }],
 
-  "trip_member": {
+  "trip_history": {
     "26XnlUyXL6QQ3B7phPEF28jB5Qt2": {
       "ZiKbIKQcdRYq3NfAoO8R91y7Eev2": {
         "id": "ZiKbIKQcdRYq3NfAoO8R91y7Eev2",
@@ -100,6 +101,46 @@
       "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
       "action": "Alert",
       "type": "BikeBroken",
+      "created_at": 1497787630826,
+      "modified_at": 1497787630826
+    }]
+  },
+
+  "trip_position": {
+    "ZiKbIKQcdRYq3NfAoO8R91y7Eev2": [{
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "position": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "time": 1497787630826,
+      "created_at": 1497787630826,
+      "modified_at": 1497787630826
+    }, {
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "position": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "time": 1497787630826,
+      "created_at": 1497787630826,
+      "modified_at": 1497787630826
+    }, {
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "position": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "time": 1497787630826,
+      "created_at": 1497787630826,
+      "modified_at": 1497787630826
+    }, {
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "position": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "time": 1497787630826,
       "created_at": 1497787630826,
       "modified_at": 1497787630826
     }]
