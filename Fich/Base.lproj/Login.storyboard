@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Hje-Lr-zP2">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--LoginVC-->
+        <scene sceneID="al6-zy-YOt">
+            <objects>
+                <viewController storyboardIdentifier="loginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hje-Lr-zP2" customClass="LoginVC" customModule="Fich" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="21v-G8-NWo"/>
+                        <viewControllerLayoutGuide type="bottom" id="vst-Cv-Lo2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Aq8-O7-1jq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHf-zB-k5x">
+                                <rect key="frame" x="0.0" y="617" width="187.5" height="50"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.87058823529999996" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Sign up">
+                                    <color key="titleColor" red="0.2666666667" green="0.4039215686" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44E-z9-Byd">
+                                <rect key="frame" x="187.5" y="617" width="187.5" height="50"/>
+                                <color key="backgroundColor" red="0.2666666667" green="0.4039215686" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="V4c-kB-hHC"/>
+                                </constraints>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.85882352939999995" green="0.8862745098" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="mHf-zB-k5x" firstAttribute="leading" secondItem="Aq8-O7-1jq" secondAttribute="leading" id="2bv-eO-XOy"/>
+                            <constraint firstItem="mHf-zB-k5x" firstAttribute="height" secondItem="44E-z9-Byd" secondAttribute="height" id="6Jb-H0-swY"/>
+                            <constraint firstItem="mHf-zB-k5x" firstAttribute="width" secondItem="Aq8-O7-1jq" secondAttribute="width" multiplier="0.5" id="6pR-5s-4JJ"/>
+                            <constraint firstItem="44E-z9-Byd" firstAttribute="leading" secondItem="mHf-zB-k5x" secondAttribute="trailing" id="LiM-tC-exa"/>
+                            <constraint firstAttribute="trailing" secondItem="44E-z9-Byd" secondAttribute="trailing" id="MtO-DS-LTz"/>
+                            <constraint firstItem="vst-Cv-Lo2" firstAttribute="top" secondItem="mHf-zB-k5x" secondAttribute="bottom" id="c61-2E-TKY"/>
+                            <constraint firstItem="44E-z9-Byd" firstAttribute="width" secondItem="mHf-zB-k5x" secondAttribute="width" id="o44-da-7BK"/>
+                            <constraint firstItem="vst-Cv-Lo2" firstAttribute="top" secondItem="44E-z9-Byd" secondAttribute="bottom" id="osB-nO-vNz"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WRM-8X-fPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-852" y="98"/>
+        </scene>
+    </scenes>
+</document>
