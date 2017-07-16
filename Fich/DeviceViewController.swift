@@ -97,11 +97,20 @@ extension DeviceViewController: UITableViewDelegate, UITableViewDataSource{
         }
         return cell
     }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let deviceVC = TestViewController(nibName: "TestViewController", bundle: nil)
+    
+//      deviceVC.scannedPeripheral = peripheralsArray[indexPath.row]
+      present(deviceVC, animated: true, completion: nil)
+
+  }
 }
 
 extension DeviceCell {
     func configure(with peripheral: ScannedPeripheral) {
         nameLabel.text = peripheral.advertisementData.localName ?? peripheral.peripheral.identifier.uuidString
+        scannedPeripheral = peripheral
     }
 }
 

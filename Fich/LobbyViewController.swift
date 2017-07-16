@@ -21,4 +21,12 @@ class LobbyViewController: UIViewController {
         
         present(deviceVC, animated: true, completion: nil)
     }
+  
+  @IBAction func OnStartTrip(_ sender: UIButton) {
+    let deviceVC = TestViewController(nibName: "TestViewController", bundle: nil)
+    
+    present(deviceVC, animated: true, completion: nil)
+
+    
+  }
 }
