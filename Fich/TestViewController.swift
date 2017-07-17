@@ -103,7 +103,6 @@ class TestViewController: UIViewController {
       getCharacteristics(for: servicesList[indexService-1])
     }
     
-
   }
     /*
     // MARK: - Navigation
