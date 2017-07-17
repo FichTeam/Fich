@@ -26,6 +26,9 @@ class PhoneSignupViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLayout()
+    }
+    func setupLayout(){
         phoneTextField.useUnderline()
         addDoneButton(to: phoneTextField)
         doneBtn.layer.cornerRadius = doneBtn.frame.height/2
@@ -33,5 +36,4 @@ class PhoneSignupViewController: UIViewController {
         doneBtn.layer.shadowOffset = CGSize(width: -1, height: 1)
         doneBtn.layer.shadowOpacity = 0.2
     }
-
 }
