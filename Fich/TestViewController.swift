@@ -9,6 +9,7 @@
 import UIKit
 import RxBluetoothKit
 import RxSwift
+import CoreBluetooth
 
 class TestViewController: UIViewController {
 
@@ -18,6 +19,7 @@ class TestViewController: UIViewController {
   var manager: BluetoothManager!
   private var connectedPeripheral: Peripheral?
   fileprivate var servicesList: [Service] = []
+  fileprivate var characteristicsList: [Characteristic] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +41,6 @@ class TestViewController: UIViewController {
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
   
     private func monitorDisconnection(for peripheral: Peripheral) {
       manager.monitorDisconnection(for: peripheral)
@@ -63,8 +61,50 @@ class TestViewController: UIViewController {
         }).addDisposableTo(disposeBag)
     }
 
+
+  
+    fileprivate func writeValueForCharacteristic(hexadecimalString: String,characteristic: Characteristic) {
+      let hexadecimalData: Data = Data.fromHexString(string: hexadecimalString)
+      let type: CBCharacteristicWriteType = characteristic.properties.contains(.write) ? .withResponse : .withoutResponse
+      characteristic.writeValue(hexadecimalData as Data, type: type)
+        .subscribe(onNext: { [weak self] _ in
+          
+        }).addDisposableTo(disposeBag)
+    }
+    private func getCharacteristics(for service: Service) {
+      service.discoverCharacteristics(nil)
+        .subscribe(onNext: { characteristics in
+          self.characteristicsList = characteristics
+          // send command though a characteristic
+          for indexCharacteristic in 1...self.characteristicsList.count{
+            let cmpString = self.characteristicsList[indexCharacteristic-1].uuid.uuidString
+            print("Char: \(cmpString)")
+            if (cmpString == "3DDA0002-957F-7D4A-34A6-74696673696D")
+            {
+              // subcribe before write a cmd
+              
+              self.characteristicsList[indexCharacteristic-1].setNotifyValue(true)
+                .subscribe(onNext: { [weak self] _ in
+                  let cmdString = "02F106"
+                  self?.writeValueForCharacteristic(hexadecimalString: cmdString, characteristic: (self?.characteristicsList[indexCharacteristic-1])!)
+                }).addDisposableTo(self.disposeBag)
+            }
+          }
+        }).addDisposableTo(disposeBag)
+    }
+  
+  @IBAction func onDismiss(_ sender: Any) {
+    dismiss(animated: true, completion: nil)
+  }
+
+  @IBAction func onAnimate(_ sender: Any) {
+    for indexService in 1...servicesList.count{
+      print("service: \(self.servicesList[indexService-1].uuid.uuidString)")
+      getCharacteristics(for: servicesList[indexService-1])
+    }
     
 
+  }
     /*
     // MARK: - Navigation
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		22512B901F1A0B8C0046FF8E /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22512B8E1F1A0B8C0046FF8E /* TestViewController.swift */; };
 		22512B911F1A0B8C0046FF8E /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22512B8F1F1A0B8C0046FF8E /* TestViewController.xib */; };
+		2258BF5C1F1D14E100D3A4D6 /* NSDataUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2258BF5B1F1D14E100D3A4D6 /* NSDataUtilities.swift */; };
 		C80DE9D51F15408200C024A6 /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DE9D31F15408200C024A6 /* LobbyViewController.swift */; };
 		C80DE9D61F15408200C024A6 /* LobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80DE9D41F15408200C024A6 /* LobbyViewController.xib */; };
 		C80DE9E01F15445D00C024A6 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DE9DE1F15445D00C024A6 /* DeviceViewController.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		22512B8E1F1A0B8C0046FF8E /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		22512B8F1F1A0B8C0046FF8E /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		2258BF5B1F1D14E100D3A4D6 /* NSDataUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSDataUtilities.swift; path = API/NSDataUtilities.swift; sourceTree = "<group>"; };
 		B98BD4FAAA19F05A9FF907FA /* Pods_Fich.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fich.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80DE9D31F15408200C024A6 /* LobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
 		C80DE9D41F15408200C024A6 /* LobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LobbyViewController.xib; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		C80DE9D21F15396F00C024A6 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				2258BF5B1F1D14E100D3A4D6 /* NSDataUtilities.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			files = (
 				C80DE9E01F15445D00C024A6 /* DeviceViewController.swift in Sources */,
 				C80DE9D51F15408200C024A6 /* LobbyViewController.swift in Sources */,
+				2258BF5C1F1D14E100D3A4D6 /* NSDataUtilities.swift in Sources */,
 				C840ACA01F1225FA00FD7C92 /* LoginViewController.swift in Sources */,
 				C80DE9E41F1548DD00C024A6 /* DeviceCell.swift in Sources */,
 				22512B901F1A0B8C0046FF8E /* TestViewController.swift in Sources */,

@@ -17,9 +17,10 @@ class DeviceViewController: UIViewController {
     
     private var isScanInProgress = false
     private var scheduler: ConcurrentDispatchQueueScheduler!
-    private let manager = BluetoothManager(queue: .main)
+    let manager = BluetoothManager(queue: .main)
     private var scanningDisposable: Disposable?
     fileprivate var peripheralsArray: [ScannedPeripheral] = []
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +39,10 @@ class DeviceViewController: UIViewController {
     private func stopScanning() {
         scanningDisposable?.dispose()
         isScanInProgress = false
-//        self.title = ""
     }
     
     private func startScanning() {
         isScanInProgress = true
-//        self.title = "Scanning..."
         scanningDisposable = manager.rx_state
             .timeout(4.0, scheduler: scheduler)
             .take(1)
@@ -101,7 +100,8 @@ extension DeviceViewController: UITableViewDelegate, UITableViewDataSource{
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let deviceVC = TestViewController(nibName: "TestViewController", bundle: nil)
     
-//      deviceVC.scannedPeripheral = peripheralsArray[indexPath.row]
+      deviceVC.scannedPeripheral = peripheralsArray[indexPath.row]
+      deviceVC.manager = manager
       present(deviceVC, animated: true, completion: nil)
 
   }
