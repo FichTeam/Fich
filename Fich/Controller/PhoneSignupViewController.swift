@@ -21,6 +21,10 @@ class PhoneSignupViewController: UIViewController {
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var doneBtn: UIButton!
     // MARK: *** UI Events
+    @IBAction func onBackLogin(_ sender: Any) {
+        print("On back")
+        self.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func onDone(_ sender: UIButton) {
         let alert = UIAlertController(title: "Phone number", message: "Is this your phone number? \n \(phoneTextField.text!)", preferredStyle: .alert)

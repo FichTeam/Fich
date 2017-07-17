@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if let token = FBSDKAccessToken.current() {
             UserDefaults.standard.set(token.tokenString, forKey: "token")
             UserDefaults.standard.set(token.userID, forKey: "userID")
+            
+            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
+            window?.rootViewController = lobbyVC
         }
         
         FirebaseApp.configure()
@@ -99,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"loginViewController")
         window?.rootViewController = UINavigationController(rootViewController: viewController)
-        //UserDefaults.standard.set(true, forKey: kUserHasOnboardedKey)
+        UserDefaults.standard.set(true, forKey: kUserHasOnboardedKey)
     }
     
     

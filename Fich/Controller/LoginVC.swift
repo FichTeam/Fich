@@ -22,11 +22,14 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate {
     
     
     // MARK: *** UI Events
+    @IBAction func onSignupNumber(_ sender: UIButton) {
+        performSegue(withIdentifier: "segueVerifyNumber", sender: self)
+    }
     
     @IBAction func onLogin(_ sender: UIButton) {
         self.btnFacebook.delegate = self
-        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true

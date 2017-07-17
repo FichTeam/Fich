@@ -61,7 +61,7 @@
                                     <color key="titleColor" red="0.2666666667" green="0.4039215686" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="xBN-Oe-ycl" kind="show" id="nAN-A0-Bme"/>
+                                    <action selector="onSignupNumber:" destination="Hje-Lr-zP2" eventType="touchUpInside" id="YeY-uv-FbU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -88,6 +88,7 @@
                     <connections>
                         <outlet property="btnFacebook" destination="44E-z9-Byd" id="tWB-5C-Uhk"/>
                         <outlet property="btnPhone" destination="mHf-zB-k5x" id="RaB-nH-6uq"/>
+                        <segue destination="xBN-Oe-ycl" kind="showDetail" identifier="segueVerifyNumber" id="4fL-Qs-udY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WRM-8X-fPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -144,10 +145,20 @@
                                                     <action selector="onDone:" destination="xBN-Oe-ycl" eventType="touchUpInside" id="LwB-iB-5g4"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaC-N7-gIS">
+                                                <rect key="frame" x="16" y="24" width="34" height="30"/>
+                                                <state key="normal" title="Back">
+                                                    <color key="titleColor" red="0.97647058819999999" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onBackLogin:" destination="xBN-Oe-ycl" eventType="touchUpInside" id="7sd-zp-R6y"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.86666666670000003" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="A8f-UV-kr0" firstAttribute="leading" secondItem="JYl-wd-xQI" secondAttribute="leading" constant="16" id="0KG-2N-fNM"/>
+                                            <constraint firstItem="KaC-N7-gIS" firstAttribute="leading" secondItem="A8f-UV-kr0" secondAttribute="leading" id="19X-FK-3Fr"/>
                                             <constraint firstItem="NIh-yM-QLH" firstAttribute="top" secondItem="tFf-fm-n3r" secondAttribute="bottom" constant="12" id="GkP-vL-Kul"/>
                                             <constraint firstItem="tFf-fm-n3r" firstAttribute="leading" secondItem="JYl-wd-xQI" secondAttribute="leading" constant="32" id="NSW-yt-cpr"/>
                                             <constraint firstItem="Jxu-Pd-Jqu" firstAttribute="top" secondItem="A8f-UV-kr0" secondAttribute="bottom" constant="16" id="d73-oU-MWi"/>
@@ -158,6 +169,7 @@
                                             <constraint firstAttribute="height" constant="600" id="r1U-b3-Ov9"/>
                                             <constraint firstItem="NIh-yM-QLH" firstAttribute="width" secondItem="tFf-fm-n3r" secondAttribute="width" multiplier="0.5" id="tHr-Hr-XJ3"/>
                                             <constraint firstAttribute="trailing" secondItem="tFf-fm-n3r" secondAttribute="trailing" constant="32" id="tPz-Pb-Zv3"/>
+                                            <constraint firstItem="KaC-N7-gIS" firstAttribute="top" secondItem="JYl-wd-xQI" secondAttribute="top" constant="24" id="xJE-g7-YCD"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -188,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bqA-bR-dS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="126" y="-179"/>
+            <point key="canvasLocation" x="125.625" y="-179.57746478873239"/>
         </scene>
         <!--Verification Code View Controller-->
         <scene sceneID="c50-uu-g2c">
