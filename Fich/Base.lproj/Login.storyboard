@@ -184,11 +184,94 @@
                     <connections>
                         <outlet property="doneBtn" destination="NIh-yM-QLH" id="LXe-9V-oV3"/>
                         <outlet property="phoneTextField" destination="tFf-fm-n3r" id="aPQ-mB-8fo"/>
+                        <segue destination="JcL-tY-U21" kind="show" identifier="segueToGetCode" id="iZn-s1-DJQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bqA-bR-dS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="526.875" y="-140.49295774647888"/>
+            <point key="canvasLocation" x="126" y="-179"/>
+        </scene>
+        <!--Verification Code View Controller-->
+        <scene sceneID="c50-uu-g2c">
+            <objects>
+                <viewController id="JcL-tY-U21" customClass="VerificationCodeViewController" customModule="Fich" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="M0V-Ua-GHz"/>
+                        <viewControllerLayoutGuide type="bottom" id="FUE-7x-GoB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Njn-q4-kCq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghe-We-KCx">
+                                <rect key="frame" x="32" y="84" width="172" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" red="0.2666666667" green="0.4039215686" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please type the verification code sent to +84 90 238 11 96" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afP-gP-vmc">
+                                <rect key="frame" x="32" y="128" width="256" height="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.13725490200000001" green="0.19215686269999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0n8-Ol-EAd">
+                                <rect key="frame" x="96" y="174" width="128" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRI-Vl-b7L">
+                                <rect key="frame" x="139" y="220" width="42" height="30"/>
+                                <state key="normal" title="Log in">
+                                    <color key="titleColor" red="0.2666666667" green="0.4039215686" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onLogin:" destination="JcL-tY-U21" eventType="touchUpInside" id="quE-jq-1Q3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.86666666670000003" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="0n8-Ol-EAd" firstAttribute="width" secondItem="afP-gP-vmc" secondAttribute="width" multiplier="0.5" id="4AT-I1-tDz"/>
+                            <constraint firstItem="FRI-Vl-b7L" firstAttribute="top" secondItem="0n8-Ol-EAd" secondAttribute="bottom" constant="16" id="Brf-uV-vzz"/>
+                            <constraint firstItem="0n8-Ol-EAd" firstAttribute="centerX" secondItem="afP-gP-vmc" secondAttribute="centerX" id="Ekc-eI-2YU"/>
+                            <constraint firstItem="FRI-Vl-b7L" firstAttribute="centerX" secondItem="0n8-Ol-EAd" secondAttribute="centerX" id="M5o-VY-FSi"/>
+                            <constraint firstItem="0n8-Ol-EAd" firstAttribute="top" secondItem="afP-gP-vmc" secondAttribute="bottom" constant="32" id="P3i-X5-k46"/>
+                            <constraint firstItem="afP-gP-vmc" firstAttribute="leading" secondItem="Ghe-We-KCx" secondAttribute="leading" id="QsS-KN-0dM"/>
+                            <constraint firstItem="Ghe-We-KCx" firstAttribute="leading" secondItem="Njn-q4-kCq" secondAttribute="leading" constant="32" id="ZEm-2a-Z5h"/>
+                            <constraint firstAttribute="trailing" secondItem="afP-gP-vmc" secondAttribute="trailing" constant="32" id="a9L-Ny-4dy"/>
+                            <constraint firstItem="Ghe-We-KCx" firstAttribute="top" secondItem="M0V-Ua-GHz" secondAttribute="bottom" constant="64" id="t3m-07-zSu"/>
+                            <constraint firstItem="afP-gP-vmc" firstAttribute="top" secondItem="Ghe-We-KCx" secondAttribute="bottom" constant="16" id="zzm-oe-qfQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="codeTextField" destination="0n8-Ol-EAd" id="RAK-aI-ZPM"/>
+                        <outlet property="loginButton" destination="FRI-Vl-b7L" id="XEx-XX-ckF"/>
+                        <segue destination="22y-ZB-PZQ" kind="show" identifier="segueToLoggedIn" id="TdG-b9-t52"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Plx-Qa-Ohi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="966" y="-180"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bMv-Qr-svq">
+            <objects>
+                <viewController id="22y-ZB-PZQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="J33-c4-fXR"/>
+                        <viewControllerLayoutGuide type="bottom" id="N9o-5F-ArY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EvW-zo-8MM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zPU-P5-rnk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1740" y="-180"/>
         </scene>
     </scenes>
     <resources>

@@ -11,6 +11,7 @@
 		8460B5B31F1A0FB30097B534 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8460B5B21F1A0FB30097B534 /* LoginVC.swift */; };
 		84EEEACC1F1C7F2B0069463D /* PhoneSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEACB1F1C7F2B0069463D /* PhoneSignupViewController.swift */; };
 		84EEEACE1F1C852F0069463D /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEACD1F1C852F0069463D /* UIExtension.swift */; };
+		84EEEAD01F1C9C670069463D /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEACF1F1C9C670069463D /* VerificationCodeViewController.swift */; };
 		C83B63FB1F19D11800F14E78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B63E71F19D11800F14E78 /* AppDelegate.swift */; };
 		C83B63FD1F19D11800F14E78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83B63EA1F19D11800F14E78 /* LaunchScreen.storyboard */; };
 		C83B63FE1F19D11800F14E78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83B63EC1F19D11800F14E78 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		8460B5B21F1A0FB30097B534 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		84EEEACB1F1C7F2B0069463D /* PhoneSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSignupViewController.swift; sourceTree = "<group>"; };
 		84EEEACD1F1C852F0069463D /* UIExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExtension.swift; path = Fich/Controller/UIExtension.swift; sourceTree = SOURCE_ROOT; };
+		84EEEACF1F1C9C670069463D /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
 		B98BD4FAAA19F05A9FF907FA /* Pods_Fich.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fich.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83B63E71F19D11800F14E78 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C83B63EB1F19D11800F14E78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			children = (
 				8460B5B21F1A0FB30097B534 /* LoginVC.swift */,
 				84EEEACB1F1C7F2B0069463D /* PhoneSignupViewController.swift */,
+				84EEEACF1F1C9C670069463D /* VerificationCodeViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -242,10 +245,13 @@
 				TargetAttributes = {
 					C840AC991F1225FA00FD7C92 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = NHRH4MW253;
+						DevelopmentTeam = J4SBTXU25L;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -351,6 +357,7 @@
 				C83B64021F19D11800F14E78 /* DeviceCell.swift in Sources */,
 				C83B63FB1F19D11800F14E78 /* AppDelegate.swift in Sources */,
 				C83B640E1F19D1E600F14E78 /* Trip.swift in Sources */,
+				84EEEAD01F1C9C670069463D /* VerificationCodeViewController.swift in Sources */,
 				C83B640C1F19D1DB00F14E78 /* FirebaseClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,8 +8,10 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 import Onboard
 import CoreLocation
+import UserNotifications
 
 private let kUserHasOnboardedKey: String = "user_has_onboarded"
 @UIApplicationMain
@@ -21,7 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        
+        if #available(iOS 10, *){
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in})
+            application.registerForRemoteNotifications()
+        }else{
+            let notificationSettings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+            UIApplication.shared.registerForRemoteNotifications()
+        }
         
         var userHasOnboarded: Bool = UserDefaults.standard.bool(forKey: kUserHasOnboardedKey)
         // if the user has already onboarded, just set up the normal root view controller
@@ -57,6 +66,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        // Pass device token to auth
+        Auth.auth().setAPNSToken(deviceToken, type: AuthAPNSTokenType.prod)
+        
+        // Further handling of the device token if needed by the app
+        // ...
+    }
+    func application(_ application: UIApplication,didReceiveRemoteNotification notification: [AnyHashable : Any],fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if Auth.auth().canHandleNotification(notification) {completionHandler(UIBackgroundFetchResult.noData)
+            return
+        }
+        // This notification is not auth related, developer should handle it.
     }
     
     func setupNormalRootViewController() {
