@@ -41,6 +41,12 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.10)
   - Onboard (2.3.1)
+  - PhoneNumberKit (1.2.3):
+    - PhoneNumberKit/PhoneNumberKitCore (= 1.2.3)
+    - PhoneNumberKit/UIKit (= 1.2.3)
+  - PhoneNumberKit/PhoneNumberKitCore (1.2.3)
+  - PhoneNumberKit/UIKit (1.2.3):
+    - PhoneNumberKit/PhoneNumberKitCore
   - RxBluetoothKit (3.0.13):
     - RxSwift (~> 3.2)
   - RxSwift (3.5.0)
@@ -51,6 +57,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - Onboard
+  - PhoneNumberKit
   - RxBluetoothKit
 
 SPEC CHECKSUMS:
@@ -64,9 +71,10 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
+  PhoneNumberKit: 1e5cca669113fc361a8c82ec1ee559c62b8cd0f7
   RxBluetoothKit: 15aa913da8dc50aea32386e1619b91efa7c152bb
   RxSwift: 18ee9d78b45edb3b0b7e79916b47a116e6dbc842
 
-PODFILE CHECKSUM: bef4c4f3de2e8c57d788b1d82dd98a44b681d13f
+PODFILE CHECKSUM: 6bc34e413289bd4dd97a87f1c2c15bb58b007849
 
 COCOAPODS: 1.2.1
