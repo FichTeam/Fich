@@ -18,6 +18,8 @@
 		84EEEB161F1D40150069463D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEB131F1D40150069463D /* Account.swift */; };
 		84EEEB171F1D40150069463D /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEB141F1D40150069463D /* DataObject.swift */; };
 		84EEEB181F1D40150069463D /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEB151F1D40150069463D /* Position.swift */; };
+		84EEEB1B1F1D42450069463D /* SetUpTrip.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84EEEB191F1D42450069463D /* SetUpTrip.storyboard */; };
+		84EEEB1E1F1D43080069463D /* InitialTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEB1D1F1D43080069463D /* InitialTripViewController.swift */; };
 		C83B63FB1F19D11800F14E78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B63E71F19D11800F14E78 /* AppDelegate.swift */; };
 		C83B63FD1F19D11800F14E78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83B63EA1F19D11800F14E78 /* LaunchScreen.storyboard */; };
 		C83B63FE1F19D11800F14E78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83B63EC1F19D11800F14E78 /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 		84EEEB131F1D40150069463D /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		84EEEB141F1D40150069463D /* DataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataObject.swift; sourceTree = "<group>"; };
 		84EEEB151F1D40150069463D /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		84EEEB1A1F1D42450069463D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SetUpTrip.storyboard; sourceTree = "<group>"; };
+		84EEEB1D1F1D43080069463D /* InitialTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialTripViewController.swift; sourceTree = "<group>"; };
 		B98BD4FAAA19F05A9FF907FA /* Pods_Fich.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fich.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83B63E71F19D11800F14E78 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C83B63EB1F19D11800F14E78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -125,6 +129,14 @@
 			name = Lobby;
 			sourceTree = "<group>";
 		};
+		84EEEB1C1F1D42EE0069463D /* InitialTrip */ = {
+			isa = PBXGroup;
+			children = (
+				84EEEB1D1F1D43080069463D /* InitialTripViewController.swift */,
+			);
+			name = InitialTrip;
+			sourceTree = "<group>";
+		};
 		C83B63E51F19D0E100F14E78 /* Fich */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +170,7 @@
 				C83B63EA1F19D11800F14E78 /* LaunchScreen.storyboard */,
 				C83B63EC1F19D11800F14E78 /* Main.storyboard */,
 				8460B5AC1F19FA940097B534 /* Login.storyboard */,
+				84EEEB191F1D42450069463D /* SetUpTrip.storyboard */,
 			);
 			path = Base.lproj;
 			sourceTree = "<group>";
@@ -165,6 +178,7 @@
 		C83B63EE1F19D11800F14E78 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				84EEEB1C1F1D42EE0069463D /* InitialTrip */,
 				84CB35D61F1BBF7800B64A61 /* Lobby */,
 				84CB35D51F1BBF6F00B64A61 /* Device */,
 				8460B5AF1F1A079F0097B534 /* Login */,
@@ -305,6 +319,7 @@
 				C83B64041F19D11800F14E78 /* Info.plist in Resources */,
 				C83B64061F19D11800F14E78 /* DeviceViewController.xib in Resources */,
 				C83B63FD1F19D11800F14E78 /* LaunchScreen.storyboard in Resources */,
+				84EEEB1B1F1D42450069463D /* SetUpTrip.storyboard in Resources */,
 				C83B64051F19D11800F14E78 /* DeviceCell.xib in Resources */,
 				84EEEB101F1D3EBE0069463D /* TestViewController.xib in Resources */,
 				C83B640A1F19D18400F14E78 /* Assets.xcassets in Resources */,
@@ -370,6 +385,7 @@
 			files = (
 				C83B64001F19D11800F14E78 /* LobbyViewController.swift in Sources */,
 				84EEEB161F1D40150069463D /* Account.swift in Sources */,
+				84EEEB1E1F1D43080069463D /* InitialTripViewController.swift in Sources */,
 				84EEEB171F1D40150069463D /* DataObject.swift in Sources */,
 				84EEEACC1F1C7F2B0069463D /* PhoneSignupViewController.swift in Sources */,
 				84EEEB0F1F1D3EBE0069463D /* TestViewController.swift in Sources */,
@@ -395,6 +411,14 @@
 				8460B5AD1F19FA940097B534 /* Base */,
 			);
 			name = Login.storyboard;
+			sourceTree = "<group>";
+		};
+		84EEEB191F1D42450069463D /* SetUpTrip.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84EEEB1A1F1D42450069463D /* Base */,
+			);
+			name = SetUpTrip.storyboard;
 			sourceTree = "<group>";
 		};
 		C83B63EA1F19D11800F14E78 /* LaunchScreen.storyboard */ = {

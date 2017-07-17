@@ -30,6 +30,7 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate {
         self.btnFacebook.delegate = self
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true

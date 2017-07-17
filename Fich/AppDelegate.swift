@@ -13,6 +13,8 @@ import FirebaseAuth
 import Onboard
 import CoreLocation
 import UserNotifications
+import GoogleMaps
+import GooglePlaces
 
 private let kUserHasOnboardedKey: String = "user_has_onboarded"
 @UIApplicationMain
@@ -53,6 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         application.statusBarStyle = .lightContent
         window?.makeKeyAndVisible()
+        
+        
+        GMSPlacesClient.provideAPIKey("AIzaSyCTthE5Qltk1FES2HT86xRN0ix1a6Epfe4")
+        GMSServices.provideAPIKey("AIzaSyCTthE5Qltk1FES2HT86xRN0ix1a6Epfe4")
         
         return fb
     }

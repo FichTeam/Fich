@@ -14,4 +14,7 @@ target 'Fich' do
   pod 'Firebase/Storage'
   pod ‘Onboard’
   pod 'PhoneNumberKit'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
 end

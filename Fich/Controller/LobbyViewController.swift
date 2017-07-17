@@ -29,4 +29,9 @@ class LobbyViewController: UIViewController {
 
     
   }
+    @IBAction func onSetUpTrip(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "SetUpTrip", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"setupTripVC")
+        present(viewController, animated: true)
+    }
 }
