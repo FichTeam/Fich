@@ -22,6 +22,9 @@
 		C83B640A1F19D18400F14E78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C83B64091F19D18400F14E78 /* Assets.xcassets */; };
 		C83B640C1F19D1DB00F14E78 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B640B1F19D1DB00F14E78 /* FirebaseClient.swift */; };
 		C83B640E1F19D1E600F14E78 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B640D1F19D1E600F14E78 /* Trip.swift */; };
+		C83B64101F1A241900F14E78 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B640F1F1A241900F14E78 /* Account.swift */; };
+		C83B64121F1A24CE00F14E78 /* DataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B64111F1A24CE00F14E78 /* DataObject.swift */; };
+		C83B64161F1CC63600F14E78 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B64151F1CC63600F14E78 /* Position.swift */; };
 		E8A8E061ED0FF0AE70B6C7C2 /* Pods_Fich.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B98BD4FAAA19F05A9FF907FA /* Pods_Fich.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +45,9 @@
 		C83B64091F19D18400F14E78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C83B640B1F19D1DB00F14E78 /* FirebaseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		C83B640D1F19D1E600F14E78 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
-		C83B64141F1C8A0800F14E78 /* Fich.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fich.entitlements; sourceTree = "<group>"; };
+		C83B640F1F1A241900F14E78 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		C83B64111F1A24CE00F14E78 /* DataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataObject.swift; sourceTree = "<group>"; };
+		C83B64151F1CC63600F14E78 /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		C840AC9A1F1225FA00FD7C92 /* Fich.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fich.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE47706EF4CD5B0948AA9DF3 /* Pods-Fich.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fich.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fich/Pods-Fich.release.xcconfig"; sourceTree = "<group>"; };
 		DEACCB10E825E1E6C0E30A36 /* Pods-Fich.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fich.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fich/Pods-Fich.debug.xcconfig"; sourceTree = "<group>"; };
@@ -80,7 +85,6 @@
 		C83B63E51F19D0E100F14E78 /* Fich */ = {
 			isa = PBXGroup;
 			children = (
-				C83B64141F1C8A0800F14E78 /* Fich.entitlements */,
 				C83B64081F19D12500F14E78 /* Resource */,
 				C83B63E61F19D11800F14E78 /* API */,
 				C83B63E71F19D11800F14E78 /* AppDelegate.swift */,
@@ -134,6 +138,9 @@
 			isa = PBXGroup;
 			children = (
 				C83B640D1F19D1E600F14E78 /* Trip.swift */,
+				C83B640F1F1A241900F14E78 /* Account.swift */,
+				C83B64111F1A24CE00F14E78 /* DataObject.swift */,
+				C83B64151F1CC63600F14E78 /* Position.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -313,8 +320,11 @@
 				C83B64001F19D11800F14E78 /* LobbyViewController.swift in Sources */,
 				C83B63FF1F19D11800F14E78 /* DeviceViewController.swift in Sources */,
 				C83B64021F19D11800F14E78 /* DeviceCell.swift in Sources */,
+				C83B64121F1A24CE00F14E78 /* DataObject.swift in Sources */,
 				C83B63FB1F19D11800F14E78 /* AppDelegate.swift in Sources */,
+				C83B64101F1A241900F14E78 /* Account.swift in Sources */,
 				C83B640E1F19D1E600F14E78 /* Trip.swift in Sources */,
+				C83B64161F1CC63600F14E78 /* Position.swift in Sources */,
 				C83B640C1F19D1DB00F14E78 /* FirebaseClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
