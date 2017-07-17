@@ -12,6 +12,9 @@
 		84EEEACC1F1C7F2B0069463D /* PhoneSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEACB1F1C7F2B0069463D /* PhoneSignupViewController.swift */; };
 		84EEEACE1F1C852F0069463D /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEACD1F1C852F0069463D /* UIExtension.swift */; };
 		84EEEAD01F1C9C670069463D /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEACF1F1C9C670069463D /* VerificationCodeViewController.swift */; };
+		84EEEB0F1F1D3EBE0069463D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEB0D1F1D3EBE0069463D /* TestViewController.swift */; };
+		84EEEB101F1D3EBE0069463D /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EEEB0E1F1D3EBE0069463D /* TestViewController.xib */; };
+		84EEEB121F1D3EDC0069463D /* NSDataUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEB111F1D3EDC0069463D /* NSDataUtilities.swift */; };
 		C83B63FB1F19D11800F14E78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B63E71F19D11800F14E78 /* AppDelegate.swift */; };
 		C83B63FD1F19D11800F14E78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83B63EA1F19D11800F14E78 /* LaunchScreen.storyboard */; };
 		C83B63FE1F19D11800F14E78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83B63EC1F19D11800F14E78 /* Main.storyboard */; };
@@ -35,6 +38,9 @@
 		84EEEACB1F1C7F2B0069463D /* PhoneSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSignupViewController.swift; sourceTree = "<group>"; };
 		84EEEACD1F1C852F0069463D /* UIExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExtension.swift; path = Fich/Controller/UIExtension.swift; sourceTree = SOURCE_ROOT; };
 		84EEEACF1F1C9C670069463D /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
+		84EEEB0D1F1D3EBE0069463D /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = ../TestViewController.swift; sourceTree = "<group>"; };
+		84EEEB0E1F1D3EBE0069463D /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TestViewController.xib; path = ../TestViewController.xib; sourceTree = "<group>"; };
+		84EEEB111F1D3EDC0069463D /* NSDataUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataUtilities.swift; sourceTree = "<group>"; };
 		B98BD4FAAA19F05A9FF907FA /* Pods_Fich.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fich.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83B63E71F19D11800F14E78 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C83B63EB1F19D11800F14E78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				C83B63EF1F19D11800F14E78 /* DeviceViewController.swift */,
+				84EEEB0D1F1D3EBE0069463D /* TestViewController.swift */,
 			);
 			name = Device;
 			sourceTree = "<group>";
@@ -133,6 +140,7 @@
 		C83B63E61F19D11800F14E78 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				84EEEB111F1D3EDC0069463D /* NSDataUtilities.swift */,
 				C83B640B1F19D1DB00F14E78 /* FirebaseClient.swift */,
 			);
 			path = API;
@@ -177,6 +185,7 @@
 		C83B63F71F19D11800F14E78 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84EEEB0E1F1D3EBE0069463D /* TestViewController.xib */,
 				C83B63F81F19D11800F14E78 /* DeviceCell.xib */,
 				C83B63F91F19D11800F14E78 /* DeviceViewController.xib */,
 				C83B63FA1F19D11800F14E78 /* LobbyViewController.xib */,
@@ -288,6 +297,7 @@
 				C83B64061F19D11800F14E78 /* DeviceViewController.xib in Resources */,
 				C83B63FD1F19D11800F14E78 /* LaunchScreen.storyboard in Resources */,
 				C83B64051F19D11800F14E78 /* DeviceCell.xib in Resources */,
+				84EEEB101F1D3EBE0069463D /* TestViewController.xib in Resources */,
 				C83B640A1F19D18400F14E78 /* Assets.xcassets in Resources */,
 				C83B64071F19D11900F14E78 /* LobbyViewController.xib in Resources */,
 				8460B5AE1F19FA940097B534 /* Login.storyboard in Resources */,
@@ -351,10 +361,12 @@
 			files = (
 				C83B64001F19D11800F14E78 /* LobbyViewController.swift in Sources */,
 				84EEEACC1F1C7F2B0069463D /* PhoneSignupViewController.swift in Sources */,
+				84EEEB0F1F1D3EBE0069463D /* TestViewController.swift in Sources */,
 				C83B63FF1F19D11800F14E78 /* DeviceViewController.swift in Sources */,
 				8460B5B31F1A0FB30097B534 /* LoginVC.swift in Sources */,
 				84EEEACE1F1C852F0069463D /* UIExtension.swift in Sources */,
 				C83B64021F19D11800F14E78 /* DeviceCell.swift in Sources */,
+				84EEEB121F1D3EDC0069463D /* NSDataUtilities.swift in Sources */,
 				C83B63FB1F19D11800F14E78 /* AppDelegate.swift in Sources */,
 				C83B640E1F19D1E600F14E78 /* Trip.swift in Sources */,
 				84EEEAD01F1C9C670069463D /* VerificationCodeViewController.swift in Sources */,
