@@ -7,31 +7,80 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import Firebase
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, FBSDKLoginButtonDelegate {
     
     // MARK: *** Local variables
-    
+    let permissionsToRead = ["public_profile", "email"]
     // MARK: *** Data Models
     
     // MARK: *** UI Elements
     @IBOutlet weak var btnPhone: UIButton!
-    @IBOutlet weak var btnFacebook: UIButton!
+    @IBOutlet weak var btnFacebook: FBSDKLoginButton!
+    
     
     // MARK: *** UI Events
-    @IBAction func onSignup(_ sender: UIButton) {
-        
-    }
     
     @IBAction func onLogin(_ sender: UIButton) {
-        let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
-        present(lobbyVC, animated: true, completion: nil)
+        self.btnFacebook.delegate = self
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         initButton()
         
+        btnFacebook.readPermissions = permissionsToRead
+        let token = UserDefaults.standard.string(forKey: "token")
+        if token != nil{ //user already logged in
+            print("User logged in viewDidLoad")
+        }else{
+            print("User logged out")
+        }
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        let token = UserDefaults.standard.string(forKey: "token")
+        if token != nil{
+            moveToHome()
+        }else{
+            print("User logged out")
+        }
+    }
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if ((error) != nil) {
+            // Process error
+            print("Error")
+        }
+        else if result.isCancelled {
+            // Handle cancellations
+            print("Cancelled")
+        }
+        else {
+            // Navigate to other view
+            print("Success")
+            if result.grantedPermissions.contains("email") {
+                let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                Auth.auth().signIn(with: credential) { (user, error) in
+                    if let error = error {
+                        print("erroe: \(error.localizedDescription)")
+                        return
+                    }
+                    print("login firebase success")
+                }
+                moveToHome()
+            }
+        }
+    }
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("Out")
+        UserDefaults.standard.set(nil, forKey: "token")
+    }
+    func moveToHome() {
+        let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
+        present(lobbyVC, animated: true, completion: nil)
     }
     
     func initButton(){

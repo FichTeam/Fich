@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 import Firebase
 import FirebaseAuth
 import Onboard
@@ -22,6 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let fb =  FBSDKApplicationDelegate .sharedInstance() .application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        if let token = FBSDKAccessToken.current() {
+            UserDefaults.standard.set(token.tokenString, forKey: "token")
+            UserDefaults.standard.set(token.userID, forKey: "userID")
+        }
+        
         FirebaseApp.configure()
         if #available(iOS 10, *){
             UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in})
@@ -32,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             UIApplication.shared.registerForRemoteNotifications()
         }
         
-        var userHasOnboarded: Bool = UserDefaults.standard.bool(forKey: kUserHasOnboardedKey)
+        let userHasOnboarded: Bool = UserDefaults.standard.bool(forKey: kUserHasOnboardedKey)
         // if the user has already onboarded, just set up the normal root view controller
         // for the application
         if userHasOnboarded {
@@ -43,7 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         application.statusBarStyle = .lightContent
         window?.makeKeyAndVisible()
         
-        return true
+        return fb
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

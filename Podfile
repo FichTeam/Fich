@@ -6,6 +6,7 @@ target 'Fich' do
   use_frameworks!
 
   # Pods for Fich
+  pod 'FacebookLogin'
   pod 'RxBluetoothKit'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'

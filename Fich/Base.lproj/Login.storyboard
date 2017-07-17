@@ -26,14 +26,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboard" translatesAutoresizingMaskIntoConstraints="NO" id="JhS-ty-Ek5">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44E-z9-Byd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44E-z9-Byd" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="32" y="496" width="256" height="30"/>
                                 <color key="backgroundColor" red="0.2666666667" green="0.4039215686" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Facebook">
                                     <color key="titleColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="onLogin:" destination="Hje-Lr-zP2" eventType="touchUpInside" id="5v3-LI-r3w"/>
+                                    <action selector="onLogin:" destination="Hje-Lr-zP2" eventType="touchUpInside" id="idV-5c-yW2"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account? Sign in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ton-J9-yFp">
@@ -43,7 +43,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN UP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kl-Bb-je9">
-                                <rect key="frame" x="73" y="52" width="175.5" height="55"/>
+                                <rect key="frame" x="72.5" y="52" width="175" height="55"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="46"/>
                                 <color key="textColor" red="0.86666666670000003" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -61,7 +61,6 @@
                                     <color key="titleColor" red="0.2666666667" green="0.4039215686" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="onSignup:" destination="Hje-Lr-zP2" eventType="touchUpInside" id="2nB-Q9-sPr"/>
                                     <segue destination="xBN-Oe-ycl" kind="show" id="nAN-A0-Bme"/>
                                 </connections>
                             </button>
@@ -87,7 +86,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnFacebook" destination="44E-z9-Byd" id="4Dm-op-4Gg"/>
+                        <outlet property="btnFacebook" destination="44E-z9-Byd" id="tWB-5C-Uhk"/>
                         <outlet property="btnPhone" destination="mHf-zB-k5x" id="RaB-nH-6uq"/>
                     </connections>
                 </viewController>
