@@ -32,7 +32,7 @@ There are three main screens: A "Searching Place Screen", a "Group Screen", a "M
 - [ ] Week 4: Focus on preparing the presentation
 ## Video Walkthrough
 Here's a walkthrough of implemented user stories:
-<img src='https://github.com/vader1359/ZippyBird/blob/master/Walkthrough070217.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/FichTeam/Fich/blob/master/Walkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 Describe any challenges encountered while building the app.
