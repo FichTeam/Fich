@@ -13,7 +13,8 @@ import FirebaseAuth
 class PhoneSignupViewController: UIViewController {
 
     // MARK: *** Local variables
-    
+    var VERIFICATIONID_KEY = "authVerificationID"
+    var PHONENUMBER_KEY = "phonenumber"
     // MARK: *** Data Models
     
     // MARK: *** UI Elements
@@ -33,8 +34,8 @@ class PhoneSignupViewController: UIViewController {
                 if error != nil{
                     print("error: \(String(describing: error?.localizedDescription))")
                 }else{
-                    let defaults = UserDefaults.standard
-                    defaults.set(verificationID, forKey: "authPhoneID")
+                    UserDefaults.standard.set(verificationID, forKey: self.VERIFICATIONID_KEY)
+                    UserDefaults.standard.set(self.phoneTextField.text!, forKey: self.PHONENUMBER_KEY)
                     self.performSegue(withIdentifier: "segueToGetCode", sender: self)
                 }
             }

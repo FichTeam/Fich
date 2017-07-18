@@ -18,7 +18,7 @@ import GooglePlaces
 
 private let kUserHasOnboardedKey: String = "user_has_onboarded"
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, UNUserNotificationCenterDelegate{
 
     var window: UIWindow?
     let locationManager = CLLocationManager.init()
@@ -26,6 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let fb =  FBSDKApplicationDelegate .sharedInstance() .application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        if UserDefaults.standard.string(forKey: "user") != nil{
+            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
+            window?.rootViewController = lobbyVC
+        } else {
+            //User Not logged in
+        }
         
         if let token = FBSDKAccessToken.current() {
             UserDefaults.standard.set(token.tokenString, forKey: "token")
@@ -35,15 +42,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             window?.rootViewController = lobbyVC
         }
         
-        FirebaseApp.configure()
-        if #available(iOS 10, *){
-            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in})
+        
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
-        }else{
-            let notificationSettings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(notificationSettings)
-            UIApplication.shared.registerForRemoteNotifications()
         }
+        FirebaseApp.configure()
         
         let userHasOnboarded: Bool = UserDefaults.standard.bool(forKey: kUserHasOnboardedKey)
         // if the user has already onboarded, just set up the normal root view controller
@@ -89,14 +103,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        //Messaging.messaging().apnsToken = deviceToken
         // Pass device token to auth
-        Auth.auth().setAPNSToken(deviceToken, type: AuthAPNSTokenType.prod)
+        Auth.auth().setAPNSToken(deviceToken, type: AuthAPNSTokenType.sandbox)
         
         // Further handling of the device token if needed by the app
         // ...
     }
-    func application(_ application: UIApplication,didReceiveRemoteNotification notification: [AnyHashable : Any],fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if Auth.auth().canHandleNotification(notification) {completionHandler(UIBackgroundFetchResult.noData)
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification notification: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if Auth.auth().canHandleNotification(notification) {
+            completionHandler(UIBackgroundFetchResult.noData)
+            print(notification)
             return
         }
         // This notification is not auth related, developer should handle it.
@@ -174,6 +193,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.startUpdatingLocation()
     }
-
 }
 

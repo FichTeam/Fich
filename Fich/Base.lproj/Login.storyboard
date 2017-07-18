@@ -241,24 +241,54 @@
                                     <action selector="onLogin:" destination="JcL-tY-U21" eventType="touchUpInside" id="quE-jq-1Q3"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn't receive a code?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fmu-e8-LhS">
+                                <rect key="frame" x="32" y="270" width="116.5" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.1647058824" green="0.21176470589999999" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6r-Hw-cIJ">
+                                <rect key="frame" x="201" y="261" width="87" height="30"/>
+                                <state key="normal" title="Resend SMS">
+                                    <color key="titleColor" red="0.97647058819999999" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onResend:" destination="JcL-tY-U21" eventType="touchUpInside" id="xPp-aM-GyQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait ... 59s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HB3-zk-ule">
+                                <rect key="frame" x="91" y="315.5" width="138" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.2666666667" green="0.4039215686" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.86666666670000003" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0n8-Ol-EAd" firstAttribute="width" secondItem="afP-gP-vmc" secondAttribute="width" multiplier="0.5" id="4AT-I1-tDz"/>
+                            <constraint firstItem="HB3-zk-ule" firstAttribute="top" secondItem="Fmu-e8-LhS" secondAttribute="bottom" constant="32" id="6eR-J7-cnf"/>
                             <constraint firstItem="FRI-Vl-b7L" firstAttribute="top" secondItem="0n8-Ol-EAd" secondAttribute="bottom" constant="16" id="Brf-uV-vzz"/>
                             <constraint firstItem="0n8-Ol-EAd" firstAttribute="centerX" secondItem="afP-gP-vmc" secondAttribute="centerX" id="Ekc-eI-2YU"/>
+                            <constraint firstItem="Fmu-e8-LhS" firstAttribute="leading" secondItem="afP-gP-vmc" secondAttribute="leading" id="Kr0-8d-5zA"/>
                             <constraint firstItem="FRI-Vl-b7L" firstAttribute="centerX" secondItem="0n8-Ol-EAd" secondAttribute="centerX" id="M5o-VY-FSi"/>
+                            <constraint firstItem="C6r-Hw-cIJ" firstAttribute="trailing" secondItem="afP-gP-vmc" secondAttribute="trailing" id="Nun-A7-tbx"/>
                             <constraint firstItem="0n8-Ol-EAd" firstAttribute="top" secondItem="afP-gP-vmc" secondAttribute="bottom" constant="32" id="P3i-X5-k46"/>
                             <constraint firstItem="afP-gP-vmc" firstAttribute="leading" secondItem="Ghe-We-KCx" secondAttribute="leading" id="QsS-KN-0dM"/>
+                            <constraint firstItem="HB3-zk-ule" firstAttribute="centerX" secondItem="0n8-Ol-EAd" secondAttribute="centerX" id="RoQ-Oj-ZZX"/>
                             <constraint firstItem="Ghe-We-KCx" firstAttribute="leading" secondItem="Njn-q4-kCq" secondAttribute="leading" constant="32" id="ZEm-2a-Z5h"/>
                             <constraint firstAttribute="trailing" secondItem="afP-gP-vmc" secondAttribute="trailing" constant="32" id="a9L-Ny-4dy"/>
                             <constraint firstItem="Ghe-We-KCx" firstAttribute="top" secondItem="M0V-Ua-GHz" secondAttribute="bottom" constant="64" id="t3m-07-zSu"/>
+                            <constraint firstItem="Fmu-e8-LhS" firstAttribute="top" secondItem="FRI-Vl-b7L" secondAttribute="bottom" constant="20" id="uWh-0c-wXx"/>
+                            <constraint firstItem="C6r-Hw-cIJ" firstAttribute="centerY" secondItem="Fmu-e8-LhS" secondAttribute="centerY" id="z4i-hL-0eg"/>
                             <constraint firstItem="afP-gP-vmc" firstAttribute="top" secondItem="Ghe-We-KCx" secondAttribute="bottom" constant="16" id="zzm-oe-qfQ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="codeTextField" destination="0n8-Ol-EAd" id="RAK-aI-ZPM"/>
+                        <outlet property="didntReceiveCode" destination="Fmu-e8-LhS" id="VAS-3g-CqF"/>
                         <outlet property="loginButton" destination="FRI-Vl-b7L" id="XEx-XX-ckF"/>
+                        <outlet property="pleaseWaitLabel" destination="HB3-zk-ule" id="Imb-Oq-WgA"/>
+                        <outlet property="resendSMS" destination="C6r-Hw-cIJ" id="QaZ-8u-qQE"/>
                         <segue destination="22y-ZB-PZQ" kind="show" identifier="segueToLoggedIn" id="TdG-b9-t52"/>
                     </connections>
                 </viewController>

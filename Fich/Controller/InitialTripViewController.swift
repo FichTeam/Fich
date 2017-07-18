@@ -73,11 +73,19 @@ class InitialTripViewController: UIViewController {
         
         departureSearch.addSubview((departSearchController?.searchBar)!)
         departSearchController?.searchBar.sizeToFit()
+        
+        let leftConstraint = NSLayoutConstraint(item: departureSearch, attribute: .leading, relatedBy: .equal, toItem: departSearchController?.searchBar, attribute: .leading, multiplier: 1, constant: 0)
+        let bottomConstraint = NSLayoutConstraint(item: departureSearch, attribute: .bottom, relatedBy: .equal, toItem: departSearchController?.searchBar, attribute: .bottom, multiplier: 1, constant: 0)
+        let topConstraint = NSLayoutConstraint(item: departureSearch, attribute: .top, relatedBy: .equal, toItem: departSearchController?.searchBar, attribute: .top, multiplier: 1, constant: 0)
+        let rightConstraint = NSLayoutConstraint(item: departureSearch, attribute: .trailing, relatedBy: .equal, toItem: departSearchController?.searchBar, attribute: .trailing, multiplier: 1, constant:0)
+        departureSearch.addConstraints([leftConstraint, bottomConstraint, topConstraint, rightConstraint])
+        
         departSearchController?.hidesNavigationBarDuringPresentation = false
         
         // When UISearchController presents the results view, present it in
         // this view controller, not one further up the chain.
         definesPresentationContext = true
+        
         
         //---------
         
