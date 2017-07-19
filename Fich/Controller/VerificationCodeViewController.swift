@@ -29,7 +29,7 @@ class VerificationCodeViewController: UIViewController {
     // MARK: *** UI Events
     @IBAction func onLogin(_ sender: UIButton) {
         let defaults = UserDefaults.standard
-        let credential: PhoneAuthCredential = PhoneAuthProvider.provider().credential(withVerificationID: defaults.string(forKey: PHONENUMBER_KEY)!, verificationCode: codeTextField.text!)
+        let credential: PhoneAuthCredential = PhoneAuthProvider.provider().credential(withVerificationID: defaults.string(forKey: VERIFICATIONID_KEY)!, verificationCode: codeTextField.text!)
         Auth.auth().signIn(with: credential) { (user, error) in
             if error != nil{
                 print("error: \(String(describing: error?.localizedDescription))")

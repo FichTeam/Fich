@@ -25,6 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let userHasOnboarded: Bool = UserDefaults.standard.bool(forKey: kUserHasOnboardedKey)
+        // if the user has already onboarded, just set up the normal root view controller
+        // for the application
+        if userHasOnboarded {
+            setupNormalRootViewController()
+        }else {
+            window?.rootViewController = generateOnboard()
+        }
+        
         let fb =  FBSDKApplicationDelegate .sharedInstance() .application(application, didFinishLaunchingWithOptions: launchOptions)
         
         if UserDefaults.standard.string(forKey: "user") != nil{
@@ -59,14 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         FirebaseApp.configure()
         
-        let userHasOnboarded: Bool = UserDefaults.standard.bool(forKey: kUserHasOnboardedKey)
-        // if the user has already onboarded, just set up the normal root view controller
-        // for the application
-        if userHasOnboarded {
-            setupNormalRootViewController()
-        }else {
-            window?.rootViewController = generateOnboard()
-        }
         application.statusBarStyle = .lightContent
         window?.makeKeyAndVisible()
         
