@@ -11,6 +11,8 @@ import GoogleMaps
 import GooglePlaces
 import GooglePlacePicker
 import CoreLocation
+import Alamofire
+import SwiftyJSON
 
 class InitialTripViewController: UIViewController {
 
@@ -26,6 +28,9 @@ class InitialTripViewController: UIViewController {
     var contentRect = CGRect.zero
     
     var startPoint : CGFloat!
+    
+    var depLocation: CLLocationCoordinate2D!
+    var desLocation: CLLocationCoordinate2D!
     // MARK: *** Data Models
     
     // MARK: *** UI Elements
@@ -57,17 +62,6 @@ class InitialTripViewController: UIViewController {
         super.viewDidLoad()
         UserDefaults.standard.setValue(nil, forKey: "is_map_loaded")
         setupLocationAndMap()
-        
-        whereToLabel.layer.shadowOffset = CGSize(width: -1, height: 1)
-        whereToLabel.layer.shadowOpacity = 0.2
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTapped(tapGestureRecognizer:)))
-        whereToLabel.addGestureRecognizer(tapGestureRecognizer)
-        resultView.isHidden = true
-        whereToLabel.isHidden = false
-        searchView.isHidden = true
-        departureSearch.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
-        self.departureSearch.delegate = self
         
         self.tableDataSource = GMSAutocompleteTableDataSource()
         self.tableDataSource.delegate = self
@@ -105,9 +99,69 @@ class InitialTripViewController: UIViewController {
         mapView.settings.myLocationButton = true
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isMyLocationEnabled = true
-        mapView.isBuildingsEnabled = true
+        mapView.isBuildingsEnabled = false
+        
+        do {
+            if let styleURL = Bundle.main.url(forResource: "darkBlueStyle", withExtension: "json") {
+                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+            } else {
+                NSLog("Unable to find style.json")
+            }
+        } catch {
+            NSLog("One or more of the map styles failed to load. \(error)")
+        }
+        
         mapUIView.addSubview(mapView)
         mapView.isHidden = true
+        
+        
+        whereToLabel.layer.shadowOffset = CGSize(width: -1, height: 1)
+        whereToLabel.layer.shadowOpacity = 0.2
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTapped(tapGestureRecognizer:)))
+        whereToLabel.addGestureRecognizer(tapGestureRecognizer)
+        resultView.isHidden = true
+        whereToLabel.isHidden = false
+        searchView.isHidden = true
+        departureSearch.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+        self.departureSearch.delegate = self
+        destinationSearch.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+        self.destinationSearch.delegate = self
+    }
+    func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D, marker: GMSMarker) {
+        let geocoder = GMSGeocoder()
+        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
+            if let address = response?.firstResult() {
+                let title = address.lines as [String]?
+                marker.title = title?.first
+            }
+        }
+    }
+    func drawPath(currentLocation: CLLocationCoordinate2D, destinationLoc : CLLocationCoordinate2D)
+    {
+        let origin = "\(currentLocation.latitude),\(currentLocation.longitude)"
+        let destination = "\(destinationLoc.latitude),\(destinationLoc.longitude)"
+        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving&key=AIzaSyCTthE5Qltk1FES2HT86xRN0ix1a6Epfe4"
+        
+        Alamofire.request(url).responseJSON { response in
+            print(response.request!)  // original URL request
+            print(response.response!) // HTTP URL response
+            print(response.data!)     // server data
+            print(response.result)   // result of response serialization
+            
+            let json = JSON(data: response.data!)
+            let routes = json["routes"].arrayValue
+            
+            for route in routes
+            {
+                let routeOverviewPolyline = route["overview_polyline"].dictionary
+                let points = routeOverviewPolyline?["points"]?.stringValue
+                let path = GMSPath.init(fromEncodedPath: points!)
+                let polyline = GMSPolyline.init(path: path)
+                polyline.strokeColor = UIColor(rgb: 0xe3e3e3)
+                polyline.strokeWidth = 3.5
+                polyline.map = self.mapView
+            }
+        }
     }
 }
 
@@ -160,17 +214,20 @@ extension InitialTripViewController: GMSMapViewDelegate{
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        marker.title = "Your stop"
-        marker.snippet = "Update later"
+        reverseGeocodeCoordinate(coordinate: marker.position, marker: marker)
         marker.map = mapView
     }
 }
 
 extension InitialTripViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == departureSearch{
+            UserDefaults.standard.setValue(true, forKey: "is_departure")
+        }else if textField == destinationSearch{
+            UserDefaults.standard.setValue(false, forKey: "is_departure")
+        }
         self.resultsController.view.isHidden = false
         self.mapView.isHidden = true
-        
         self.addChildViewController(resultsController)
         self.resultsController.view.frame = resultView.frame
         self.resultsController.view.alpha = 0.0
@@ -203,24 +260,39 @@ extension InitialTripViewController: UITextFieldDelegate{
 
 extension InitialTripViewController: GMSAutocompleteTableDataSourceDelegate{
     func tableDataSource(_ tableDataSource: GMSAutocompleteTableDataSource, didAutocompleteWith place: GMSPlace) {
-        departureSearch.resignFirstResponder()
-        //let text = NSMutableAttributedString(string: place.name)
-        self.departureSearch.text = "\(place.name)"
-        
         self.mapView.isHidden = false
-        
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         marker.title = place.name
         marker.snippet = place.formattedAddress!
+        
+        if UserDefaults.standard.bool(forKey: "is_departure"){
+            depLocation = place.coordinate
+            departureSearch.resignFirstResponder()
+            self.departureSearch.text = "\(place.name)"
+            marker.icon = UIImage(named: "current_location_on_map")
+        }else{
+            desLocation = place.coordinate
+            destinationSearch.resignFirstResponder()
+            self.destinationSearch.text = "\(place.name)"
+            marker.icon = UIImage(named: "destination_on_map")
+        }
         marker.map = mapView
         let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude,longitude: place.coordinate.longitude, zoom: zoomLevel)
         mapView.animate(to: camera)
+        if depLocation != nil && desLocation != nil{
+            drawPath(currentLocation: depLocation, destinationLoc: desLocation)
+        }
     }
     
     func tableDataSource(_ tableDataSource: GMSAutocompleteTableDataSource, didFailAutocompleteWithError error: Error) {
-        departureSearch.resignFirstResponder()
-        self.departureSearch.text = ""
+        if UserDefaults.standard.bool(forKey: "is_departure"){
+            departureSearch.resignFirstResponder()
+            self.departureSearch.text = ""
+        }else{
+            destinationSearch.resignFirstResponder()
+            self.destinationSearch.text = ""
+        }
     }
     
     

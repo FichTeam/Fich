@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.5.0)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -78,8 +79,10 @@ PODS:
   - RxBluetoothKit (3.0.13):
     - RxSwift (~> 3.2)
   - RxSwift (3.5.0)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - Alamofire
   - FacebookLogin
   - Firebase/Auth
   - Firebase/Core
@@ -91,8 +94,10 @@ DEPENDENCIES:
   - Onboard
   - PhoneNumberKit
   - RxBluetoothKit
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
@@ -114,7 +119,8 @@ SPEC CHECKSUMS:
   PhoneNumberKit: 1e5cca669113fc361a8c82ec1ee559c62b8cd0f7
   RxBluetoothKit: 15aa913da8dc50aea32386e1619b91efa7c152bb
   RxSwift: 18ee9d78b45edb3b0b7e79916b47a116e6dbc842
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 40bb3826849dacaf4932e9a7af07f0e9a04af226
+PODFILE CHECKSUM: b2d2b8d0d70e036258cf88bbaa2e9b6c6197c0aa
 
 COCOAPODS: 1.2.1
