@@ -11,6 +11,7 @@
 		844AAB761F21442800F20E11 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AAB751F21442800F20E11 /* UIColorExtension.swift */; };
 		8460B5AE1F19FA940097B534 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8460B5AC1F19FA940097B534 /* Login.storyboard */; };
 		8460B5B31F1A0FB30097B534 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8460B5B21F1A0FB30097B534 /* LoginVC.swift */; };
+		84B676991F2211A300AD7E20 /* GoogleMapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B676981F2211A300AD7E20 /* GoogleMapManager.swift */; };
 		84EEEACC1F1C7F2B0069463D /* PhoneSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEACB1F1C7F2B0069463D /* PhoneSignupViewController.swift */; };
 		84EEEACE1F1C852F0069463D /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEACD1F1C852F0069463D /* UIExtension.swift */; };
 		84EEEAD01F1C9C670069463D /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEACF1F1C9C670069463D /* VerificationCodeViewController.swift */; };
@@ -44,6 +45,7 @@
 		844AAB751F21442800F20E11 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8460B5AD1F19FA940097B534 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Login.storyboard; sourceTree = "<group>"; };
 		8460B5B21F1A0FB30097B534 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		84B676981F2211A300AD7E20 /* GoogleMapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapManager.swift; sourceTree = "<group>"; };
 		84EEEACB1F1C7F2B0069463D /* PhoneSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneSignupViewController.swift; sourceTree = "<group>"; };
 		84EEEACD1F1C852F0069463D /* UIExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExtension.swift; path = Fich/Extension/UIExtension.swift; sourceTree = SOURCE_ROOT; };
 		84EEEACF1F1C9C670069463D /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,14 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		84B676971F22113900AD7E20 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				84B676981F2211A300AD7E20 /* GoogleMapManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		84CB35D51F1BBF6F00B64A61 /* Device */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +163,7 @@
 		C83B63E51F19D0E100F14E78 /* Fich */ = {
 			isa = PBXGroup;
 			children = (
+				84B676971F22113900AD7E20 /* Manager */,
 				844AAB771F21449F00F20E11 /* Extension */,
 				C83B64141F1C8A0800F14E78 /* Fich.entitlements */,
 				C83B64081F19D12500F14E78 /* Resource */,
@@ -405,6 +416,7 @@
 				84EEEB121F1D3EDC0069463D /* NSDataUtilities.swift in Sources */,
 				C83B63FB1F19D11800F14E78 /* AppDelegate.swift in Sources */,
 				C83B640E1F19D1E600F14E78 /* Trip.swift in Sources */,
+				84B676991F2211A300AD7E20 /* GoogleMapManager.swift in Sources */,
 				84EEEAD01F1C9C670069463D /* VerificationCodeViewController.swift in Sources */,
 				C83B640C1F19D1DB00F14E78 /* FirebaseClient.swift in Sources */,
 			);

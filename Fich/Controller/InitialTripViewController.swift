@@ -11,8 +11,6 @@ import GoogleMaps
 import GooglePlaces
 import GooglePlacePicker
 import CoreLocation
-import Alamofire
-import SwiftyJSON
 
 class InitialTripViewController: UIViewController {
 
@@ -20,7 +18,6 @@ class InitialTripViewController: UIViewController {
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var mapView: GMSMapView!
-    var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
     
     var tableDataSource: GMSAutocompleteTableDataSource!
@@ -31,6 +28,8 @@ class InitialTripViewController: UIViewController {
     
     var depLocation: CLLocationCoordinate2D!
     var desLocation: CLLocationCoordinate2D!
+    
+    private var dict: [String: GMSMarker] = [:]
     // MARK: *** Data Models
     
     // MARK: *** UI Elements
@@ -60,6 +59,10 @@ class InitialTripViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let camera = GMSCameraPosition.camera(withLatitude: 37.431573, longitude: -78.656894, zoom: zoomLevel)
+        mapView = GMSMapView.map(withFrame: mapUIView.bounds, camera: camera)
+        mapView.delegate = self
+        GoogleMapManager.shared.manage(mapView: self.mapView, mapUIView: mapUIView)
         UserDefaults.standard.setValue(nil, forKey: "is_map_loaded")
         setupLocationAndMap()
         
@@ -90,26 +93,6 @@ class InitialTripViewController: UIViewController {
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         
-        placesClient = GMSPlacesClient.shared()
-        
-        
-        let camera = GMSCameraPosition.camera(withLatitude: 37.431573, longitude: -78.656894, zoom: zoomLevel)
-        mapView = GMSMapView.map(withFrame: mapUIView.bounds, camera: camera)
-        mapView.delegate = self
-        mapView.settings.myLocationButton = true
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.isMyLocationEnabled = true
-        mapView.isBuildingsEnabled = false
-        
-        do {
-            if let styleURL = Bundle.main.url(forResource: "darkBlueStyle", withExtension: "json") {
-                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-            } else {
-                NSLog("Unable to find style.json")
-            }
-        } catch {
-            NSLog("One or more of the map styles failed to load. \(error)")
-        }
         
         mapUIView.addSubview(mapView)
         mapView.isHidden = true
@@ -133,33 +116,6 @@ class InitialTripViewController: UIViewController {
             if let address = response?.firstResult() {
                 let title = address.lines as [String]?
                 marker.title = title?.first
-            }
-        }
-    }
-    func drawPath(currentLocation: CLLocationCoordinate2D, destinationLoc : CLLocationCoordinate2D)
-    {
-        let origin = "\(currentLocation.latitude),\(currentLocation.longitude)"
-        let destination = "\(destinationLoc.latitude),\(destinationLoc.longitude)"
-        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving&key=AIzaSyCTthE5Qltk1FES2HT86xRN0ix1a6Epfe4"
-        
-        Alamofire.request(url).responseJSON { response in
-            print(response.request!)  // original URL request
-            print(response.response!) // HTTP URL response
-            print(response.data!)     // server data
-            print(response.result)   // result of response serialization
-            
-            let json = JSON(data: response.data!)
-            let routes = json["routes"].arrayValue
-            
-            for route in routes
-            {
-                let routeOverviewPolyline = route["overview_polyline"].dictionary
-                let points = routeOverviewPolyline?["points"]?.stringValue
-                let path = GMSPath.init(fromEncodedPath: points!)
-                let polyline = GMSPolyline.init(path: path)
-                polyline.strokeColor = UIColor(rgb: 0xe3e3e3)
-                polyline.strokeWidth = 3.5
-                polyline.map = self.mapView
             }
         }
     }
@@ -261,27 +217,22 @@ extension InitialTripViewController: UITextFieldDelegate{
 extension InitialTripViewController: GMSAutocompleteTableDataSourceDelegate{
     func tableDataSource(_ tableDataSource: GMSAutocompleteTableDataSource, didAutocompleteWith place: GMSPlace) {
         self.mapView.isHidden = false
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-        marker.title = place.name
-        marker.snippet = place.formattedAddress!
-        
         if UserDefaults.standard.bool(forKey: "is_departure"){
             depLocation = place.coordinate
             departureSearch.resignFirstResponder()
             self.departureSearch.text = "\(place.name)"
-            marker.icon = UIImage(named: "current_location_on_map")
+            GoogleMapManager.shared.addMarker(id: place.name, snippet: place.formattedAddress!, lat: place.coordinate.latitude, long: place.coordinate.longitude, imageName: "current_location_on_map")
         }else{
             desLocation = place.coordinate
             destinationSearch.resignFirstResponder()
             self.destinationSearch.text = "\(place.name)"
-            marker.icon = UIImage(named: "destination_on_map")
+            GoogleMapManager.shared.addMarker(id: place.name, snippet: place.formattedAddress!, lat: place.coordinate.latitude, long: place.coordinate.longitude, imageName: "destination_on_map")
         }
-        marker.map = mapView
         let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude,longitude: place.coordinate.longitude, zoom: zoomLevel)
         mapView.animate(to: camera)
         if depLocation != nil && desLocation != nil{
-            drawPath(currentLocation: depLocation, destinationLoc: desLocation)
+            GoogleMapManager.shared.clearPath()
+            GoogleMapManager.shared.drawPath(currentLocation: depLocation, destinationLoc: desLocation)
         }
     }
     
