@@ -21,6 +21,10 @@ class DeviceViewController: UIViewController {
     private var scanningDisposable: Disposable?
     fileprivate var peripheralsArray: [ScannedPeripheral] = []
   
+    @IBAction func onTestDevice(_ sender: Any) {
+        let deviceVC = DeviceViewController(nibName: "TestViewController", bundle: nil)
+        present(deviceVC, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
