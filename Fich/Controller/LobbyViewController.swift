@@ -34,6 +34,11 @@ class LobbyViewController: UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier :"setupTripVC")
         present(viewController, animated: true)
     }
+    @IBAction func onDevice(_ sender: UIButton) {
+        print("Device")
+        let deviceVC = DeviceViewController(nibName: "DeviceViewController", bundle: nil)
+        present(deviceVC, animated: true, completion: nil)
+    }
 }
 extension LobbyViewController : UITableViewDelegate, UITableViewDataSource{
     // MARK: *** UITableView

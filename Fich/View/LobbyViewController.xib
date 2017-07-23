@@ -24,6 +24,16 @@
                     <rect key="frame" x="0.0" y="16" width="320" height="44"/>
                     <items>
                         <navigationItem title="Lobbies" id="6Pq-JG-WAI">
+                            <barButtonItem key="leftBarButtonItem" style="plain" id="CcE-Hd-Pxt">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eQm-Fi-I18">
+                                    <rect key="frame" x="16" y="7" width="47" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Device"/>
+                                    <connections>
+                                        <action selector="onDevice:" destination="-1" eventType="touchUpInside" id="6N9-pH-bgK"/>
+                                    </connections>
+                                </button>
+                            </barButtonItem>
                             <barButtonItem key="rightBarButtonItem" title="Create trip" id="5bM-Sb-lU9">
                                 <connections>
                                     <action selector="onCreateTrip:" destination="-1" id="Coq-pU-ulW"/>
