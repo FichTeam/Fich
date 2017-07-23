@@ -25,6 +25,8 @@ class LobbyViewController: UIViewController {
         self.tableView.register(nib, forCellReuseIdentifier: LobbyCell.idXib)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 120.0
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         // Do any additional setup after loading the view.
     }
