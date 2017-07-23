@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84266B101F24A476004E304D /* WaypointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84266B0F1F24A476004E304D /* WaypointsViewController.swift */; };
 		844709591F2148730057CE01 /* darkBlueStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 844709581F2148730057CE01 /* darkBlueStyle.json */; };
 		844AAB761F21442800F20E11 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AAB751F21442800F20E11 /* UIColorExtension.swift */; };
 		8460B5AE1F19FA940097B534 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8460B5AC1F19FA940097B534 /* Login.storyboard */; };
@@ -45,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84266B0F1F24A476004E304D /* WaypointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointsViewController.swift; sourceTree = "<group>"; };
 		844709581F2148730057CE01 /* darkBlueStyle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = darkBlueStyle.json; path = ../../../Lapze/Lapze/Lapze/darkBlueStyle.json; sourceTree = "<group>"; };
 		844AAB751F21442800F20E11 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8460B5AD1F19FA940097B534 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Login.storyboard; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				84EEEB1D1F1D43080069463D /* InitialTripViewController.swift */,
+				84266B0F1F24A476004E304D /* WaypointsViewController.swift */,
 			);
 			name = InitialTrip;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				84EEEB1E1F1D43080069463D /* InitialTripViewController.swift in Sources */,
 				84EEEB171F1D40150069463D /* DataObject.swift in Sources */,
 				84EEEACC1F1C7F2B0069463D /* PhoneSignupViewController.swift in Sources */,
+				84266B101F24A476004E304D /* WaypointsViewController.swift in Sources */,
 				84EEEB0F1F1D3EBE0069463D /* TestViewController.swift in Sources */,
 				C83B63FF1F19D11800F14E78 /* DeviceViewController.swift in Sources */,
 				8460B5B31F1A0FB30097B534 /* LoginVC.swift in Sources */,

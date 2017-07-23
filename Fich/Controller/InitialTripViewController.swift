@@ -57,6 +57,10 @@ class InitialTripViewController: UIViewController {
         }
     }
     
+    @IBAction func onSetupWaypoints(_ sender: Any) {
+        performSegue(withIdentifier: "segueToSetupWaypoints", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let camera = GMSCameraPosition.camera(withLatitude: 37.431573, longitude: -78.656894, zoom: zoomLevel)
