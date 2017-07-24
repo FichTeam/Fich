@@ -201,11 +201,7 @@ extension DeviceViewController: UITableViewDelegate, UITableViewDataSource{
     
   }
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    let deviceVC = TestViewController(nibName: "TestViewController", bundle: nil)
-//    
-//      deviceVC.scannedPeripheral = peripheralsArray[indexPath.row]
-//      deviceVC.manager = manager
-//      present(deviceVC, animated: true, completion: nil)
+
   }
   
 
@@ -214,7 +210,7 @@ extension DeviceViewController: UITableViewDelegate, UITableViewDataSource{
 extension DeviceCell {
     func configure(with peripheral: ScannedPeripheral) {
         nameLabel.text = peripheral.advertisementData.localName ?? "No name"//peripheral.peripheral.identifier.uuidString
-        scannedPeripheral = peripheral
+//        scannedPeripheral = peripheral
     }
 }
 
