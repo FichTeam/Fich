@@ -13,6 +13,7 @@
 		8460B5AE1F19FA940097B534 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8460B5AC1F19FA940097B534 /* Login.storyboard */; };
 		8460B5B31F1A0FB30097B534 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8460B5B21F1A0FB30097B534 /* LoginVC.swift */; };
 		84B676991F2211A300AD7E20 /* GoogleMapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B676981F2211A300AD7E20 /* GoogleMapManager.swift */; };
+		84DE587B1F263F18009E5B62 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DE587A1F263F18009E5B62 /* Step.swift */; };
 		84E935841F235FDA0073506C /* LobbyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E935821F235FDA0073506C /* LobbyDetailViewController.swift */; };
 		84E935851F235FDA0073506C /* LobbyDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E935831F235FDA0073506C /* LobbyDetailViewController.xib */; };
 		84E935881F236E640073506C /* LobbyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E935861F236E640073506C /* LobbyCell.swift */; };
@@ -50,6 +51,7 @@
 		8460B5AD1F19FA940097B534 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Login.storyboard; sourceTree = "<group>"; };
 		8460B5B21F1A0FB30097B534 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		84B676981F2211A300AD7E20 /* GoogleMapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapManager.swift; sourceTree = "<group>"; };
+		84DE587A1F263F18009E5B62 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		84E935821F235FDA0073506C /* LobbyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyDetailViewController.swift; sourceTree = "<group>"; };
 		84E935831F235FDA0073506C /* LobbyDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LobbyDetailViewController.xib; sourceTree = "<group>"; };
 		84E935861F236E640073506C /* LobbyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyCell.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				84EEEB141F1D40150069463D /* DataObject.swift */,
 				84EEEB151F1D40150069463D /* Position.swift */,
 				C83B640D1F19D1E600F14E78 /* Trip.swift */,
+				84DE587A1F263F18009E5B62 /* Step.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				84E935881F236E640073506C /* LobbyCell.swift in Sources */,
 				C83B640E1F19D1E600F14E78 /* Trip.swift in Sources */,
 				84B676991F2211A300AD7E20 /* GoogleMapManager.swift in Sources */,
+				84DE587B1F263F18009E5B62 /* Step.swift in Sources */,
 				84E935841F235FDA0073506C /* LobbyDetailViewController.swift in Sources */,
 				84EEEAD01F1C9C670069463D /* VerificationCodeViewController.swift in Sources */,
 				C83B640C1F19D1DB00F14E78 /* FirebaseClient.swift in Sources */,

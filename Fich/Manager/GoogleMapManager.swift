@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Foundation
 import GoogleMaps
 import Alamofire
 import SwiftyJSON
@@ -16,6 +15,7 @@ class GoogleMapManager{
     static let shared: GoogleMapManager = GoogleMapManager()
     private var mapView: GMSMapView?
     var polylines :[GMSPolyline] = []
+    var steps: [Step] = []
     var zoomLevel: Float = 15.0
     private init(){}
 
@@ -112,8 +112,9 @@ class GoogleMapManager{
                 
                 let legs = route["legs"].arrayValue
                 for leg in legs {
-                    let steps = leg["steps"].arrayValue
-                    print(steps)
+                    let stepsJSON = leg["steps"].arrayValue
+                    self.steps = Step.stepsWithArray(jsons: stepsJSON)
+                    print(self.steps)
                 }
             }
         }

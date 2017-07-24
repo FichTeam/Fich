@@ -7,20 +7,26 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class Position: NSObject {
     var lat: Double?
-    var lon: Double?
+    var lng: Double?
     
     init(dictionary: NSDictionary) {
         lat = dictionary["lat"] as? Double
-        lon = dictionary["lon"] as? Double
+        lng = dictionary["lng"] as? Double
+    }
+    
+    init(json: JSON) {
+        lat = json["lat"].doubleValue
+        lng = json["lng"].doubleValue
     }
     
     func toPositionDictionary() -> NSDictionary {
         var positionDictionary = [String: Double]()
         positionDictionary["lat"] = lat
-        positionDictionary["lon"] = lon
+        positionDictionary["lng"] = lng
         return positionDictionary as NSDictionary
     }
 }

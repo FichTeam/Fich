@@ -61,6 +61,14 @@ class InitialTripViewController: UIViewController {
         performSegue(withIdentifier: "segueToSetupWaypoints", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToSetupWaypoints" {
+            let dest = segue.destination as! WaypointsViewController
+            dest.depPlace = departureSearch.text!
+            dest.desPlace = destinationSearch.text!
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let camera = GMSCameraPosition.camera(withLatitude: 37.431573, longitude: -78.656894, zoom: zoomLevel)

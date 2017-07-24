@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import CoreLocation
 
 class WaypointsViewController: UIViewController {
     // MARK: *** Local variables
-    
+    var depPlace : String!
+    var desPlace: String!
     // MARK: *** Data Models
     
     // MARK: *** UI Elements
     
+    @IBOutlet weak var yourDeparture: UILabel!
+    @IBOutlet weak var yourDestination: UILabel!
     // MARK: *** UI Events
     
     @IBAction func onBack(_ sender: UIButton) {
@@ -24,7 +28,8 @@ class WaypointsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        yourDeparture.text = depPlace
+        yourDestination.text = desPlace
     }
     
 }

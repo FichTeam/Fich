@@ -246,6 +246,10 @@
                             <constraint firstAttribute="trailing" secondItem="AwT-YP-HOR" secondAttribute="trailing" constant="32" id="l9I-XH-LuP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="yourDeparture" destination="DGf-eO-b4I" id="cTv-hu-lIH"/>
+                        <outlet property="yourDestination" destination="dmZ-91-tg3" id="DyT-4R-XQN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pkb-c3-PAX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
