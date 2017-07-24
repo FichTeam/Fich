@@ -120,24 +120,10 @@ class DeviceViewController: UIViewController {
   private func playAnimate()
   {
     for serviceidx in 1...self.servicesList.count{
-//      if (servicesList[serviceidx-1].uuid.uuidString == "3DDA0001-957F-7D4A-34A6-74696673696D" )
-//      {
+      if (servicesList[serviceidx-1].uuid.uuidString == "3DDA0001-957F-7D4A-34A6-74696673696D" )
+      {
         getCharacteristics(for: servicesList[serviceidx-1])
-        for indexCharacteristic in 1...self.characteristicsList.count{
-          let cmpString = self.characteristicsList[indexCharacteristic-1].uuid.uuidString
-          print("Char: \(cmpString)")
-          if (cmpString == "3DDA0002-957F-7D4A-34A6-74696673696D")
-          {
-            // subcribe before write a cmd
-            
-            self.characteristicsList[indexCharacteristic-1].setNotifyValue(true)
-              .subscribe(onNext: { [weak self] _ in
-                let cmdString = "02F106"
-                self?.writeValueForCharacteristic(hexadecimalString: cmdString, characteristic: (self?.characteristicsList[indexCharacteristic-1])!)
-              }).addDisposableTo(self.disposeBag)
-          }
-        }
-//      }
+      }
     }
   }
   fileprivate func writeValueForCharacteristic(hexadecimalString: String,characteristic: Characteristic) {
@@ -154,7 +140,20 @@ class DeviceViewController: UIViewController {
       .subscribe(onNext: { characteristics in
         self.characteristicsList = characteristics
         // send command though a characteristic
-        
+        for indexCharacteristic in 1...self.characteristicsList.count{
+          let cmpString = self.characteristicsList[indexCharacteristic-1].uuid.uuidString
+          print("Char: \(cmpString)")
+          if (cmpString == "3DDA0002-957F-7D4A-34A6-74696673696D")
+          {
+            // subcribe before write a cmd
+            
+            self.characteristicsList[indexCharacteristic-1].setNotifyValue(true)
+              .subscribe(onNext: { [weak self] _ in
+                let cmdString = "02F106"
+                self?.writeValueForCharacteristic(hexadecimalString: cmdString, characteristic: (self?.characteristicsList[indexCharacteristic-1])!)
+              }).addDisposableTo(self.disposeBag)
+          }
+        }
       }).addDisposableTo(disposeBag)
   }
 
