@@ -186,40 +186,64 @@
                                     <constraint firstAttribute="height" constant="24" id="wWj-UG-BeQ"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departure" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGf-eO-b4I">
-                                <rect key="frame" x="77" y="77" width="235" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.97647058819999999" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="destination" translatesAutoresizingMaskIntoConstraints="NO" id="htg-Zf-Lfc">
-                                <rect key="frame" x="21" y="531.5" width="24" height="24"/>
+                                <rect key="frame" x="21" y="532" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="NdP-yb-6f2"/>
                                     <constraint firstAttribute="height" constant="24" id="a1Q-vl-zLa"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiq-fd-2AZ">
-                                <rect key="frame" x="77" y="534" width="235" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.97647058819999999" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAr-h8-zEk">
+                                <rect key="frame" x="45" y="74" width="243" height="24"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your departure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGf-eO-b4I">
+                                        <rect key="frame" x="8" y="5" width="227" height="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.2784313725" green="0.3411764706" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="DGf-eO-b4I" firstAttribute="centerY" secondItem="FAr-h8-zEk" secondAttribute="centerY" id="XR8-vP-JAo"/>
+                                    <constraint firstItem="DGf-eO-b4I" firstAttribute="leading" secondItem="FAr-h8-zEk" secondAttribute="leading" constant="8" id="YDR-ki-l8Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="DGf-eO-b4I" secondAttribute="trailing" constant="8" id="dm6-Fe-9C7"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AwT-YP-HOR">
+                                <rect key="frame" x="45" y="532" width="243" height="24"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your destination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmZ-91-tg3">
+                                        <rect key="frame" x="8" y="5" width="227" height="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.2784313725" green="0.3411764706" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="dmZ-91-tg3" secondAttribute="trailing" constant="8" id="0Cg-Eb-9jc"/>
+                                    <constraint firstItem="dmZ-91-tg3" firstAttribute="centerY" secondItem="AwT-YP-HOR" secondAttribute="centerY" id="BiN-L5-9Bc"/>
+                                    <constraint firstItem="dmZ-91-tg3" firstAttribute="leading" secondItem="AwT-YP-HOR" secondAttribute="leading" constant="8" id="C7q-NZ-lWx"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="tiq-fd-2AZ" firstAttribute="centerY" secondItem="htg-Zf-Lfc" secondAttribute="centerY" id="0mR-M8-yAa"/>
                             <constraint firstItem="pdX-JR-imx" firstAttribute="top" secondItem="s6M-SX-dD7" secondAttribute="bottom" constant="8" id="2AM-c5-0qQ"/>
+                            <constraint firstItem="FAr-h8-zEk" firstAttribute="leading" secondItem="pdX-JR-imx" secondAttribute="trailing" id="3Vh-dQ-xhF"/>
+                            <constraint firstItem="AwT-YP-HOR" firstAttribute="height" secondItem="htg-Zf-Lfc" secondAttribute="height" id="9Fr-gl-h8B"/>
                             <constraint firstItem="s6M-SX-dD7" firstAttribute="leading" secondItem="xEH-C9-L4b" secondAttribute="leading" constant="16" id="9GX-K0-TCd"/>
                             <constraint firstItem="pdX-JR-imx" firstAttribute="centerX" secondItem="s6M-SX-dD7" secondAttribute="centerX" id="AJf-qV-uOf"/>
-                            <constraint firstAttribute="trailing" secondItem="DGf-eO-b4I" secondAttribute="trailing" constant="8" id="BGT-ga-pKH"/>
-                            <constraint firstItem="TdP-04-CkK" firstAttribute="top" secondItem="tiq-fd-2AZ" secondAttribute="bottom" constant="16" id="LBC-PI-ihE"/>
-                            <constraint firstItem="DGf-eO-b4I" firstAttribute="leading" secondItem="pdX-JR-imx" secondAttribute="trailing" constant="32" id="U3e-XA-067"/>
+                            <constraint firstItem="FAr-h8-zEk" firstAttribute="top" secondItem="pdX-JR-imx" secondAttribute="top" id="DjR-yK-Hgr"/>
+                            <constraint firstItem="TdP-04-CkK" firstAttribute="top" secondItem="htg-Zf-Lfc" secondAttribute="bottom" constant="12" id="Gh1-BV-rao"/>
+                            <constraint firstItem="FAr-h8-zEk" firstAttribute="height" secondItem="pdX-JR-imx" secondAttribute="height" id="MEh-w2-74F"/>
+                            <constraint firstItem="AwT-YP-HOR" firstAttribute="top" secondItem="htg-Zf-Lfc" secondAttribute="top" id="PRA-1P-IAj"/>
+                            <constraint firstAttribute="trailing" secondItem="FAr-h8-zEk" secondAttribute="trailing" constant="32" id="SaO-0K-amp"/>
                             <constraint firstItem="htg-Zf-Lfc" firstAttribute="centerX" secondItem="pdX-JR-imx" secondAttribute="centerX" id="Ywi-q6-24e"/>
-                            <constraint firstItem="DGf-eO-b4I" firstAttribute="centerY" secondItem="pdX-JR-imx" secondAttribute="centerY" id="dw5-GK-Tbf"/>
                             <constraint firstItem="s6M-SX-dD7" firstAttribute="top" secondItem="GKe-QY-f94" secondAttribute="bottom" constant="16" id="gid-PX-B8z"/>
-                            <constraint firstItem="tiq-fd-2AZ" firstAttribute="trailing" secondItem="DGf-eO-b4I" secondAttribute="trailing" id="nLx-EL-wjj"/>
-                            <constraint firstItem="tiq-fd-2AZ" firstAttribute="leading" secondItem="DGf-eO-b4I" secondAttribute="leading" id="zaF-Dz-TTI"/>
+                            <constraint firstItem="AwT-YP-HOR" firstAttribute="leading" secondItem="htg-Zf-Lfc" secondAttribute="trailing" id="iGN-jn-kCU"/>
+                            <constraint firstAttribute="trailing" secondItem="AwT-YP-HOR" secondAttribute="trailing" constant="32" id="l9I-XH-LuP"/>
                         </constraints>
                     </view>
                 </viewController>

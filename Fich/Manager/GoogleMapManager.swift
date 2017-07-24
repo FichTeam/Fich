@@ -91,10 +91,10 @@ class GoogleMapManager{
         let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving&key=AIzaSyCTthE5Qltk1FES2HT86xRN0ix1a6Epfe4"
         
         Alamofire.request(url).responseJSON { response in
-            print(response.request!)  // original URL request
-            print(response.response!) // HTTP URL response
-            print(response.data!)     // server data
-            print(response.result)   // result of response serialization
+            //print(response.request!)  // original URL request
+            //print(response.response!) // HTTP URL response
+            //print(response.data!)     // server data
+            //print(response.result)   // result of response serialization
             
             let json = JSON(data: response.data!)
             let routes = json["routes"].arrayValue
@@ -109,6 +109,12 @@ class GoogleMapManager{
                 polyline.strokeWidth = 3.5
                 polyline.map = self.mapView
                 self.polylines.append(polyline)
+                
+                let legs = route["legs"].arrayValue
+                for leg in legs {
+                    let steps = leg["steps"].arrayValue
+                    print(steps)
+                }
             }
         }
     }
