@@ -13,10 +13,11 @@ class WaypointsViewController: UIViewController {
     // MARK: *** Local variables
     var depPlace : String!
     var desPlace: String!
+    var steps: [Step] = []
     // MARK: *** Data Models
     
     // MARK: *** UI Elements
-    
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var yourDeparture: UILabel!
     @IBOutlet weak var yourDestination: UILabel!
     // MARK: *** UI Events
@@ -30,6 +31,22 @@ class WaypointsViewController: UIViewController {
 
         yourDeparture.text = depPlace
         yourDestination.text = desPlace
+        tableView.delegate = self
+        tableView.dataSource = self
+        
     }
     
+}
+extension WaypointsViewController : UITableViewDelegate, UITableViewDataSource{
+    // MARK: *** UITableView
+    //return number of rows
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    //set data for each row
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StepCellID") as! StepCell
+        //cell.step = GoogleMapManager.shared.steps[0]
+        return cell
+    }
 }

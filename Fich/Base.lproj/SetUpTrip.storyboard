@@ -227,6 +227,38 @@
                                     <constraint firstItem="dmZ-91-tg3" firstAttribute="leading" secondItem="AwT-YP-HOR" secondAttribute="leading" constant="8" id="C7q-NZ-lWx"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="28" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yKs-oR-xfm">
+                                <rect key="frame" x="21" y="106" width="267" height="418"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StepCellID" rowHeight="28" id="tkw-pi-X1t" customClass="StepCell" customModule="Fich" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="267" height="28"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tkw-pi-X1t" id="lri-Ed-DMy">
+                                            <rect key="frame" x="0.0" y="0.0" width="267" height="27.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0w2-KV-hBN">
+                                                    <rect key="frame" x="8" y="6.5" width="251" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.27058823529999998" green="0.3803921569" blue="0.45098039220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0w2-KV-hBN" firstAttribute="centerY" secondItem="lri-Ed-DMy" secondAttribute="centerY" id="YCF-eg-v5S"/>
+                                                <constraint firstItem="0w2-KV-hBN" firstAttribute="leading" secondItem="lri-Ed-DMy" secondAttribute="leading" constant="8" id="pMS-OJ-VRi"/>
+                                                <constraint firstAttribute="trailing" secondItem="0w2-KV-hBN" secondAttribute="trailing" constant="8" id="zbf-vq-J1P"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="stepLabel" destination="0w2-KV-hBN" id="bNQ-w9-e1Y"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -240,13 +272,18 @@
                             <constraint firstItem="FAr-h8-zEk" firstAttribute="height" secondItem="pdX-JR-imx" secondAttribute="height" id="MEh-w2-74F"/>
                             <constraint firstItem="AwT-YP-HOR" firstAttribute="top" secondItem="htg-Zf-Lfc" secondAttribute="top" id="PRA-1P-IAj"/>
                             <constraint firstAttribute="trailing" secondItem="FAr-h8-zEk" secondAttribute="trailing" constant="32" id="SaO-0K-amp"/>
+                            <constraint firstItem="htg-Zf-Lfc" firstAttribute="top" secondItem="yKs-oR-xfm" secondAttribute="bottom" constant="8" id="W6Y-JF-S0y"/>
                             <constraint firstItem="htg-Zf-Lfc" firstAttribute="centerX" secondItem="pdX-JR-imx" secondAttribute="centerX" id="Ywi-q6-24e"/>
                             <constraint firstItem="s6M-SX-dD7" firstAttribute="top" secondItem="GKe-QY-f94" secondAttribute="bottom" constant="16" id="gid-PX-B8z"/>
+                            <constraint firstItem="yKs-oR-xfm" firstAttribute="top" secondItem="pdX-JR-imx" secondAttribute="bottom" constant="8" id="i4S-iv-eqQ"/>
                             <constraint firstItem="AwT-YP-HOR" firstAttribute="leading" secondItem="htg-Zf-Lfc" secondAttribute="trailing" id="iGN-jn-kCU"/>
                             <constraint firstAttribute="trailing" secondItem="AwT-YP-HOR" secondAttribute="trailing" constant="32" id="l9I-XH-LuP"/>
+                            <constraint firstItem="yKs-oR-xfm" firstAttribute="trailing" secondItem="AwT-YP-HOR" secondAttribute="trailing" id="o79-Qs-cdc"/>
+                            <constraint firstItem="yKs-oR-xfm" firstAttribute="leading" secondItem="pdX-JR-imx" secondAttribute="leading" id="q9M-0C-l3s"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="yKs-oR-xfm" id="IOZ-Qi-vSm"/>
                         <outlet property="yourDeparture" destination="DGf-eO-b4I" id="cTv-hu-lIH"/>
                         <outlet property="yourDestination" destination="dmZ-91-tg3" id="DyT-4R-XQN"/>
                     </connections>
