@@ -13,124 +13,163 @@ import CoreBluetooth
 
 class DeviceViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
-    
-    private var isScanInProgress = false
-    private var scheduler: ConcurrentDispatchQueueScheduler!
-    let manager = BluetoothManager(queue: .main)
-    private var scanningDisposable: Disposable?
-    fileprivate var peripheralsArray: [ScannedPeripheral] = []
-    var scannedPeripheral: ScannedPeripheral!
-    var selectedPeripheral: ScannedPeripheral!
-    private let disposeBag = DisposeBag()
-    private var connectedPeripheral: Peripheral?
-    fileprivate var servicesList: [Service] = []
-    fileprivate var characteristicsList: [Characteristic] = []
-  
-  
-    @IBAction func onTestDevice(_ sender: Any) {
-        let deviceVC = DeviceViewController(nibName: "TestViewController", bundle: nil)
-        present(deviceVC, animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  @IBOutlet weak var tableView: UITableView!
 
-        let timerQueue = DispatchQueue(label: "com.polidea.rxbluetoothkit.timer")
-        scheduler = ConcurrentDispatchQueueScheduler(queue: timerQueue)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.estimatedRowHeight = 80.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
-        tableView.register(UINib(nibName: "DeviceCell", bundle: nil), forCellReuseIdentifier: "deviceCell")
-    }
+  private var isScanInProgress = false
+  private var scheduler: ConcurrentDispatchQueueScheduler!
+  let manager = BluetoothManager(queue: .main)
+  private var scanningDisposable: Disposable?
 
-    private func stopScanning() {
-        scanningDisposable?.dispose()
-        isScanInProgress = false
-    }
-    
-    private func startScanning() {
-        isScanInProgress = true
-        scanningDisposable = manager.rx_state
-            .timeout(4.0, scheduler: scheduler)
-            .take(1)
-            .flatMap { _ in self.manager.scanForPeripherals(withServices: nil, options:nil) }
-            .subscribeOn(MainScheduler.instance)
-            .subscribe(onNext: {
-                self.addNewScannedPeripheral($0)
-            }, onError: { error in
-            })
-    }
-    
-    
-    private func addNewScannedPeripheral(_ peripheral: ScannedPeripheral) {
-        let mapped = peripheralsArray.map { $0.peripheral }
-        if let indx = mapped.index(of: peripheral.peripheral) {
-            peripheralsArray[indx] = peripheral
-        } else {
-            self.peripheralsArray.append(peripheral)
-        }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    @IBAction func onBack(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
+  var scannedPeripheral: ScannedPeripheral!
+  var selectedPeripheral: ScannedPeripheral!
+  private var connectedPeripheral: Peripheral?
 
-    
-    @IBAction func onScan(_ sender: UIButton) {
-        if isScanInProgress {
-            stopScanning()
-            sender.setTitle("Start Scan", for: .normal)
-        } else {
-            startScanning()
-            sender.setTitle("Stop Scan", for: .normal)
-        }
-    }
-    func printst(text: NSString)  {
-      print(text)
-    }
+  private let disposeBag = DisposeBag()
+
+  fileprivate var peripheralsArray: [ScannedPeripheral] = []
+  fileprivate var servicesList: [Service] = []
+  fileprivate var characteristicsList: [Characteristic] = []
   
-  func PlayAnimate(peripheral: ScannedPeripheral) {
-        guard selectedPeripheral != nil else { return }
-        manager.connect(selectedPeripheral.peripheral)
-          .subscribe(onNext: { [weak self] in
-            guard let `self` = self else { return }
-    
-            self.connectedPeripheral = $0
-//            self.monitorDisconnection(for: $0)
-            self.downloadServices(for: $0)
-//            self.PlayAnimate()
-            }, onError: { [weak self] error in
-              print(error)
-          }).addDisposableTo(disposeBag)
+  private var isAnimate = false
+
+
+
+  override func viewDidLoad() {
+      super.viewDidLoad()
+
+      let timerQueue = DispatchQueue(label: "com.polidea.rxbluetoothkit.timer")
+      scheduler = ConcurrentDispatchQueueScheduler(queue: timerQueue)
+      
+      tableView.delegate = self
+      tableView.dataSource = self
+      tableView.estimatedRowHeight = 80.0
+      tableView.rowHeight = UITableViewAutomaticDimension
+      
+      tableView.register(UINib(nibName: "DeviceCell", bundle: nil), forCellReuseIdentifier: "deviceCell")
   }
-  private func downloadServices(for peripheral: Peripheral) {
+
+  private func stopScanning() {
+      scanningDisposable?.dispose()
+      isScanInProgress = false
+  }
+
+  private func startScanning() {
+      isScanInProgress = true
+      scanningDisposable = manager.rx_state
+          .timeout(4.0, scheduler: scheduler)
+          .take(1)
+          .flatMap { _ in self.manager.scanForPeripherals(withServices: nil, options:nil) }
+          .subscribeOn(MainScheduler.instance)
+          .subscribe(onNext: {
+              self.addNewScannedPeripheral($0)
+          }, onError: { error in
+          })
+  }
+  private func ConnectAndDiscover(_ peripheral: ScannedPeripheral)
+  {
+    guard selectedPeripheral != nil else { return }
+    manager.connect(selectedPeripheral.peripheral)
+      .subscribe(onNext: { [weak self] in
+        guard let `self` = self else { return }
+        self.connectedPeripheral = $0
+        self.discoverService(for: $0)
+        }, onError: { [weak self] error in
+          print(error)
+      }).addDisposableTo(disposeBag)
+    
+    selectedPeripheral = nil
+  }
+
+
+  private func addNewScannedPeripheral(_ peripheral: ScannedPeripheral) {
+      let mapped = peripheralsArray.map { $0.peripheral }
+      if let indx = mapped.index(of: peripheral.peripheral) {
+          peripheralsArray[indx] = peripheral
+      } else {
+          self.peripheralsArray.append(peripheral)
+      }
+      DispatchQueue.main.async {
+          self.tableView.reloadData()
+      }
+  }
+  @IBAction func onBack(_ sender: UIButton) {
+      dismiss(animated: true, completion: nil)
+  }
+
+
+  @IBAction func onScan(_ sender: UIButton) {
+      if isScanInProgress {
+          stopScanning()
+          sender.setTitle("Start Scan", for: .normal)
+      } else {
+          startScanning()
+          sender.setTitle("Stop Scan", for: .normal)
+      }
+  }
+
+  func PlayAnimate(peripheral: ScannedPeripheral) {
+      isAnimate = true
+      self.ConnectAndDiscover(peripheral)
+  }
+  func PairDevice()
+  {
+    
+  }
+  private func discoverService(for peripheral: Peripheral) {
     peripheral.discoverServices(nil)
       .subscribe(onNext: { services in
         self.servicesList = services
-        for abc in 1...self.servicesList.count{
-          print(self.servicesList[abc-1].uuid.uuidString)
-        
-        }
-        self.playAnimate()
-        print(self.servicesList)
+        self.discoverServiceCB(servicesArr: self.servicesList)
       }).addDisposableTo(disposeBag)
   }
-  private func playAnimate()
+  private func discoverServiceCB(servicesArr: [Service])
   {
-    for serviceidx in 1...self.servicesList.count{
-      if (servicesList[serviceidx-1].uuid.uuidString == "3DDA0001-957F-7D4A-34A6-74696673696D" )
+    // Discover Characteristic for each Service
+    for serviceIdx in 1...servicesArr.count
+    {
+      self.discoverCharacteristic(for: servicesArr[serviceIdx-1])
+    }
+    
+  }
+  
+  private func discoverCharacteristic(for service: Service) {
+    service.discoverCharacteristics(nil)
+      .subscribe(onNext: { characteristics in
+        self.characteristicsList = characteristics
+        self.discoverCharacteristicCB(characteristicArr: self.characteristicsList)
+
+      }).addDisposableTo(disposeBag)
+  }
+  private func discoverCharacteristicCB(characteristicArr: [Characteristic])
+  {
+    // Subcribe every characteristic
+    for charIdx in 1...characteristicArr.count
+    {
+      self.subcribeCharacteristic(characteristic: characteristicArr[charIdx-1])
+    }
+    
+  }
+  private func subcribeCharacteristic(characteristic: Characteristic)
+  {
+    characteristic.setNotifyValue(true).subscribe(onNext: { (characteristic) in
+      //subcribe CB
+      self.subcribeCharacteristicCB(characteristic: characteristic)
+    }).addDisposableTo(self.disposeBag)
+  }
+  
+  private func subcribeCharacteristicCB(characteristic: Characteristic)
+  {
+    if isAnimate {
+      if (characteristic.uuid.uuidString == "3DDA0002-957F-7D4A-34A6-74696673696D")
       {
-        getCharacteristics(for: servicesList[serviceidx-1])
+        let cmdString = "02F106"
+        self.writeValueForCharacteristic(hexadecimalString: cmdString, characteristic: characteristic)
+        isAnimate = false
       }
     }
   }
   fileprivate func writeValueForCharacteristic(hexadecimalString: String,characteristic: Characteristic) {
+    print("char: \(characteristic.uuid.uuidString)")
     let hexadecimalData: Data = Data.fromHexString(string: hexadecimalString)
     let type: CBCharacteristicWriteType = characteristic.properties.contains(.write) ? .withResponse : .withoutResponse
     characteristic.writeValue(hexadecimalData as Data, type: type)
@@ -139,32 +178,6 @@ class DeviceViewController: UIViewController {
       }).addDisposableTo(disposeBag)
   }
   
-  private func getCharacteristics(for service: Service) {
-    service.discoverCharacteristics(nil)
-      .subscribe(onNext: { characteristics in
-        self.characteristicsList = characteristics
-        // send command though a characteristic
-        for indexCharacteristic in 1...self.characteristicsList.count{
-          let cmpString = self.characteristicsList[indexCharacteristic-1].uuid.uuidString
-          print("Char: \(cmpString)")
-          if (cmpString == "3DDA0002-957F-7D4A-34A6-74696673696D")
-          {
-            // subcribe before write a cmd
-            
-            self.characteristicsList[indexCharacteristic-1].setNotifyValue(true)
-              .subscribe(onNext: { [weak self] _ in
-                let cmdString = "02F106"
-                self?.writeValueForCharacteristic(hexadecimalString: cmdString, characteristic: (self?.characteristicsList[indexCharacteristic-1])!)
-              }).addDisposableTo(self.disposeBag)
-          }
-        }
-      }).addDisposableTo(disposeBag)
-  }
-
-  func PairDevice()
-  {
-  
-  }
   private func monitorDisconnection(for peripheral: Peripheral) {
     manager.monitorDisconnection(for: peripheral)
       .subscribe(onNext: { [weak self] (peripheral) in
@@ -200,25 +213,12 @@ extension DeviceViewController: UITableViewDelegate, UITableViewDataSource{
         }
       return cell
     }
-  func discoverServiceSuccesscb()
-  {
-    
-  }
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    let deviceVC = TestViewController(nibName: "TestViewController", bundle: nil)
-//    
-//      deviceVC.scannedPeripheral = peripheralsArray[indexPath.row]
-//      deviceVC.manager = manager
-//      present(deviceVC, animated: true, completion: nil)
-  }
-  
-
 }
 
 extension DeviceCell {
     func configure(with peripheral: ScannedPeripheral) {
         nameLabel.text = peripheral.advertisementData.localName ?? "No name"//peripheral.peripheral.identifier.uuidString
-        scannedPeripheral = peripheral
+//        scannedPeripheral = peripheral
     }
 }
 
