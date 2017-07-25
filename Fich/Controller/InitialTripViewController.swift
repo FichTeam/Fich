@@ -91,7 +91,7 @@ class InitialTripViewController: UIViewController {
         searchView.isHidden = false
         mapUIView.isHidden = false
         
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: [], animations: {
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 5, options: [], animations: {
             self.searchView.frame.origin.y = self.searchView.frame.origin.y + self.searchView.frame.height
         }, completion: nil)
         

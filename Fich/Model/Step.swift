@@ -28,7 +28,7 @@ class Step: NSObject {
         startLocation = Position(json: startPosition)
         let endPosition = json["end_location"]
         endLocation = Position(json: endPosition)
-        self.instruction = json["html_instruction"].stringValue
+        self.instruction = json["html_instructions"].stringValue.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
         
         let points = json["polyline"]["points"].stringValue
         let path = GMSPath.init(fromEncodedPath: points)

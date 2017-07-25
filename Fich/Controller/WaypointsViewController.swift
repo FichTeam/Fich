@@ -33,7 +33,8 @@ class WaypointsViewController: UIViewController {
         yourDestination.text = desPlace
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.estimatedRowHeight = 50
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
 }
@@ -41,12 +42,12 @@ extension WaypointsViewController : UITableViewDelegate, UITableViewDataSource{
     // MARK: *** UITableView
     //return number of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return GoogleMapManager.shared.steps.count
     }
     //set data for each row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StepCellID") as! StepCell
-        //cell.step = GoogleMapManager.shared.steps[0]
+        cell.step = GoogleMapManager.shared.steps[indexPath.row]
         return cell
     }
 }
