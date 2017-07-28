@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		84266B101F24A476004E304D /* WaypointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84266B0F1F24A476004E304D /* WaypointsViewController.swift */; };
+		8434E7F51F2BBC4900795A72 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434E7F41F2BBC4900795A72 /* Stop.swift */; };
 		844709591F2148730057CE01 /* darkBlueStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 844709581F2148730057CE01 /* darkBlueStyle.json */; };
 		844AAB761F21442800F20E11 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AAB751F21442800F20E11 /* UIColorExtension.swift */; };
 		8460B5AE1F19FA940097B534 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8460B5AC1F19FA940097B534 /* Login.storyboard */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		84266B0F1F24A476004E304D /* WaypointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointsViewController.swift; sourceTree = "<group>"; };
+		8434E7F41F2BBC4900795A72 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		844709581F2148730057CE01 /* darkBlueStyle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = darkBlueStyle.json; path = ../../../Lapze/Lapze/Lapze/darkBlueStyle.json; sourceTree = "<group>"; };
 		844AAB751F21442800F20E11 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8460B5AD1F19FA940097B534 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Login.storyboard; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				84EEEB151F1D40150069463D /* Position.swift */,
 				C83B640D1F19D1E600F14E78 /* Trip.swift */,
 				84DE587A1F263F18009E5B62 /* Step.swift */,
+				8434E7F41F2BBC4900795A72 /* Stop.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				C83B64021F19D11800F14E78 /* DeviceCell.swift in Sources */,
 				84EEEB121F1D3EDC0069463D /* NSDataUtilities.swift in Sources */,
 				C83B63FB1F19D11800F14E78 /* AppDelegate.swift in Sources */,
+				8434E7F51F2BBC4900795A72 /* Stop.swift in Sources */,
 				84E935881F236E640073506C /* LobbyCell.swift in Sources */,
 				C83B640E1F19D1E600F14E78 /* Trip.swift in Sources */,
 				84B676991F2211A300AD7E20 /* GoogleMapManager.swift in Sources */,

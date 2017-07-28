@@ -233,18 +233,19 @@ extension InitialTripViewController: GMSAutocompleteTableDataSourceDelegate{
             depLocation = place.coordinate
             departureSearch.resignFirstResponder()
             self.departureSearch.text = "\(place.name)"
-            GoogleMapManager.shared.addMarker(id: place.name, snippet: place.formattedAddress!, lat: place.coordinate.latitude, long: place.coordinate.longitude, imageName: "current_location_on_map")
+            GoogleMapManager.shared.addMarker(id: place.name, snippet: place.formattedAddress!, lat: place.coordinate.latitude, long: place.coordinate.longitude, imageName: "icon_dep")
         }else{
             desLocation = place.coordinate
             destinationSearch.resignFirstResponder()
             self.destinationSearch.text = "\(place.name)"
-            GoogleMapManager.shared.addMarker(id: place.name, snippet: place.formattedAddress!, lat: place.coordinate.latitude, long: place.coordinate.longitude, imageName: "destination_on_map")
+            GoogleMapManager.shared.addMarker(id: place.name, snippet: place.formattedAddress!, lat: place.coordinate.latitude, long: place.coordinate.longitude, imageName: "icon_des")
         }
         let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude,longitude: place.coordinate.longitude, zoom: zoomLevel)
         mapView.animate(to: camera)
         if depLocation != nil && desLocation != nil{
             GoogleMapManager.shared.clearPath()
             GoogleMapManager.shared.drawPath(currentLocation: depLocation, destinationLoc: desLocation)
+            GoogleMapManager.shared.showSuggestStops(currentLocation: depLocation, destinationLoc: desLocation)
         }
     }
     

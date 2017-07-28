@@ -8,6 +8,7 @@
 
 import Foundation
 import GoogleMaps
+import GooglePlaces
 import Alamofire
 import SwiftyJSON
 
@@ -16,6 +17,7 @@ class GoogleMapManager{
     private var mapView: GMSMapView?
     var polylines :[GMSPolyline] = []
     var steps: [Step] = []
+    var stops: [Stop] = []
     var zoomLevel: Float = 15.0
     private init(){}
 
@@ -41,7 +43,7 @@ class GoogleMapManager{
     }
     
     func addMarker(id: String, snippet: String, lat: Double, long: Double, imageName: String) {
-        if imageName == "current_location_on_map"{
+        if imageName == "icon_dep"{
             if dictDep.count == 0{
                 let cllocation = CLLocationCoordinate2D(latitude: lat, longitude: long)
                 let marker = GMSMarker(position: cllocation)
@@ -58,7 +60,7 @@ class GoogleMapManager{
                 markerTest?.title = id
                 markerTest?.snippet = snippet
             }
-        }else if imageName == "destination_on_map"{
+        }else if imageName == "icon_des"{
             if dictDes.count == 0{
                 let cllocation = CLLocationCoordinate2D(latitude: lat, longitude: long)
                 let marker = GMSMarker(position: cllocation)
@@ -126,6 +128,25 @@ class GoogleMapManager{
                 polylines[i].map = nil
             }
             self.polylines.removeAll()
+        }
+    }
+    
+    func showSuggestStops(currentLocation: CLLocationCoordinate2D, destinationLoc : CLLocationCoordinate2D){
+        let origin = "\(currentLocation.latitude),\(currentLocation.longitude)"
+        //let destination = "\(destinationLoc.latitude),\(destinationLoc.longitude)"
+        let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(origin)&rankby=distance&types=food,hospital,gas_station&key=AIzaSyCTthE5Qltk1FES2HT86xRN0ix1a6Epfe4"
+        
+        Alamofire.request(url).responseJSON { response in
+            //print(response.request!)  // original URL request
+            //print(response.response!) // HTTP URL response
+            //print(response.data!)     // server data
+            //print(response.result)   // result of response serialization
+            
+            let json = JSON(data: response.data!)
+            let stopsJSON = json["results"].arrayValue
+            
+            self.stops = Stop.stopsWithArray(jsons: stopsJSON)
+            print(self.stops)
         }
     }
 }
