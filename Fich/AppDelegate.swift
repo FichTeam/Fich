@@ -38,8 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let fb =  FBSDKApplicationDelegate .sharedInstance() .application(application, didFinishLaunchingWithOptions: launchOptions)
         
         if UserDefaults.standard.string(forKey: "user") != nil{
-            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
-            window?.rootViewController = lobbyVC
+//            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
+//            window?.rootViewController = lobbyVC
+            setupLobbyViewController()
         } else {
             //User Not logged in
         }
@@ -48,8 +49,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             UserDefaults.standard.set(token.tokenString, forKey: "token")
             UserDefaults.standard.set(token.userID, forKey: "userID")
             
-            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
-            window?.rootViewController = lobbyVC
+//            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
+//            window?.rootViewController = lobbyVC
+            
+            setupLobbyViewController()
         }
         
         
@@ -128,6 +131,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // wrapped in a navigation controller
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"loginViewController")
+        window?.rootViewController = UINavigationController(rootViewController: viewController)
+        UserDefaults.standard.set(true, forKey: kUserHasOnboardedKey)
+    }
+    
+    func setupLobbyViewController() {
+        // create whatever your root view controller is going to be, in this case just a simple view controller
+        // wrapped in a navigation controller
+        let storyboard = UIStoryboard(name: "Lobby", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"lobbyVC")
         window?.rootViewController = UINavigationController(rootViewController: viewController)
         UserDefaults.standard.set(true, forKey: kUserHasOnboardedKey)
     }

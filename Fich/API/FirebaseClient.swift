@@ -33,5 +33,17 @@ class FirebaseClient {
         ref.updateChildValues(childUpdates)
     }
     
+    func join(trip phoneNumber: String) {
+        ref.child("trip_lobby").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let username = value?["username"] as? String ?? ""
+            let user = User.init(username: username)
+            
+            // ...
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
     
 }
