@@ -19,6 +19,7 @@ class GoogleMapManager{
     var steps: [Step] = []
     var stops: [Stop] = []
     var zoomLevel: Float = 15.0
+    let googleKey = "AIzaSyDS6D8L6lUZ3mZwb1B496I1bjonpGL2jVc"
     private init(){}
 
     private var dictDep: [String: GMSMarker] = [:]
@@ -90,7 +91,7 @@ class GoogleMapManager{
     {
         let origin = "\(currentLocation.latitude),\(currentLocation.longitude)"
         let destination = "\(destinationLoc.latitude),\(destinationLoc.longitude)"
-        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving&key=AIzaSyCTthE5Qltk1FES2HT86xRN0ix1a6Epfe4"
+        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving&key=\(googleKey)"
         
         Alamofire.request(url).responseJSON { response in
             //print(response.request!)  // original URL request
@@ -134,20 +135,50 @@ class GoogleMapManager{
     func showSuggestStops(currentLocation: CLLocationCoordinate2D, destinationLoc : CLLocationCoordinate2D){
         let origin = "\(currentLocation.latitude),\(currentLocation.longitude)"
         //let destination = "\(destinationLoc.latitude),\(destinationLoc.longitude)"
-        let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(origin)&rankby=distance&types=food,hospital,gas_station&key=AIzaSyCTthE5Qltk1FES2HT86xRN0ix1a6Epfe4"
+        let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(origin)&radius=10000&types=food,hospital,gas_station&key=\(googleKey)"
         
         Alamofire.request(url).responseJSON { response in
-            //print(response.request!)  // original URL request
-            //print(response.response!) // HTTP URL response
-            //print(response.data!)     // server data
-            //print(response.result)   // result of response serialization
-            
             let json = JSON(data: response.data!)
             let stopsJSON = json["results"].arrayValue
-            
             self.stops = Stop.stopsWithArray(jsons: stopsJSON)
-            print(self.stops)
+            for stop in self.stops{
+                let cllocation = CLLocationCoordinate2D(latitude: (stop.location?.lat)!, longitude: (stop.location?.lng)!)
+                
+                if (cllocation.latitude < destinationLoc.latitude && cllocation.latitude > currentLocation.latitude) || (cllocation.latitude > destinationLoc.latitude && cllocation.latitude < currentLocation.latitude) || (cllocation.longitude < destinationLoc.longitude && cllocation.longitude > currentLocation.longitude)
+                || (cllocation.longitude > destinationLoc.longitude && cllocation.longitude < currentLocation.longitude){
+                    let marker = GMSMarker(position: cllocation)
+                    marker.map = self.mapView
+                    let image = UIImage(named: "icon_des")
+                    marker.icon = image
+                    marker.title = stop.name
+                }
+            }
+            
+            
+            
+            let nextPageToken = json["next_page_token"].stringValue
+            var count = 0
+            while nextPageToken.count > 0 && count < 10{
+                count = count + 1
+                let urlNextPage = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(nextPageToken)&key=\(self.googleKey)"
+                Alamofire.request(urlNextPage).responseJSON { response in
+                    let stopsJSON = json["results"].arrayValue
+                    self.stops = Stop.stopsWithArray(jsons: stopsJSON)
+                    for stop in self.stops{
+                        let cllocation = CLLocationCoordinate2D(latitude: (stop.location?.lat)!, longitude: (stop.location?.lng)!)
+                        if (cllocation.latitude < destinationLoc.latitude && cllocation.latitude > currentLocation.latitude) || (cllocation.latitude > destinationLoc.latitude && cllocation.latitude < currentLocation.latitude) || (cllocation.longitude < destinationLoc.longitude && cllocation.longitude > currentLocation.longitude)
+                            || (cllocation.longitude > destinationLoc.longitude && cllocation.longitude < currentLocation.longitude){
+                            
+                            let marker = GMSMarker(position: cllocation)
+                            marker.map = self.mapView
+                            let image = UIImage(named: "icon_des")
+                            marker.icon = image
+                            marker.title = stop.name
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }
-

@@ -185,6 +185,24 @@ extension InitialTripViewController: GMSMapViewDelegate{
         reverseGeocodeCoordinate(coordinate: marker.position, marker: marker)
         marker.map = mapView
     }
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        let thumbView: GoogleMapThumbView = GoogleMapThumbView()
+        marker.tracksInfoWindowChanges = true
+        if let id = marker.title {
+            thumbView.titleLabel.text = id
+        }
+        return thumbView
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        print(marker.title!)
+        if marker.icon == UIImage(named: "icon_des"){
+            marker.icon = UIImage(named: "location_stop")
+        }else{
+            marker.icon = UIImage(named: "icon_des")
+        }
+        return false
+    }
 }
 
 extension InitialTripViewController: UITextFieldDelegate{
@@ -250,6 +268,7 @@ extension InitialTripViewController: GMSAutocompleteTableDataSourceDelegate{
     }
     
     func tableDataSource(_ tableDataSource: GMSAutocompleteTableDataSource, didFailAutocompleteWithError error: Error) {
+        print("Load error: \(error.localizedDescription)")
         if UserDefaults.standard.bool(forKey: "is_departure"){
             departureSearch.resignFirstResponder()
             self.departureSearch.text = ""
