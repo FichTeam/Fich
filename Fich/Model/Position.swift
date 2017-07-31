@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import CoreLocation
 
 class Position: NSObject {
     var lat: Double?
@@ -21,6 +22,11 @@ class Position: NSObject {
     init(json: JSON) {
         lat = json["lat"].doubleValue
         lng = json["lng"].doubleValue
+    }
+    
+    init(location: CLLocationCoordinate2D) {
+        lat = location.latitude
+        lng = location.longitude
     }
     
     func toPositionDictionary() -> NSDictionary {

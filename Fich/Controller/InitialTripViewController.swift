@@ -176,15 +176,15 @@ extension InitialTripViewController: CLLocationManagerDelegate {
 }
 
 extension InitialTripViewController: GMSMapViewDelegate{
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
-        
-        // Creates a marker in the center of the map.
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        reverseGeocodeCoordinate(coordinate: marker.position, marker: marker)
-        marker.map = mapView
-    }
+//    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+//        print("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
+//
+//        // Creates a marker in the center of the map.
+//        let marker = GMSMarker()
+//        marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+//        reverseGeocodeCoordinate(coordinate: marker.position, marker: marker)
+//        marker.map = mapView
+//    }
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         let thumbView: GoogleMapThumbView = GoogleMapThumbView()
         marker.tracksInfoWindowChanges = true
@@ -196,10 +196,10 @@ extension InitialTripViewController: GMSMapViewDelegate{
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         print(marker.title!)
-        if marker.icon == UIImage(named: "icon_des"){
-            marker.icon = UIImage(named: "location_stop")
+        if marker.icon == UIImage(named: "location_stop_w"){
+            marker.icon = UIImage(named: "location_stop_y")
         }else{
-            marker.icon = UIImage(named: "icon_des")
+            marker.icon = UIImage(named: "location_stop_w")
         }
         return false
     }

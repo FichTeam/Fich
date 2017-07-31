@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseAuth
 
 class FirebaseClient {
     static let sharedInstance = FirebaseClient()
@@ -29,9 +30,28 @@ class FirebaseClient {
     
     func create(trip: Trip) {
         let tripDictionary = trip.toTripDictionary()
-        let childUpdates = ["/trip/\(trip.id!)": tripDictionary]
+        let key = ref.child("trip").childByAutoId().key
+        let childUpdates = ["/trip/\(key)": tripDictionary]
         ref.updateChildValues(childUpdates)
     }
     
+    func createTripWithDict(dict: NSDictionary) {
+        let key = ref.child("trip").childByAutoId().key
+        let childUpdates = ["/trip/\(key)": dict]
+        ref.updateChildValues(childUpdates)
+    }
     
+    func getUserUID()->String?{
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                let uid = user.uid
+                print(uid)
+                return uid
+            }
+            return nil
+        } else {
+            return nil
+        }
+    }
 }

@@ -11,7 +11,6 @@ import SnapKit
 
 class GoogleMapThumbView: UIView {
     private let padding: Int = 5
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
