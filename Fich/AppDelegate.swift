@@ -73,8 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         window?.makeKeyAndVisible()
         
         
-        GMSPlacesClient.provideAPIKey("AIzaSyDS6D8L6lUZ3mZwb1B496I1bjonpGL2jVc")
-        GMSServices.provideAPIKey("AIzaSyDS6D8L6lUZ3mZwb1B496I1bjonpGL2jVc")
+        GMSPlacesClient.provideAPIKey("AIzaSyCpuGBhqLvCKr4s_apnq0ue3z0I9Q3oBB8")
+        GMSServices.provideAPIKey("AIzaSyCpuGBhqLvCKr4s_apnq0ue3z0I9Q3oBB8")
         
         return fb
     }

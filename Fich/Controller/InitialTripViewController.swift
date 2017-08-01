@@ -29,6 +29,8 @@ class InitialTripViewController: UIViewController {
     var depLocation: CLLocationCoordinate2D!
     var desLocation: CLLocationCoordinate2D!
     
+    var stopsLocation = [Position]()
+    
     private var dict: [String: GMSMarker] = [:]
     // MARK: *** Data Models
     
@@ -190,21 +192,25 @@ extension InitialTripViewController: GMSMapViewDelegate{
         marker.tracksInfoWindowChanges = true
         if let id = marker.title {
             thumbView.titleLabel.text = id
+            thumbView.snippetLabel.text = marker.snippet
         }
         return thumbView
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        //marker.map = nil
         print(marker.title!)
-        if marker.icon == UIImage(named: "location_stop_w"){
-            marker.icon = UIImage(named: "location_stop_y")
+        if marker.snippet == "Not in your stops"{
+            marker.snippet = "Added in your stops"
             let stop = Position(location: marker.position)
+            stopsLocation.append(stop)
             FirebaseClient.sharedInstance.addStopToDatabase(dict: stop.toPositionDictionary())
-            print("Set yellow marker and add to stop")
+            GoogleMapManager.shared.drawPathWithWaypoints(currentLocation: depLocation, destinationLoc: desLocation, waypoints: stopsLocation)
         }else{
-            marker.icon = UIImage(named: "location_stop_w")
-            print("Set white marker and remove to stop")
+            marker.snippet = "Not in your stops"
+            let stop = Position(location: marker.position)
+            stopsLocation.removeAll()
+            FirebaseClient.sharedInstance.removeStopFromDatabase(dict: stop.toPositionDictionary())
+            GoogleMapManager.shared.drawPathAgain(currentLocation: depLocation, destinationLoc: desLocation)
         }
         return false
     }

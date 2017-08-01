@@ -24,6 +24,7 @@ class GoogleMapManager{
 
     private var dictDep: [String: GMSMarker] = [:]
     private var dictDes: [String: GMSMarker] = [:]
+    private var dictStop: [String: GMSMarker] = [:]
     
     func manage(mapView: GMSMapView, mapUIView: UIView) {
         self.mapView = mapView
@@ -89,10 +90,12 @@ class GoogleMapManager{
         }
     }
     func getMarker(id:String) -> GMSMarker? {
-        if id == "current_location_on_map"{
+        if id == "icon_dep"{
             return dictDep[id]
-        }else{
+        }else if id == "icon_des"{
             return self.dictDes[id]
+        }else{
+            return nil
         }
     }
     func drawPath(currentLocation: CLLocationCoordinate2D, destinationLoc : CLLocationCoordinate2D)
@@ -116,6 +119,76 @@ class GoogleMapManager{
             //print(response.data!)     // server data
             //print(response.result)   // result of response serialization
             
+            let json = JSON(data: response.data!)
+            let routes = json["routes"].arrayValue
+            
+            for route in routes
+            {
+                let routeOverviewPolyline = route["overview_polyline"].dictionary
+                let points = routeOverviewPolyline?["points"]?.stringValue
+                let path = GMSPath.init(fromEncodedPath: points!)
+                let polyline = GMSPolyline.init(path: path)
+                polyline.strokeColor = UIColor(rgb: 0xe3e3e3)
+                polyline.strokeWidth = 3.5
+                polyline.map = self.mapView
+                self.polylines.append(polyline)
+                
+                let legs = route["legs"].arrayValue
+                for leg in legs {
+                    let stepsJSON = leg["steps"].arrayValue
+                    self.steps = Step.stepsWithArray(jsons: stepsJSON)
+                    print(self.steps)
+                }
+            }
+        }
+    }
+    
+    func drawPathAgain(currentLocation: CLLocationCoordinate2D, destinationLoc : CLLocationCoordinate2D)
+    {
+        let origin = "\(currentLocation.latitude),\(currentLocation.longitude)"
+        let destination = "\(destinationLoc.latitude),\(destinationLoc.longitude)"
+        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving&key=\(googleKey)"
+        clearPath()
+        Alamofire.request(url).responseJSON { response in
+            let json = JSON(data: response.data!)
+            let routes = json["routes"].arrayValue
+            
+            for route in routes
+            {
+                let routeOverviewPolyline = route["overview_polyline"].dictionary
+                let points = routeOverviewPolyline?["points"]?.stringValue
+                let path = GMSPath.init(fromEncodedPath: points!)
+                let polyline = GMSPolyline.init(path: path)
+                polyline.strokeColor = UIColor(rgb: 0xe3e3e3)
+                polyline.strokeWidth = 3.5
+                polyline.map = self.mapView
+                self.polylines.append(polyline)
+                
+                let legs = route["legs"].arrayValue
+                for leg in legs {
+                    let stepsJSON = leg["steps"].arrayValue
+                    self.steps = Step.stepsWithArray(jsons: stepsJSON)
+                    print(self.steps)
+                }
+            }
+        }
+    }
+    
+    func drawPathWithWaypoints(currentLocation: CLLocationCoordinate2D, destinationLoc : CLLocationCoordinate2D, waypoints: [Position])
+    {
+        let origin = "\(currentLocation.latitude),\(currentLocation.longitude)"
+        let destination = "\(destinationLoc.latitude),\(destinationLoc.longitude)"
+        var stopsString = ""
+        for wp in waypoints{
+            let loc = "\(wp.lat!),\(wp.lng!)"
+            stopsString += loc
+        }
+        
+        let urlString = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving&waypoints=\(stopsString)&key=\(googleKey)"
+        //let url2 = "https://maps.googleapis.com/maps/api/directions/json?origin=Boston,MA&destination=Concord,MA&waypoints=Charlestown,MA|Lexington,MA&key=AIzaSyDS6D8L6lUZ3mZwb1B496I1bjonpGL2jVc"
+        clearPath()
+        
+        Alamofire.request(urlString).responseJSON { response in
             let json = JSON(data: response.data!)
             let routes = json["routes"].arrayValue
             
@@ -171,7 +244,7 @@ class GoogleMapManager{
             
             let nextPageToken = json["next_page_token"].stringValue
             var count = 0
-            while nextPageToken.count > 0 && count < 5{
+            while nextPageToken.count > 0 && count < 2{
                 count = count + 1
                 let urlNextPage = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(nextPageToken)&key=\(self.googleKey)"
                 Alamofire.request(urlNextPage).responseJSON { response in

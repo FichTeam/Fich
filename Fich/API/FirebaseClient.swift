@@ -69,6 +69,27 @@ class FirebaseClient {
         }
     }
     
+    func removeStopFromDatabase(dict: NSDictionary){
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                let uid = user.uid
+                var tripID = ""
+                ref.child("user").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    print(snapshot)
+                    let value = snapshot.value as? NSDictionary
+                    tripID = value?["trip_id"] as? String ?? ""
+                    if tripID != ""{
+                        self.ref.child("/trip/\(tripID)/stops").removeValue()
+                    }
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
     func getUserUID()->String?{
         if Auth.auth().currentUser != nil {
             let user = Auth.auth().currentUser
