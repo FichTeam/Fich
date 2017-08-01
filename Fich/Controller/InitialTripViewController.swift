@@ -139,7 +139,7 @@ extension InitialTripViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
         print("Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
-        
+        FirebaseClient.sharedInstance.updatePosition(cllocation: location)
         
         if UserDefaults.standard.string(forKey: "is_map_loaded") == nil{
             let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,longitude: location.coordinate.longitude, zoom: zoomLevel)

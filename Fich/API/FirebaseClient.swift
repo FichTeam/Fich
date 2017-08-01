@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 import FirebaseAuth
+import CoreLocation
 
 class FirebaseClient {
     static let sharedInstance = FirebaseClient()
@@ -125,6 +126,30 @@ class FirebaseClient {
             return nil
         } else {
             return nil
+        }
+    }
+    
+    func updatePosition(cllocation : CLLocation){
+        let pos = Position(loc: cllocation)
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                let uid = user.uid
+                var tripID = ""
+                ref.child("user").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    print(snapshot)
+                    let value = snapshot.value as? NSDictionary
+                    tripID = value?["trip_id"] as? String ?? ""
+                    if tripID != ""{
+                        //let key = self.ref.child("trip/\(tripID)/members/\(uid)/current_position").childByAutoId().key
+                        let childUpdates = ["/trip/\(tripID)/members/\(uid)/current_position": pos.toPositionDictionary()]
+                        self.ref.updateChildValues(childUpdates)
+                    }
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 }

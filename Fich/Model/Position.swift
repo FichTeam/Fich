@@ -29,6 +29,11 @@ class Position: NSObject {
         lng = location.longitude
     }
     
+    init(loc: CLLocation) {
+        lat = loc.coordinate.latitude
+        lng = loc.coordinate.longitude
+    }
+    
     func toPositionDictionary() -> NSDictionary {
         var positionDictionary = [String: Double]()
         positionDictionary["lat"] = lat
