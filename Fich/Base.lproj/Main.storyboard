@@ -105,6 +105,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Group" id="XZ7-WN-Ihm"/>
+                    <connections>
+                        <outlet property="tableView" destination="ggB-TK-BYl" id="7ej-ll-zxM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EFl-3E-23b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -25,6 +25,12 @@ class MemberCell: UITableViewCell {
         }
     }
     
+    var leader: Bool! {
+        didSet {
+            leaderLabel.isHidden = leader
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -15,13 +15,5 @@ class MapViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
-    
-    @IBAction func onChat(_ sender: UIButton) {
-        performSegue(withIdentifier: "chatSegue", sender: self)
-    }
 
 }
