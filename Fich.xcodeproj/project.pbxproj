@@ -8,14 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		84266B101F24A476004E304D /* WaypointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84266B0F1F24A476004E304D /* WaypointsViewController.swift */; };
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-		8434E7F51F2BBC4900795A72 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434E7F41F2BBC4900795A72 /* Stop.swift */; };
->>>>>>> Stashed changes
-		844709591F2148730057CE01 /* darkBlueStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 844709581F2148730057CE01 /* darkBlueStyle.json */; };
-=======
->>>>>>> Stashed changes
 		844AAB761F21442800F20E11 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AAB751F21442800F20E11 /* UIColorExtension.swift */; };
 		8460B5AE1F19FA940097B534 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8460B5AC1F19FA940097B534 /* Login.storyboard */; };
 		8460B5B31F1A0FB30097B534 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8460B5B21F1A0FB30097B534 /* LoginVC.swift */; };
@@ -35,6 +27,15 @@
 		84EEEB181F1D40150069463D /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEB151F1D40150069463D /* Position.swift */; };
 		84EEEB1B1F1D42450069463D /* SetUpTrip.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84EEEB191F1D42450069463D /* SetUpTrip.storyboard */; };
 		84EEEB1E1F1D43080069463D /* InitialTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEB1D1F1D43080069463D /* InitialTripViewController.swift */; };
+		C813D8CE1F2F0A1100F2EC75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C813D8CC1F2F0A1100F2EC75 /* Main.storyboard */; };
+		C813D8D11F2F0ABA00F2EC75 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813D8D01F2F0ABA00F2EC75 /* MapViewController.swift */; };
+		C813D8D31F2F0ACC00F2EC75 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813D8D21F2F0ACC00F2EC75 /* GroupViewController.swift */; };
+		C813D8D51F2F0D2900F2EC75 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813D8D41F2F0D2900F2EC75 /* ChatViewController.swift */; };
+		C813D8D71F2F14E200F2EC75 /* ChatOtherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813D8D61F2F14E200F2EC75 /* ChatOtherCell.swift */; };
+		C813D8D91F2F151200F2EC75 /* ChatMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813D8D81F2F151200F2EC75 /* ChatMeCell.swift */; };
+		C813D8DB1F2F161100F2EC75 /* TripAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813D8DA1F2F161100F2EC75 /* TripAction.swift */; };
+		C813D8DF1F30787800F2EC75 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813D8DE1F30787800F2EC75 /* MainViewController.swift */; };
+		C813D8E11F30903800F2EC75 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C813D8E01F30903800F2EC75 /* MemberCell.swift */; };
 		C83B63FB1F19D11800F14E78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B63E71F19D11800F14E78 /* AppDelegate.swift */; };
 		C83B63FD1F19D11800F14E78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83B63EA1F19D11800F14E78 /* LaunchScreen.storyboard */; };
 		C83B63FE1F19D11800F14E78 /* Lobby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83B63EC1F19D11800F14E78 /* Lobby.storyboard */; };
@@ -76,6 +77,15 @@
 		84EEEB1A1F1D42450069463D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SetUpTrip.storyboard; sourceTree = "<group>"; };
 		84EEEB1D1F1D43080069463D /* InitialTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialTripViewController.swift; sourceTree = "<group>"; };
 		B98BD4FAAA19F05A9FF907FA /* Pods_Fich.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fich.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C813D8CD1F2F0A1100F2EC75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		C813D8D01F2F0ABA00F2EC75 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C813D8D21F2F0ACC00F2EC75 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		C813D8D41F2F0D2900F2EC75 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		C813D8D61F2F14E200F2EC75 /* ChatOtherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatOtherCell.swift; sourceTree = "<group>"; };
+		C813D8D81F2F151200F2EC75 /* ChatMeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMeCell.swift; sourceTree = "<group>"; };
+		C813D8DA1F2F161100F2EC75 /* TripAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripAction.swift; sourceTree = "<group>"; };
+		C813D8DE1F30787800F2EC75 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C813D8E01F30903800F2EC75 /* MemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		C83B63E71F19D11800F14E78 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C83B63EB1F19D11800F14E78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C83B63ED1F19D11800F14E78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Lobby.storyboard; sourceTree = "<group>"; };
@@ -183,6 +193,17 @@
 			name = InitialTrip;
 			sourceTree = "<group>";
 		};
+		C813D8CF1F2F0AA200F2EC75 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C813D8D01F2F0ABA00F2EC75 /* MapViewController.swift */,
+				C813D8D21F2F0ACC00F2EC75 /* GroupViewController.swift */,
+				C813D8D41F2F0D2900F2EC75 /* ChatViewController.swift */,
+				C813D8DE1F30787800F2EC75 /* MainViewController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 		C83B63E51F19D0E100F14E78 /* Fich */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +237,7 @@
 			children = (
 				C83B63EA1F19D11800F14E78 /* LaunchScreen.storyboard */,
 				C83B63EC1F19D11800F14E78 /* Lobby.storyboard */,
+				C813D8CC1F2F0A1100F2EC75 /* Main.storyboard */,
 				8460B5AC1F19FA940097B534 /* Login.storyboard */,
 				84EEEB191F1D42450069463D /* SetUpTrip.storyboard */,
 			);
@@ -225,6 +247,7 @@
 		C83B63EE1F19D11800F14E78 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C813D8CF1F2F0AA200F2EC75 /* Main */,
 				84EEEB1C1F1D42EE0069463D /* InitialTrip */,
 				84CB35D61F1BBF7800B64A61 /* Lobby */,
 				84CB35D51F1BBF6F00B64A61 /* Device */,
@@ -241,6 +264,7 @@
 				84EEEB151F1D40150069463D /* Position.swift */,
 				C83B640D1F19D1E600F14E78 /* Trip.swift */,
 				84DE587A1F263F18009E5B62 /* Step.swift */,
+				C813D8DA1F2F161100F2EC75 /* TripAction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -253,6 +277,9 @@
 				C83B63FA1F19D11800F14E78 /* LobbyViewController.xib */,
 				84E935871F236E640073506C /* LobbyCell.xib */,
 				84E935831F235FDA0073506C /* LobbyDetailViewController.xib */,
+				C813D8D61F2F14E200F2EC75 /* ChatOtherCell.swift */,
+				C813D8D81F2F151200F2EC75 /* ChatMeCell.swift */,
+				C813D8E01F30903800F2EC75 /* MemberCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -363,6 +390,7 @@
 				C83B64061F19D11800F14E78 /* DeviceViewController.xib in Resources */,
 				C83B63FD1F19D11800F14E78 /* LaunchScreen.storyboard in Resources */,
 				84EEEB1B1F1D42450069463D /* SetUpTrip.storyboard in Resources */,
+				C813D8CE1F2F0A1100F2EC75 /* Main.storyboard in Resources */,
 				C83B64051F19D11800F14E78 /* DeviceCell.xib in Resources */,
 				84E935851F235FDA0073506C /* LobbyDetailViewController.xib in Resources */,
 				C83B640A1F19D18400F14E78 /* Assets.xcassets in Resources */,
@@ -427,12 +455,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				844AAB761F21442800F20E11 /* UIColorExtension.swift in Sources */,
+				C813D8D91F2F151200F2EC75 /* ChatMeCell.swift in Sources */,
 				C83B64001F19D11800F14E78 /* LobbyViewController.swift in Sources */,
 				84EEEB161F1D40150069463D /* Account.swift in Sources */,
+				C813D8E11F30903800F2EC75 /* MemberCell.swift in Sources */,
 				84EEEB1E1F1D43080069463D /* InitialTripViewController.swift in Sources */,
+				C813D8D31F2F0ACC00F2EC75 /* GroupViewController.swift in Sources */,
 				84EEEB171F1D40150069463D /* DataObject.swift in Sources */,
 				84EEEACC1F1C7F2B0069463D /* PhoneSignupViewController.swift in Sources */,
 				84266B101F24A476004E304D /* WaypointsViewController.swift in Sources */,
+				C813D8DF1F30787800F2EC75 /* MainViewController.swift in Sources */,
+				C813D8D11F2F0ABA00F2EC75 /* MapViewController.swift in Sources */,
 				C83B63FF1F19D11800F14E78 /* DeviceViewController.swift in Sources */,
 				8460B5B31F1A0FB30097B534 /* LoginVC.swift in Sources */,
 				84A132861F271727002B324B /* StepCell.swift in Sources */,
@@ -444,9 +477,12 @@
 				C83B63FB1F19D11800F14E78 /* AppDelegate.swift in Sources */,
 				84E935881F236E640073506C /* LobbyCell.swift in Sources */,
 				C83B640E1F19D1E600F14E78 /* Trip.swift in Sources */,
+				C813D8D71F2F14E200F2EC75 /* ChatOtherCell.swift in Sources */,
 				84B676991F2211A300AD7E20 /* GoogleMapManager.swift in Sources */,
 				84DE587B1F263F18009E5B62 /* Step.swift in Sources */,
+				C813D8D51F2F0D2900F2EC75 /* ChatViewController.swift in Sources */,
 				84E935841F235FDA0073506C /* LobbyDetailViewController.swift in Sources */,
+				C813D8DB1F2F161100F2EC75 /* TripAction.swift in Sources */,
 				84EEEAD01F1C9C670069463D /* VerificationCodeViewController.swift in Sources */,
 				C83B640C1F19D1DB00F14E78 /* FirebaseClient.swift in Sources */,
 			);
@@ -469,6 +505,14 @@
 				84EEEB1A1F1D42450069463D /* Base */,
 			);
 			name = SetUpTrip.storyboard;
+			sourceTree = "<group>";
+		};
+		C813D8CC1F2F0A1100F2EC75 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C813D8CD1F2F0A1100F2EC75 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		C83B63EA1F19D11800F14E78 /* LaunchScreen.storyboard */ = {

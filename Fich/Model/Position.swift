@@ -13,7 +13,7 @@ class Position: NSObject {
     var lat: Double?
     var lng: Double?
     
-    init(dictionary: NSDictionary) {
+    init(dictionary: [String : Any]) {
         lat = dictionary["lat"] as? Double
         lng = dictionary["lng"] as? Double
     }
@@ -23,10 +23,10 @@ class Position: NSObject {
         lng = json["lng"].doubleValue
     }
     
-    func toPositionDictionary() -> NSDictionary {
+    func toPositionDictionary() -> [String : Any] {
         var positionDictionary = [String: Double]()
-        positionDictionary["lat"] = lat
-        positionDictionary["lng"] = lng
-        return positionDictionary as NSDictionary
+        positionDictionary["lat"] = lat!
+        positionDictionary["lng"] = lng!
+        return positionDictionary
     }
 }

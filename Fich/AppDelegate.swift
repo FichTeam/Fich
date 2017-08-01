@@ -40,7 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if UserDefaults.standard.string(forKey: "user") != nil{
 //            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
 //            window?.rootViewController = lobbyVC
-            setupLobbyViewController()
+//            setupLobbyViewController()
+            setupMainViewController()
         } else {
             //User Not logged in
         }
@@ -52,7 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 //            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
 //            window?.rootViewController = lobbyVC
             
-            setupLobbyViewController()
+//            setupLobbyViewController()
+            setupMainViewController()
         }
         
         
@@ -144,6 +146,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         UserDefaults.standard.set(true, forKey: kUserHasOnboardedKey)
     }
     
+    func setupMainViewController() {
+        // create whatever your root view controller is going to be, in this case just a simple view controller
+        // wrapped in a navigation controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"mainViewController")
+        window?.rootViewController = UINavigationController(rootViewController: viewController)
+//        UserDefaults.standard.set(true, forKey: kUserHasOnboardedKey)
+    }
     
     func generateOnboard()-> OnboardingViewController{
         let firstPage = OnboardingContentViewController.content(withTitle: "You Want Safe Trips?", body: "This app will help you!", image: UIImage(named: "blue"), buttonText: "Enable Location Services", action: {() -> Void in

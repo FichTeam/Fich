@@ -19,4 +19,5 @@ target 'Fich' do
   pod 'GooglePlacePicker'
   pod ‘Alamofire’
   pod 'SwiftyJSON'
+  pod 'AFNetworking'
 end

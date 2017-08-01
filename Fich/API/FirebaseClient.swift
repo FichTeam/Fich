@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import Firebase
 
 class FirebaseClient {
     static let sharedInstance = FirebaseClient()
@@ -17,10 +18,19 @@ class FirebaseClient {
         ref = Database.database().reference()
     }
     
-    func update(account: Account) {
-        let accountDictionary = account.toAccountDictionary()
-        let childUpdates = ["account/\(account.accountId!)": accountDictionary]
-        ref.updateChildValues(childUpdates)
+    func update() {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let account = Account(user: user)
+            let accountDictionary = account.toAccountDictionary()
+            let childUpdates = ["account/\(account.accountId!)": accountDictionary]
+            ref.updateChildValues(childUpdates) { (error: Error?, data: DatabaseReference) in
+                if let error = error {
+                    print (error)
+                } else {
+                }
+            }
+        }
     }
     
     func get(account id: String) {
@@ -33,17 +43,55 @@ class FirebaseClient {
         ref.updateChildValues(childUpdates)
     }
     
-    func join(trip phoneNumber: String) {
-        ref.child("trip_lobby").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            let username = value?["username"] as? String ?? ""
-            let user = User.init(username: username)
+    func lookupTrip(phoneNumber: String, completion: @escaping (Trip?, Error?) -> ()) {
+        ref.child("trip_lobby").child(phoneNumber).observeSingleEvent(of: .value, with: { (snapshot) in
             
-            // ...
+            let value = snapshot.value as? [String: Any]
+            
+            if let value = value {
+                let trip = Trip(dictionary: value)
+                completion(trip, nil)
+            } else {
+                print ("nil")
+                completion(nil, nil)
+            }
+            
         }) { (error) in
             print(error.localizedDescription)
+            completion(nil, error)
         }
+    }
+    
+    func joinTrip(tripId: String, completion: @escaping (Error?) -> ()) {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let account = Account(user: user)
+            let accountMap = account.toAccountDictionary()
+            //accountMap["owner"] = false
+            ref.child("trip")
+                .child(tripId)
+                .child("members")
+                .child(account.accountId!)
+                .updateChildValues(accountMap) { (error: Error?, data: DatabaseReference) in
+                    if (error != nil) {
+                        print(error)
+                    } else{
+                        print(data)
+                    }
+                    completion(error)
+            }
+        } else {
+            
+        }
+    }
+    
+    func sendAction(tripId: String, action: TripAction, completion: @escaping (Error?) -> ()) {
+        let actionRef = ref.child("trip_action").child(tripId)
+        let newActionRef = actionRef.childByAutoId()
+        let actionData = action.toActionDictionary()
+        newActionRef.setValue(actionData, withCompletionBlock: { (error: Error?, data: DatabaseReference) in
+            completion(error)
+        })
     }
     
 }

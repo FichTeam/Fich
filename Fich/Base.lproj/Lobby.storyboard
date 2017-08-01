@@ -29,7 +29,7 @@
                                 <rect key="frame" x="26" y="244" width="228" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You want to join a trip. Input your leader phone number" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysS-vg-k9K">
                                 <rect key="frame" x="26" y="200" width="268" height="36"/>
@@ -107,6 +107,9 @@
                     <connections>
                         <outlet property="joinButton" destination="85i-xt-Icd" id="dPT-tJ-cWT"/>
                         <outlet property="phoneNumberTextField" destination="gWy-go-Tnj" id="fys-jC-du1"/>
+                        <outlet property="tripNameLabel" destination="Eeo-5E-giz" id="JeW-MU-h0W"/>
+                        <outlet property="tripOwnerAvatarImage" destination="SGd-EX-Kb1" id="wS8-1G-uJq"/>
+                        <outlet property="tripOwnerNameLabel" destination="PTv-Sv-4LP" id="p51-UC-w47"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
