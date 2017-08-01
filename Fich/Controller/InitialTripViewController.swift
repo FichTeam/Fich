@@ -195,11 +195,16 @@ extension InitialTripViewController: GMSMapViewDelegate{
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        //marker.map = nil
         print(marker.title!)
         if marker.icon == UIImage(named: "location_stop_w"){
             marker.icon = UIImage(named: "location_stop_y")
+            let stop = Position(location: marker.position)
+            FirebaseClient.sharedInstance.addStopToDatabase(dict: stop.toPositionDictionary())
+            print("Set yellow marker and add to stop")
         }else{
             marker.icon = UIImage(named: "location_stop_w")
+            print("Set white marker and remove to stop")
         }
         return false
     }

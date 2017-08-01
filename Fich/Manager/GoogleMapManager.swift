@@ -17,7 +17,7 @@ class GoogleMapManager{
     private var mapView: GMSMapView?
     var polylines :[GMSPolyline] = []
     var steps: [Step] = []
-    var stops: [Stop] = []
+    var suggestStop: [Stop] = []
     var zoomLevel: Float = 15.0
     let googleKey = "AIzaSyDS6D8L6lUZ3mZwb1B496I1bjonpGL2jVc"
     private init(){}
@@ -78,6 +78,14 @@ class GoogleMapManager{
                 markerTest?.title = id
                 markerTest?.snippet = snippet
             }
+        }else if imageName == "location_stop_w"{
+            let cllocation = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            let marker = GMSMarker(position: cllocation)
+            marker.map = mapView
+            let image = UIImage(named: imageName)
+            marker.icon = image
+            marker.title = id
+            marker.snippet = snippet
         }
     }
     func getMarker(id:String) -> GMSMarker? {
@@ -92,12 +100,11 @@ class GoogleMapManager{
         let ori = Position(location: currentLocation)
         let des = Position(location: destinationLoc)
         let tripDict: NSDictionary = [
+            "user_id": FirebaseClient.sharedInstance.getUserUID()!,
             "source" : ori.toPositionDictionary(),
             "destination" : des.toPositionDictionary()
         ]
-        //let trip = Trip(dictionary: tripDict)
         FirebaseClient.sharedInstance.createTripWithDict(dict: tripDict)
-        //FirebaseClient.sharedInstance.create(trip: trip)
         
         let origin = "\(currentLocation.latitude),\(currentLocation.longitude)"
         let destination = "\(destinationLoc.latitude),\(destinationLoc.longitude)"
@@ -150,25 +157,13 @@ class GoogleMapManager{
         Alamofire.request(url).responseJSON { response in
             let json = JSON(data: response.data!)
             let stopsJSON = json["results"].arrayValue
-            self.stops = Stop.stopsWithArray(jsons: stopsJSON)
-            for stop in self.stops{
+            self.suggestStop = Stop.stopsWithArray(jsons: stopsJSON)
+            for stop in self.suggestStop{
                 let cllocation = CLLocationCoordinate2D(latitude: (stop.location?.lat)!, longitude: (stop.location?.lng)!)
                 
                 if (cllocation.latitude < destinationLoc.latitude && cllocation.latitude > currentLocation.latitude) || (cllocation.latitude > destinationLoc.latitude && cllocation.latitude < currentLocation.latitude) || (cllocation.longitude < destinationLoc.longitude && cllocation.longitude > currentLocation.longitude)
                 || (cllocation.longitude > destinationLoc.longitude && cllocation.longitude < currentLocation.longitude){
-                    let marker = GMSMarker(position: cllocation)
-                    let image = UIImage(named: "location_stop_w")
-                    marker.icon = image
-                    marker.map = self.mapView
-//                    let url = URL(string: stop.icon!)
-//                    DispatchQueue.global().async {
-//                        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-//                        DispatchQueue.main.async {
-//                            marker.icon = UIImage(data: data!)
-//                        }
-//                    }
-                    
-                    marker.title = stop.name
+                    GoogleMapManager.shared.addMarker(id: stop.name!, snippet: stop.placeId!, lat: cllocation.latitude, long: cllocation.longitude, imageName: "location_stop_w")
                 }
             }
             
@@ -181,17 +176,12 @@ class GoogleMapManager{
                 let urlNextPage = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(nextPageToken)&key=\(self.googleKey)"
                 Alamofire.request(urlNextPage).responseJSON { response in
                     let stopsJSON = json["results"].arrayValue
-                    self.stops = Stop.stopsWithArray(jsons: stopsJSON)
-                    for stop in self.stops{
+                    self.suggestStop = Stop.stopsWithArray(jsons: stopsJSON)
+                    for stop in self.suggestStop{
                         let cllocation = CLLocationCoordinate2D(latitude: (stop.location?.lat)!, longitude: (stop.location?.lng)!)
                         if (cllocation.latitude < destinationLoc.latitude && cllocation.latitude > currentLocation.latitude) || (cllocation.latitude > destinationLoc.latitude && cllocation.latitude < currentLocation.latitude) || (cllocation.longitude < destinationLoc.longitude && cllocation.longitude > currentLocation.longitude)
                             || (cllocation.longitude > destinationLoc.longitude && cllocation.longitude < currentLocation.longitude){
-                            
-                            let marker = GMSMarker(position: cllocation)
-                            marker.map = self.mapView
-                            let image = UIImage(named: "location_stop_w")
-                            marker.icon = image
-                            marker.title = stop.name
+                            GoogleMapManager.shared.addMarker(id: stop.name!, snippet: stop.placeId!, lat: cllocation.latitude, long: cllocation.longitude, imageName: "location_stop_w")
                         }
                     }
                 }

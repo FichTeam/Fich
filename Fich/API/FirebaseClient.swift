@@ -13,6 +13,7 @@ import FirebaseAuth
 class FirebaseClient {
     static let sharedInstance = FirebaseClient()
     var ref: DatabaseReference!
+    var uid = Auth.auth().currentUser?.uid
     
     private init() {
         ref = Database.database().reference()
@@ -39,6 +40,33 @@ class FirebaseClient {
         let key = ref.child("trip").childByAutoId().key
         let childUpdates = ["/trip/\(key)": dict]
         ref.updateChildValues(childUpdates)
+        
+        let tripId : NSDictionary = ["trip_id": key]
+        let update = ["/user/\(uid!)" : tripId]
+        ref.updateChildValues(update)
+    }
+    
+    func addStopToDatabase(dict: NSDictionary){
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                let uid = user.uid
+                var tripID = ""
+                ref.child("user").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    print(snapshot)
+                    let value = snapshot.value as? NSDictionary
+                    tripID = value?["trip_id"] as? String ?? ""
+                    if tripID != ""{
+                        let key = self.ref.child("trip/\(tripID)/stops").childByAutoId().key
+                        let childUpdates = ["/trip/\(tripID)/stops/\(key)": dict]
+                        self.ref.updateChildValues(childUpdates)
+                    }
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
     
     func getUserUID()->String?{
@@ -48,6 +76,30 @@ class FirebaseClient {
                 let uid = user.uid
                 print(uid)
                 return uid
+            }
+            return nil
+        } else {
+            return nil
+        }
+    }
+    
+    func getTripID()-> String?{
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                let uid = user.uid
+                var tripID = ""
+                ref.child("user").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    print(snapshot)
+                    let value = snapshot.value as? NSDictionary
+                    tripID = value?["trip_id"] as? String ?? ""
+                    
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+                print("After snapshot \(tripID)")
+                return tripID
             }
             return nil
         } else {
