@@ -25,12 +25,12 @@ class Account: DataObject {
     
     func toAccountDictionary() -> [String: Any] {
         var accountDictionary = [String: Any]()
-        accountDictionary["account_id"] = accountId
-        accountDictionary["name"] = name
-        accountDictionary["avatar"] = avatar
-        accountDictionary["phone_number"] = phoneNumber
-        accountDictionary["created_at"] = (createdAt?.timeIntervalSince1970)! * 1000
-        accountDictionary["modified_at"] = (modifiedAt?.timeIntervalSince1970)! * 1000
+        accountDictionary["account_id"] = accountId ?? ""
+        accountDictionary["name"] = name ?? ""
+        accountDictionary["avatar"] = avatar ?? ""
+        accountDictionary["phone_number"] = phoneNumber ?? ""
+        accountDictionary["created_at"] = (createdAt?.timeIntervalSince1970)! * 1000 ?? ""
+        accountDictionary["modified_at"] = (modifiedAt?.timeIntervalSince1970)! * 1000 ?? ""
         return accountDictionary
     }
     

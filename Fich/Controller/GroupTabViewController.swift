@@ -19,6 +19,9 @@ class GroupTabViewController: UIViewController {
     }
     
     @IBOutlet weak var tableView: UITableView!
+    @IBAction func onBack(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
     
     var members = [Account]()
     var tripRef: DatabaseReference?

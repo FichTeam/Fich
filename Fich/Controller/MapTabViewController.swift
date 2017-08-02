@@ -21,6 +21,10 @@ class MapTabViewController: UIViewController {
     var mapView: GMSMapView!
     var zoomLevel: Float = 15.0
     
+    @IBAction func onBack(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     var tripId: String! {
         didSet {

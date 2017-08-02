@@ -63,6 +63,11 @@ class InitialTripViewController: UIViewController {
         performSegue(withIdentifier: "segueToSetupWaypoints", sender: self)
     }
     
+    
+    @IBAction func onBackScreen(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToSetupWaypoints" {
             let dest = segue.destination as! WaypointsViewController
