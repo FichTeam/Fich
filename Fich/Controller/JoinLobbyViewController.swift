@@ -40,6 +40,12 @@ class JoinLobbyViewController: UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier :"setupTripVC")
         present(viewController, animated: true)
     }
+  @IBAction func onSetting(_ sender: UIButton) {
+    let deviceVC = DeviceViewController(nibName: "DeviceViewController", bundle: nil)
+    
+    present(deviceVC, animated: true, completion: nil)
+
+  }
     
     func editingChanged(_ textField: UITextField) {
         if textField.text?.characters.count == 1 {
