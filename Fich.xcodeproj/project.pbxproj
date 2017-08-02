@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		84266B101F24A476004E304D /* WaypointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84266B0F1F24A476004E304D /* WaypointsViewController.swift */; };
 		8434E7F51F2BBC4900795A72 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434E7F41F2BBC4900795A72 /* Stop.swift */; };
-		844709591F2148730057CE01 /* darkBlueStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 844709581F2148730057CE01 /* darkBlueStyle.json */; };
 		844AAB761F21442800F20E11 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AAB751F21442800F20E11 /* UIColorExtension.swift */; };
 		8460B5AE1F19FA940097B534 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8460B5AC1F19FA940097B534 /* Login.storyboard */; };
 		8460B5B31F1A0FB30097B534 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8460B5B21F1A0FB30097B534 /* LoginVC.swift */; };
@@ -36,6 +35,11 @@
 		84EEEB1B1F1D42450069463D /* SetUpTrip.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84EEEB191F1D42450069463D /* SetUpTrip.storyboard */; };
 		84EEEB1E1F1D43080069463D /* InitialTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EEEB1D1F1D43080069463D /* InitialTripViewController.swift */; };
 		84FD2EBC1F2DFE2600E37CE6 /* GoogleMapThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FD2EBB1F2DFE2600E37CE6 /* GoogleMapThumbView.swift */; };
+		C83A02171F321391005166DB /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83A02161F321391005166DB /* ActionViewController.swift */; };
+		C83A021A1F32149A005166DB /* ChatMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83A02181F32149A005166DB /* ChatMeCell.swift */; };
+		C83A021B1F32149A005166DB /* ChatOtherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83A02191F32149A005166DB /* ChatOtherCell.swift */; };
+		C83A021D1F321556005166DB /* TripAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83A021C1F321556005166DB /* TripAction.swift */; };
+		C83A021F1F32170D005166DB /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83A021E1F32170D005166DB /* MemberCell.swift */; };
 		C83B63FB1F19D11800F14E78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B63E71F19D11800F14E78 /* AppDelegate.swift */; };
 		C83B63FD1F19D11800F14E78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C83B63EA1F19D11800F14E78 /* LaunchScreen.storyboard */; };
 		C83B63FF1F19D11800F14E78 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B63EF1F19D11800F14E78 /* DeviceViewController.swift */; };
@@ -49,13 +53,13 @@
 		C83B640A1F19D18400F14E78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C83B64091F19D18400F14E78 /* Assets.xcassets */; };
 		C83B640C1F19D1DB00F14E78 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B640B1F19D1DB00F14E78 /* FirebaseClient.swift */; };
 		C83B640E1F19D1E600F14E78 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B640D1F19D1E600F14E78 /* Trip.swift */; };
+		C8F1C7AD1F320D4F00EDF493 /* darkBlueStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = C8F1C7AC1F320D4F00EDF493 /* darkBlueStyle.json */; };
 		E8A8E061ED0FF0AE70B6C7C2 /* Pods_Fich.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B98BD4FAAA19F05A9FF907FA /* Pods_Fich.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		84266B0F1F24A476004E304D /* WaypointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointsViewController.swift; sourceTree = "<group>"; };
 		8434E7F41F2BBC4900795A72 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
-		844709581F2148730057CE01 /* darkBlueStyle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = darkBlueStyle.json; path = ../../../Lapze/Lapze/Lapze/darkBlueStyle.json; sourceTree = "<group>"; };
 		844AAB751F21442800F20E11 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8460B5AD1F19FA940097B534 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Login.storyboard; sourceTree = "<group>"; };
 		8460B5B21F1A0FB30097B534 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -81,13 +85,13 @@
 		84EEEB151F1D40150069463D /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		84EEEB1A1F1D42450069463D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SetUpTrip.storyboard; sourceTree = "<group>"; };
 		84EEEB1D1F1D43080069463D /* InitialTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialTripViewController.swift; sourceTree = "<group>"; };
-		84F8B1781F314EAC00CEA867 /* TripAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripAction.swift; sourceTree = "<group>"; };
-		84F8B17B1F314EF200CEA867 /* ChatMeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMeCell.swift; sourceTree = "<group>"; };
-		84F8B17C1F314EF200CEA867 /* ChatOtherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatOtherCell.swift; sourceTree = "<group>"; };
-		84F8B17D1F314EF200CEA867 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
-		84F8B17F1F314F1D00CEA867 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		84FD2EBB1F2DFE2600E37CE6 /* GoogleMapThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapThumbView.swift; sourceTree = "<group>"; };
 		B98BD4FAAA19F05A9FF907FA /* Pods_Fich.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fich.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C83A02161F321391005166DB /* ActionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		C83A02181F32149A005166DB /* ChatMeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMeCell.swift; sourceTree = "<group>"; };
+		C83A02191F32149A005166DB /* ChatOtherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatOtherCell.swift; sourceTree = "<group>"; };
+		C83A021C1F321556005166DB /* TripAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripAction.swift; sourceTree = "<group>"; };
+		C83A021E1F32170D005166DB /* MemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		C83B63E71F19D11800F14E78 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C83B63EB1F19D11800F14E78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C83B63EF1F19D11800F14E78 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 		C83B640D1F19D1E600F14E78 /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		C83B64141F1C8A0800F14E78 /* Fich.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fich.entitlements; sourceTree = "<group>"; };
 		C840AC9A1F1225FA00FD7C92 /* Fich.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fich.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8F1C7AC1F320D4F00EDF493 /* darkBlueStyle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = darkBlueStyle.json; sourceTree = "<group>"; };
 		DE47706EF4CD5B0948AA9DF3 /* Pods-Fich.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fich.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fich/Pods-Fich.release.xcconfig"; sourceTree = "<group>"; };
 		DEACCB10E825E1E6C0E30A36 /* Pods-Fich.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fich.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fich/Pods-Fich.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -236,7 +241,7 @@
 		C83B63EE1F19D11800F14E78 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				84F8B17F1F314F1D00CEA867 /* ChatViewController.swift */,
+				C83A02161F321391005166DB /* ActionViewController.swift */,
 				84A9C2F51F31D32A006B571D /* JoinLobbyViewController.swift */,
 				84A9C2FA1F31DDD8006B571D /* GroupAndMapViewController.swift */,
 				84A9C2FE1F31E2D6006B571D /* MapTabViewController.swift */,
@@ -252,7 +257,7 @@
 		C83B63F61F19D11800F14E78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				84F8B1781F314EAC00CEA867 /* TripAction.swift */,
+				C83A021C1F321556005166DB /* TripAction.swift */,
 				84EEEB131F1D40150069463D /* Account.swift */,
 				84EEEB141F1D40150069463D /* DataObject.swift */,
 				84EEEB151F1D40150069463D /* Position.swift */,
@@ -266,9 +271,9 @@
 		C83B63F71F19D11800F14E78 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				84F8B17B1F314EF200CEA867 /* ChatMeCell.swift */,
-				84F8B17C1F314EF200CEA867 /* ChatOtherCell.swift */,
-				84F8B17D1F314EF200CEA867 /* MemberCell.swift */,
+				C83A021E1F32170D005166DB /* MemberCell.swift */,
+				C83A02181F32149A005166DB /* ChatMeCell.swift */,
+				C83A02191F32149A005166DB /* ChatOtherCell.swift */,
 				C83B63F81F19D11800F14E78 /* DeviceCell.xib */,
 				C83B63F91F19D11800F14E78 /* DeviceViewController.xib */,
 				C83B63FA1F19D11800F14E78 /* LobbyViewController.xib */,
@@ -281,7 +286,7 @@
 		C83B64081F19D12500F14E78 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				844709581F2148730057CE01 /* darkBlueStyle.json */,
+				C8F1C7AC1F320D4F00EDF493 /* darkBlueStyle.json */,
 				C83B64091F19D18400F14E78 /* Assets.xcassets */,
 			);
 			path = Resource;
@@ -377,7 +382,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				844709591F2148730057CE01 /* darkBlueStyle.json in Resources */,
 				84A9C2F91F31DB64006B571D /* GroupAndMap.storyboard in Resources */,
 				C83B64031F19D11800F14E78 /* GoogleService-Info.plist in Resources */,
 				84A9C2F41F31D040006B571D /* JoinLobby.storyboard in Resources */,
@@ -387,6 +391,7 @@
 				C83B63FD1F19D11800F14E78 /* LaunchScreen.storyboard in Resources */,
 				84EEEB1B1F1D42450069463D /* SetUpTrip.storyboard in Resources */,
 				C83B64051F19D11800F14E78 /* DeviceCell.xib in Resources */,
+				C8F1C7AD1F320D4F00EDF493 /* darkBlueStyle.json in Resources */,
 				84E935851F235FDA0073506C /* LobbyDetailViewController.xib in Resources */,
 				C83B640A1F19D18400F14E78 /* Assets.xcassets in Resources */,
 				C83B64071F19D11900F14E78 /* LobbyViewController.xib in Resources */,
@@ -450,11 +455,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				844AAB761F21442800F20E11 /* UIColorExtension.swift in Sources */,
+				C83A021B1F32149A005166DB /* ChatOtherCell.swift in Sources */,
+				C83A021A1F32149A005166DB /* ChatMeCell.swift in Sources */,
 				C83B64001F19D11800F14E78 /* LobbyViewController.swift in Sources */,
 				84EEEB161F1D40150069463D /* Account.swift in Sources */,
 				84EEEB1E1F1D43080069463D /* InitialTripViewController.swift in Sources */,
 				84EEEB171F1D40150069463D /* DataObject.swift in Sources */,
 				84EEEACC1F1C7F2B0069463D /* PhoneSignupViewController.swift in Sources */,
+				C83A021D1F321556005166DB /* TripAction.swift in Sources */,
 				84266B101F24A476004E304D /* WaypointsViewController.swift in Sources */,
 				C83B63FF1F19D11800F14E78 /* DeviceViewController.swift in Sources */,
 				8460B5B31F1A0FB30097B534 /* LoginVC.swift in Sources */,
@@ -462,11 +470,13 @@
 				84A132861F271727002B324B /* StepCell.swift in Sources */,
 				84EEEACE1F1C852F0069463D /* UIExtension.swift in Sources */,
 				84EEEB181F1D40150069463D /* Position.swift in Sources */,
+				C83A02171F321391005166DB /* ActionViewController.swift in Sources */,
 				C83B64021F19D11800F14E78 /* DeviceCell.swift in Sources */,
 				84A9C2F61F31D32A006B571D /* JoinLobbyViewController.swift in Sources */,
 				84EEEB121F1D3EDC0069463D /* NSDataUtilities.swift in Sources */,
 				C83B63FB1F19D11800F14E78 /* AppDelegate.swift in Sources */,
 				84A9C2FF1F31E2D6006B571D /* MapTabViewController.swift in Sources */,
+				C83A021F1F32170D005166DB /* MemberCell.swift in Sources */,
 				8434E7F51F2BBC4900795A72 /* Stop.swift in Sources */,
 				84A9C2FB1F31DDD8006B571D /* GroupAndMapViewController.swift in Sources */,
 				84E935881F236E640073506C /* LobbyCell.swift in Sources */,

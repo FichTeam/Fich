@@ -31,7 +31,10 @@ class JoinLobbyViewController: UIViewController {
     
     @IBAction func onJoin(_ sender: UIButton) {
         FirebaseClient.sharedInstance.joinTrip(tripId: (trip?.id)!) { (error: Error?) in
-            //
+            let storyboard = UIStoryboard(name: "GroupAndMap", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier :"groupAndMapViewController") as! GroupAndMapViewController
+            viewController.tripId = self.trip?.id
+            self.present(viewController, animated: true, completion: nil)
         }
     }
     
@@ -40,6 +43,12 @@ class JoinLobbyViewController: UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier :"setupTripVC")
         present(viewController, animated: true)
     }
+  @IBAction func onSetting(_ sender: UIButton) {
+    let deviceVC = DeviceViewController(nibName: "DeviceViewController", bundle: nil)
+    
+    present(deviceVC, animated: true, completion: nil)
+
+  }
     
     func editingChanged(_ textField: UITextField) {
         if textField.text?.characters.count == 1 {

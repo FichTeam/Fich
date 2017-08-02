@@ -9,15 +9,15 @@
 import UIKit
 import Firebase
 
-class ChatViewController: UIViewController {
-
+class ActionViewController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
     
     
-    var trip: Trip! {
+    var tripId: String! {
         didSet {
-            messageRef = Database.database().reference().child("trip_action").child(trip.id)
+            messageRef = Database.database().reference().child("trip_action").child(tripId)
             self.observeNewMessages()
         }
     }
@@ -27,7 +27,7 @@ class ChatViewController: UIViewController {
     var actions = [TripAction]()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -39,7 +39,7 @@ class ChatViewController: UIViewController {
             currentAccount = Account(user: user)
         }
     }
-
+    
     @IBAction func onBack(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -55,7 +55,7 @@ class ChatViewController: UIViewController {
     }
 }
 
-extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
+extension ActionViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return actions.count
@@ -76,12 +76,12 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ChatViewController {
+extension ActionViewController {
     
     func sendMessage(){
         if let msg = messageTextField?.text {
             let message = TripAction(member: currentAccount!, type: ActionType.text, message: msg, messageUrl: nil)
-            FirebaseClient.sharedInstance.sendAction(tripId: trip.id, action: message, completion: { (error: Error?) in
+            FirebaseClient.sharedInstance.sendAction(tripId: tripId, action: message, completion: { (error: Error?) in
                 if let error = error {
                     print (error)
                 } else {
