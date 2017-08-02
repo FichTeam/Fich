@@ -17,7 +17,6 @@ class ChatOtherCell: UITableViewCell {
     
     let formatter = DateFormatter()
     
-    var member: Account?
     var action: TripAction! {
         didSet {
             switch action.type! {
@@ -33,7 +32,7 @@ class ChatOtherCell: UITableViewCell {
             default:
                 break
             }
-            avatarImage.setImageWith(URL(string: (member?.avatar!)!)!)
+            avatarImage.setImageWith(URL(string: (action.member?.avatar!)!)!)
             timeLabel.text = formatter.string(from: action.createdAt!)
         }
     }
