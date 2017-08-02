@@ -37,8 +37,8 @@
                                                 <constraint firstAttribute="height" constant="160" id="tnC-vk-rjS"/>
                                             </constraints>
                                         </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AvX-Ap-i18">
-                                            <rect key="frame" x="16" y="228" width="246" height="30"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AvX-Ap-i18" customClass="PhoneNumberTextField" customModule="PhoneNumberKit">
+                                            <rect key="frame" x="60" y="228" width="202" height="30"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
@@ -107,11 +107,9 @@
                                         <constraint firstItem="Qou-Er-7u9" firstAttribute="trailing" secondItem="Fry-cn-iuc" secondAttribute="trailing" id="2yu-Nx-i1X"/>
                                         <constraint firstItem="sQQ-Ih-A0A" firstAttribute="trailing" secondItem="Qou-Er-7u9" secondAttribute="trailing" id="4jz-Pn-Ude"/>
                                         <constraint firstItem="0r7-8I-YSK" firstAttribute="top" secondItem="04N-f9-3IM" secondAttribute="bottom" constant="16" id="7dJ-Ph-7WN"/>
-                                        <constraint firstItem="04N-f9-3IM" firstAttribute="leading" secondItem="AvX-Ap-i18" secondAttribute="leading" id="9Rj-e2-2er"/>
                                         <constraint firstItem="Tvf-RN-r7b" firstAttribute="trailing" secondItem="Qou-Er-7u9" secondAttribute="trailing" id="CWQ-eR-BKG"/>
                                         <constraint firstItem="04N-f9-3IM" firstAttribute="top" secondItem="AvX-Ap-i18" secondAttribute="bottom" constant="8" id="Ljv-rf-aPe"/>
                                         <constraint firstAttribute="bottom" secondItem="Tvf-RN-r7b" secondAttribute="bottom" constant="8" id="M6n-ze-pcM"/>
-                                        <constraint firstItem="AvX-Ap-i18" firstAttribute="leading" secondItem="Fry-cn-iuc" secondAttribute="leading" id="M7y-Xd-b3N"/>
                                         <constraint firstItem="LJN-va-Jl9" firstAttribute="trailing" secondItem="Qou-Er-7u9" secondAttribute="trailing" id="N3r-5A-UmE"/>
                                         <constraint firstItem="0r7-8I-YSK" firstAttribute="centerX" secondItem="eS9-Tj-ql0" secondAttribute="centerX" id="Syz-am-gdi"/>
                                         <constraint firstAttribute="trailing" secondItem="0r7-8I-YSK" secondAttribute="trailing" constant="16" id="TqB-Tf-KU7"/>
@@ -120,6 +118,8 @@
                                         <constraint firstAttribute="trailing" secondItem="Fry-cn-iuc" secondAttribute="trailing" constant="16" id="c2c-jv-c2y"/>
                                         <constraint firstItem="eS9-Tj-ql0" firstAttribute="top" secondItem="2I9-Ro-0tV" secondAttribute="top" constant="16" id="eOc-El-tj5"/>
                                         <constraint firstItem="sQQ-Ih-A0A" firstAttribute="leading" secondItem="LJN-va-Jl9" secondAttribute="leading" id="eav-rj-d4k"/>
+                                        <constraint firstItem="AvX-Ap-i18" firstAttribute="leading" secondItem="eS9-Tj-ql0" secondAttribute="leading" id="eeh-Kw-cS3"/>
+                                        <constraint firstItem="04N-f9-3IM" firstAttribute="leading" secondItem="Fry-cn-iuc" secondAttribute="leading" id="ghu-1b-urx"/>
                                         <constraint firstItem="LJN-va-Jl9" firstAttribute="leading" secondItem="04N-f9-3IM" secondAttribute="trailing" constant="8" id="huO-zz-UhB"/>
                                         <constraint firstItem="0r7-8I-YSK" firstAttribute="leading" secondItem="2I9-Ro-0tV" secondAttribute="leading" constant="16" id="kCT-uL-OrU"/>
                                         <constraint firstItem="eS9-Tj-ql0" firstAttribute="centerX" secondItem="2I9-Ro-0tV" secondAttribute="centerX" id="kHq-TG-Ex9"/>
