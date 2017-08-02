@@ -31,8 +31,12 @@ class DeviceViewController: UIViewController {
   fileprivate var characteristicsList: [Characteristic] = []
   
   private var isAnimate = false
+  private var isPair = false
 
 
+  private var PeripheralConnectedArr: [Peripheral] = []
+  
+  private let FichService : CBUUID = CBUUID.init(string: "3DDA0001-957F-7D4A-34A6-74696673696D")
 
   override func viewDidLoad() {
       super.viewDidLoad()
@@ -79,7 +83,27 @@ class DeviceViewController: UIViewController {
     
     selectedPeripheral = nil
   }
+  private func CheckAnyFichDeviceConnected() -> Int
+  {
 
+    var isComplete = false
+    var numOfDevice = 0
+    
+    self.manager.retrieveConnectedPeripherals(withServices: [FichService]).subscribe(onNext: { peripheral in
+      self.PeripheralConnectedArr = peripheral
+      
+      numOfDevice = self.PeripheralConnectedArr.count
+      isComplete = true
+      
+    }).addDisposableTo(disposeBag)
+    
+    while(!isComplete)
+    {
+    
+    }
+    print("num of connect device \(numOfDevice)")
+    return numOfDevice
+  }
 
   private func addNewScannedPeripheral(_ peripheral: ScannedPeripheral) {
       let mapped = peripheralsArray.map { $0.peripheral }
@@ -111,9 +135,10 @@ class DeviceViewController: UIViewController {
       isAnimate = true
       self.ConnectAndDiscover(peripheral)
   }
-  func PairDevice()
+  func PairDevice(peripheral: ScannedPeripheral)
   {
-    
+      isPair = true
+      self.ConnectAndDiscover(peripheral)
   }
   private func discoverService(for peripheral: Peripheral) {
     peripheral.discoverServices(nil)
@@ -162,9 +187,17 @@ class DeviceViewController: UIViewController {
     if isAnimate {
       if (characteristic.uuid.uuidString == "3DDA0002-957F-7D4A-34A6-74696673696D")
       {
-        let cmdString = "02F106"
+        let cmdString = "0A11"
         self.writeValueForCharacteristic(hexadecimalString: cmdString, characteristic: characteristic)
         isAnimate = false
+      }
+    }
+    if isPair {
+      if (characteristic.uuid.uuidString == "3DDA0002-957F-7D4A-34A6-74696673696D")
+      {
+        let cmdString = "0A01"
+        self.writeValueForCharacteristic(hexadecimalString: cmdString, characteristic: characteristic)
+        isPair = false
       }
     }
   }
@@ -203,7 +236,7 @@ extension DeviceViewController: UITableViewDelegate, UITableViewDataSource{
             deviceCell.configure(with: peripheral)
             deviceCell.PairBtnPress = { [weak self] (cell) in
               self?.selectedPeripheral = self?.peripheralsArray[indexPath.row]
-              self?.PairDevice()
+              self?.PairDevice( peripheral: (self?.selectedPeripheral)!)
             }
             deviceCell.AnimateBtnPress = { [weak self] (cell) in
               self?.selectedPeripheral = self?.peripheralsArray[indexPath.row]
