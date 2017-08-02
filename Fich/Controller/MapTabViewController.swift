@@ -57,15 +57,6 @@ class MapTabViewController: UIViewController {
         
         mapUIView.addSubview(mapView)
         mapView.isHidden = true
-        
-//        let camera = GMSCameraPosition.camera(withLatitude: 10.7843695, longitude: 106.6844089, zoom: self.zoomLevel)
-//        self.mapView.camera = camera
-//        self.mapView.animate(to: camera)
-        
-//        let vancouver = CLLocationCoordinate2D(latitude: 10.7843695, longitude: 106.6844089)
-//        let vancouverCam = GMSCameraUpdate.setTarget(vancouver)
-//        mapView.animate(with: vancouverCam)
-        
     }
     
     deinit {
@@ -136,7 +127,7 @@ extension MapTabViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
         print("Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
-        //FirebaseClient.sharedInstance.updatePosition(cllocation: location)
+        FirebaseClient.sharedInstance.memberUpdatePosition(tripid: tripId, cllocation: location)
         
         if UserDefaults.standard.string(forKey: "is_map_member_loaded") == nil{
             let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,longitude: location.coordinate.longitude, zoom: zoomLevel)

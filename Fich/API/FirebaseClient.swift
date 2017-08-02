@@ -210,6 +210,26 @@ class FirebaseClient {
             }
         }
     }
+    
+    func memberUpdatePosition(tripid: String, cllocation : CLLocation){
+        let pos = Position(loc: cllocation)
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                let uid = user.uid
+                ref.child("trip").child(tripid).child("members").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    print(snapshot)
+                    //let value = snapshot.value as? NSDictionary
+                    let childUpdates = ["/trip/\(tripid)/members/\(uid)/current_position": pos.toPositionDictionary()]
+                    self.ref.updateChildValues(childUpdates)
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
     func joinTrip(tripId: String, completion: @escaping (Error?) -> ()) {
         let user = Auth.auth().currentUser
         if let user = user {
