@@ -38,7 +38,10 @@ class VerificationCodeViewController: UIViewController {
                 print("Phone number: \(String(describing: user?.phoneNumber))")
                 let userInfo = user?.providerData[0]
                 print("Provider ID: \(String(describing: userInfo?.providerID))")
-                self.performSegue(withIdentifier: "segueToLoggedIn", sender: self)
+                //self.performSegue(withIdentifier: "segueToLoggedIn", sender: self)
+                let storyboard = UIStoryboard(name: "JoinLobby", bundle: nil)
+                let viewController = storyboard.instantiateViewController(withIdentifier :"lobbyVC")
+                self.present(viewController, animated: true)
             }
         }
     }

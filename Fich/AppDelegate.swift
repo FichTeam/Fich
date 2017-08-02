@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let fb =  FBSDKApplicationDelegate .sharedInstance() .application(application, didFinishLaunchingWithOptions: launchOptions)
         
         if UserDefaults.standard.string(forKey: "user") != nil{
-            setupMainViewController()
+            setupLobbyViewController()
         } else {
             //User Not logged in
         }
