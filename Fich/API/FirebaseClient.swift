@@ -55,6 +55,12 @@ class FirebaseClient {
         let tripId : NSDictionary = ["trip_id": key]
         let update = ["/user/\(uid!)" : tripId]
         ref.updateChildValues(update)
+        
+        let id : NSDictionary = ["id": key]
+        if let phonenumber = UserDefaults.standard.string(forKey: "phonenumber"){
+            let tripLobby = ["/trip_lobby/\(phonenumber)" : id]
+            ref.updateChildValues(tripLobby)
+        }
     }
     func lookupTrip(phoneNumber: String, completion: @escaping (Trip?, Error?) -> ()) {
         ref.child("trip_lobby").child(phoneNumber).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -75,6 +81,30 @@ class FirebaseClient {
         }
     }
     
+    func memberGetRoutine(tripId : String)->String{
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                let uid = user.uid
+                var tripID = ""
+                ref.child("trip").child(tripId).observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    print(snapshot)
+                    let value = snapshot.value as? NSDictionary
+                    print(value)
+                    
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+                print("After snapshot \(tripID)")
+                return tripID
+            }
+            return "nil"
+        } else {
+            return "nil"
+        }
+    }
+    
     func addStopToDatabase(dict: NSDictionary){
         if Auth.auth().currentUser != nil {
             let user = Auth.auth().currentUser
@@ -87,8 +117,8 @@ class FirebaseClient {
                     let value = snapshot.value as? NSDictionary
                     tripID = value?["trip_id"] as? String ?? ""
                     if tripID != ""{
-                        let key = self.ref.child("trip/\(tripID)/stops").childByAutoId().key
-                        let childUpdates = ["/trip/\(tripID)/stops/\(key)": dict]
+                        //let key = self.ref.child("trip/\(tripID)/stops").childByAutoId().key
+                        let childUpdates = ["/trip/\(tripID)/stops": dict]
                         self.ref.updateChildValues(childUpdates)
                     }
                 }) { (error) in

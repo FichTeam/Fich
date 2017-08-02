@@ -69,9 +69,11 @@ class JoinLobbyViewController: UIViewController {
     
     func showTrip(trip: Trip?) {
         if let trip = trip {
-            tripNameLabel.text = trip.name
-            tripOwnerAvatarImage.setImageWith(URL(string: (trip.owner?.avatar)!)!)
-            tripOwnerNameLabel.text = trip.owner?.name
+            tripNameLabel.text = trip.name ?? "No info"
+            if let ava = trip.owner?.avatar{
+                tripOwnerAvatarImage.setImageWith(URL(string: ava)!)
+            }
+            tripOwnerNameLabel.text = trip.owner?.name ?? "No info"
             
             tripNameLabel.isHidden = false
             tripOwnerAvatarImage.isHidden = false

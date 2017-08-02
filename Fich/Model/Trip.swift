@@ -52,11 +52,9 @@ class Trip: DataObject {
         if let destinationPosition = destinationPosition {
             destination = Position(dictionary: destinationPosition)
         }
-        let stopArray = dictionary["stops"] as? [[String : Any]]
+        let stopArray = dictionary["stops"] as? [String : Any]
         if let stopArray = stopArray {
-            for stopPostion in stopArray {
-                stops.append(Position(dictionary: stopPostion))
-            }
+            stops.append(Position(dictionary: stopArray))
         }
         let memberDictionary = dictionary["members"] as? [String: Any]
         if let memberDictionary = memberDictionary {

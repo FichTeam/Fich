@@ -302,9 +302,24 @@
                     <view key="view" contentMode="scaleToFill" id="D4a-Pj-pAR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSf-Fk-Zj7" userLabel="MapView">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="MSf-Fk-Zj7" secondAttribute="trailing" id="U4m-0X-rmS"/>
+                            <constraint firstItem="MSf-Fk-Zj7" firstAttribute="leading" secondItem="D4a-Pj-pAR" secondAttribute="leading" id="VCV-cc-YUn"/>
+                            <constraint firstItem="MSf-Fk-Zj7" firstAttribute="top" secondItem="xYb-v1-4XB" secondAttribute="bottom" id="k5M-xC-yXN"/>
+                            <constraint firstItem="uge-VF-IJH" firstAttribute="top" secondItem="MSf-Fk-Zj7" secondAttribute="bottom" id="tlF-cA-eAo"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="b2a-1k-azw"/>
+                    <connections>
+                        <outlet property="mapUIView" destination="MSf-Fk-Zj7" id="B4Z-Pi-Qbd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGW-ht-9VZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
