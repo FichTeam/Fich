@@ -244,7 +244,7 @@ class GoogleMapManager{
             
             let nextPageToken = json["next_page_token"].stringValue
             var count = 0
-            while nextPageToken.count > 0 && count < 2{
+            while count < 2{
                 count = count + 1
                 let urlNextPage = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=\(nextPageToken)&key=\(self.googleKey)"
                 Alamofire.request(urlNextPage).responseJSON { response in

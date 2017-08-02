@@ -203,13 +203,13 @@ class FirebaseClient {
         }
     }
     
-//    func sendAction(tripId: String, action: TripAction, completion: @escaping (Error?) -> ()) {
-//        let actionRef = ref.child("trip_action").child(tripId)
-//        let newActionRef = actionRef.childByAutoId()
-//        let actionData = action.toActionDictionary()
-//        newActionRef.setValue(actionData, withCompletionBlock: { (error: Error?, data: DatabaseReference) in
-//            completion(error)
-//        })
-//    }
+    func sendAction(tripId: String, action: TripAction, completion: @escaping (Error?) -> ()) {
+        let actionRef = ref.child("trip_action").child(tripId)
+        let newActionRef = actionRef.childByAutoId()
+        let actionData = action.toActionDictionary()
+        newActionRef.setValue(actionData, withCompletionBlock: { (error: Error?, data: DatabaseReference) in
+            completion(error)
+        })
+    }
     
 }
