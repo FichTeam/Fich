@@ -34,6 +34,9 @@ class DeviceViewController: UIViewController {
   private var isPair = false
 
 
+  private var PeripheralConnectedArr: [Peripheral] = []
+  
+  private let FichService : CBUUID = CBUUID.init(string: "3DDA0001-957F-7D4A-34A6-74696673696D")
 
   override func viewDidLoad() {
       super.viewDidLoad()
@@ -80,7 +83,27 @@ class DeviceViewController: UIViewController {
     
     selectedPeripheral = nil
   }
+  private func CheckAnyFichDeviceConnected() -> Int
+  {
 
+    var isComplete = false
+    var numOfDevice = 0
+    
+    self.manager.retrieveConnectedPeripherals(withServices: [FichService]).subscribe(onNext: { peripheral in
+      self.PeripheralConnectedArr = peripheral
+      
+      numOfDevice = self.PeripheralConnectedArr.count
+      isComplete = true
+      
+    }).addDisposableTo(disposeBag)
+    
+    while(!isComplete)
+    {
+    
+    }
+    print("num of connect device \(numOfDevice)")
+    return numOfDevice
+  }
 
   private func addNewScannedPeripheral(_ peripheral: ScannedPeripheral) {
       let mapped = peripheralsArray.map { $0.peripheral }

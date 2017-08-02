@@ -34,6 +34,5 @@ class DeviceCell: UITableViewCell {
     }
   @IBAction func onAnimate(_ sender: UIButton) {
       AnimateBtnPress?(self)
-
     }
 }
