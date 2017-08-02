@@ -1,19 +1,18 @@
 //
-//  MapViewController.swift
+//  MapTabViewController.swift
 //  Fich
 //
-//  Created by Tran Tien Tin on 7/31/17.
+//  Created by admin on 8/2/17.
 //  Copyright © 2017 fichteam. All rights reserved.
 //
 
 import UIKit
 
-class MapViewController: UIViewController {
+class MapTabViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
 }

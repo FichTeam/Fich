@@ -13,6 +13,7 @@ enum TripStatus: String {
 }
 
 class Trip: DataObject {
+    var id: String?
     var userId: String?
     var name: String?
     var status: TripStatus?
@@ -27,6 +28,7 @@ class Trip: DataObject {
     
     override init(dictionary: [String: Any]) {
         super.init(dictionary: dictionary)
+        id = dictionary["id"] as? String
         userId = dictionary["user_id"] as? String
         name = dictionary["name"] as? String
         let statusString = dictionary["status"] as? String
@@ -71,6 +73,7 @@ class Trip: DataObject {
     
     func toTripDictionary() -> [String : Any] {
         var tripDictionary = [String: Any]()
+        tripDictionary["id"] = id
         tripDictionary["user_id"] = userId
         tripDictionary["name"] = name
         tripDictionary["status"] = status?.rawValue

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z59-EH-Mur">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Join Lobby View Controller-->
+        <scene sceneID="g0V-Lk-3RP">
+            <objects>
+                <viewController storyboardIdentifier="lobbyVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z59-EH-Mur" customClass="JoinLobbyViewController" customModule="Fich" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PHQ-TH-mGC"/>
+                        <viewControllerLayoutGuide type="bottom" id="gTe-ax-ctK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wBy-84-Vee">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="eS9-Tj-ql0">
+                                <rect key="frame" x="130" y="120" width="60" height="60"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AvX-Ap-i18">
+                                <rect key="frame" x="26" y="244" width="228" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You want to join a trip. Input your leader phone number" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fry-cn-iuc">
+                                <rect key="frame" x="26" y="200" width="268" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qou-Er-7u9">
+                                <rect key="frame" x="264" y="244" width="30" height="30"/>
+                                <state key="normal" title="Join"/>
+                                <connections>
+                                    <action selector="onJoin:" destination="Z59-EH-Mur" eventType="touchUpInside" id="pdH-r8-O9D"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are leader. Start a trip now" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0r7-8I-YSK">
+                                <rect key="frame" x="26" y="374" width="268" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWL-pq-DU7">
+                                <rect key="frame" x="125.5" y="402" width="69" height="30"/>
+                                <state key="normal" title="Start Now"/>
+                                <connections>
+                                    <action selector="onStart:" destination="Z59-EH-Mur" eventType="touchUpInside" id="p2S-jT-26b"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coder School" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQQ-Ih-A0A">
+                                <rect key="frame" x="26" y="289" width="268" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="04N-f9-3IM">
+                                <rect key="frame" x="26" y="316" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="n5K-V8-U6F"/>
+                                    <constraint firstAttribute="height" constant="36" id="xBH-DT-Efn"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tran Tien Tin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJN-va-Jl9">
+                                <rect key="frame" x="70" y="326" width="224" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="AvX-Ap-i18" firstAttribute="top" secondItem="Fry-cn-iuc" secondAttribute="bottom" constant="8" symbolic="YES" id="Hi4-SG-Dc6"/>
+                            <constraint firstItem="WWL-pq-DU7" firstAttribute="top" secondItem="0r7-8I-YSK" secondAttribute="bottom" constant="10" id="Hl3-bf-R4x"/>
+                            <constraint firstItem="LJN-va-Jl9" firstAttribute="centerY" secondItem="04N-f9-3IM" secondAttribute="centerY" id="Ikf-iM-WQz"/>
+                            <constraint firstItem="eS9-Tj-ql0" firstAttribute="centerX" secondItem="wBy-84-Vee" secondAttribute="centerX" id="JXY-j5-ZqV"/>
+                            <constraint firstItem="Fry-cn-iuc" firstAttribute="trailing" secondItem="Qou-Er-7u9" secondAttribute="trailing" id="MHL-4E-VxS"/>
+                            <constraint firstItem="04N-f9-3IM" firstAttribute="leading" secondItem="sQQ-Ih-A0A" secondAttribute="leading" id="MHl-wt-E6X"/>
+                            <constraint firstItem="AvX-Ap-i18" firstAttribute="leading" secondItem="wBy-84-Vee" secondAttribute="leadingMargin" constant="10" id="QKU-hc-WVt"/>
+                            <constraint firstItem="Qou-Er-7u9" firstAttribute="leading" secondItem="AvX-Ap-i18" secondAttribute="trailing" constant="10" id="Rva-Em-w0t"/>
+                            <constraint firstItem="sQQ-Ih-A0A" firstAttribute="leading" secondItem="AvX-Ap-i18" secondAttribute="leading" id="Tq6-wm-Yze"/>
+                            <constraint firstItem="Fry-cn-iuc" firstAttribute="leading" secondItem="AvX-Ap-i18" secondAttribute="leading" id="YHJ-we-W3Q"/>
+                            <constraint firstItem="Fry-cn-iuc" firstAttribute="top" secondItem="eS9-Tj-ql0" secondAttribute="bottom" constant="20" id="ZX5-7t-BlB"/>
+                            <constraint firstItem="LJN-va-Jl9" firstAttribute="leading" secondItem="04N-f9-3IM" secondAttribute="trailing" constant="8" id="aP3-0C-cJC"/>
+                            <constraint firstItem="sQQ-Ih-A0A" firstAttribute="trailing" secondItem="Qou-Er-7u9" secondAttribute="trailing" id="e49-Rt-Dsr"/>
+                            <constraint firstItem="0r7-8I-YSK" firstAttribute="leading" secondItem="AvX-Ap-i18" secondAttribute="leading" id="eDb-vw-9ts"/>
+                            <constraint firstItem="eS9-Tj-ql0" firstAttribute="top" secondItem="PHQ-TH-mGC" secondAttribute="bottom" constant="100" id="gFv-XQ-9GP"/>
+                            <constraint firstItem="04N-f9-3IM" firstAttribute="top" secondItem="sQQ-Ih-A0A" secondAttribute="bottom" constant="8" id="hNu-po-9qj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Qou-Er-7u9" secondAttribute="trailing" constant="10" id="jqG-AJ-yrp"/>
+                            <constraint firstItem="Qou-Er-7u9" firstAttribute="centerY" secondItem="AvX-Ap-i18" secondAttribute="centerY" id="m1u-tq-HAB"/>
+                            <constraint firstItem="WWL-pq-DU7" firstAttribute="centerX" secondItem="wBy-84-Vee" secondAttribute="centerX" id="oyo-Lb-giL"/>
+                            <constraint firstItem="0r7-8I-YSK" firstAttribute="trailing" secondItem="Qou-Er-7u9" secondAttribute="trailing" id="q9J-yz-yGH"/>
+                            <constraint firstItem="LJN-va-Jl9" firstAttribute="trailing" secondItem="sQQ-Ih-A0A" secondAttribute="trailing" id="qtR-1l-mbh"/>
+                            <constraint firstItem="0r7-8I-YSK" firstAttribute="top" secondItem="AvX-Ap-i18" secondAttribute="bottom" constant="100" id="vJJ-vd-RgC"/>
+                            <constraint firstItem="sQQ-Ih-A0A" firstAttribute="top" secondItem="AvX-Ap-i18" secondAttribute="bottom" constant="15" id="wAd-X1-wjB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="joinButton" destination="Qou-Er-7u9" id="ZQH-fa-oDb"/>
+                        <outlet property="phoneNumberTextField" destination="AvX-Ap-i18" id="Nyx-Fq-FoD"/>
+                        <outlet property="tripNameLabel" destination="sQQ-Ih-A0A" id="m62-Dc-rBl"/>
+                        <outlet property="tripOwnerAvatarImage" destination="04N-f9-3IM" id="XPV-QX-dom"/>
+                        <outlet property="tripOwnerNameLabel" destination="LJN-va-Jl9" id="SFR-vy-WPj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e5Y-KB-8cR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-10" y="-277"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo" width="60" height="60"/>
+    </resources>
+</document>

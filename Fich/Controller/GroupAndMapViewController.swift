@@ -1,15 +1,15 @@
 //
-//  MainViewController.swift
+//  GroupAndMapViewController.swift
 //  Fich
 //
-//  Created by Tran Tien Tin on 8/1/17.
+//  Created by admin on 8/2/17.
 //  Copyright © 2017 fichteam. All rights reserved.
 //
 
 import UIKit
 
-class MainViewController: UIViewController {
-
+class GroupAndMapViewController: UIViewController {
+    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet var buttonBackgrounds: [UIView]!
@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "GroupAndMap", bundle: nil)
         mapViewController = storyboard.instantiateViewController(withIdentifier: "mapViewController")
         groupViewController = storyboard.instantiateViewController(withIdentifier: "groupViewController")
         
@@ -35,7 +35,7 @@ class MainViewController: UIViewController {
         didPressTab(buttons[selectedIndex])
         menuBacground.isHidden = true
     }
-
+    
     @IBAction func didPressTab(_ sender: UIButton) {
         let previousIndex = selectedIndex
         selectedIndex = sender.tag
@@ -76,3 +76,4 @@ class MainViewController: UIViewController {
         menuBacground.isHidden = true
     }
 }
+

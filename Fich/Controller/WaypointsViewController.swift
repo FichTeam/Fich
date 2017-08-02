@@ -25,6 +25,11 @@ class WaypointsViewController: UIViewController {
     @IBAction func onBack(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+    @IBAction func onGroup(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "GroupAndMap", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"groupAndMapViewController")
+        present(viewController, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

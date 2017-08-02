@@ -85,7 +85,7 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate {
     func moveToHome() {
 //        let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
 //        present(lobbyVC, animated: true, completion: nil)
-        let storyboard = UIStoryboard(name: "Lobby", bundle: nil)
+        let storyboard = UIStoryboard(name: "JoinLobby", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"lobbyVC")
         present(viewController, animated: true)
     }

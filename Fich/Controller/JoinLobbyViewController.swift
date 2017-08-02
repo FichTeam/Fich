@@ -1,19 +1,19 @@
 //
-//  LobbyVC.swift
+//  JoinLobbyViewController.swift
 //  Fich
 //
-//  Created by Tran Tien Tin on 7/28/17.
+//  Created by admin on 8/2/17.
 //  Copyright © 2017 fichteam. All rights reserved.
 //
 
 import UIKit
 import AFNetworking
 
-class LobbyVC: UIViewController {
+class JoinLobbyViewController: UIViewController {
+    
     
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var joinButton: UIButton!
-    
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tripOwnerAvatarImage: UIImageView!
     @IBOutlet weak var tripOwnerNameLabel: UILabel!
@@ -36,7 +36,9 @@ class LobbyVC: UIViewController {
     }
     
     @IBAction func onStart(_ sender: UIButton) {
-        
+        let storyboard = UIStoryboard(name: "SetUpTrip", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"setupTripVC")
+        present(viewController, animated: true)
     }
     
     func editingChanged(_ textField: UITextField) {
