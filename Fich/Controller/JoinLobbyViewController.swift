@@ -23,6 +23,7 @@ class JoinLobbyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         joinButton.isEnabled = false
+        addDoneButton(to: phoneNumberTextField)
         phoneNumberTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         
         self.showTrip(trip: nil)

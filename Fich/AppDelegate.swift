@@ -132,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func setupLobbyViewController() {
         let storyboard = UIStoryboard(name: "JoinLobby", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"lobbyVC")
-        window?.rootViewController = UINavigationController(rootViewController: viewController)
+        window?.rootViewController = viewController
         UserDefaults.standard.set(true, forKey: kUserHasOnboardedKey)
     }
     
