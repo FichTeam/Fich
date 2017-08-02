@@ -15,9 +15,9 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var messageTextField: UITextField!
     
     
-    var trip: Trip! {
+    var tripId: String! {
         didSet {
-            messageRef = Database.database().reference().child("trip_action").child(trip.id)
+            messageRef = Database.database().reference().child("trip_action").child(tripId)
             self.observeNewMessages()
         }
     }
@@ -81,7 +81,7 @@ extension ChatViewController {
     func sendMessage(){
         if let msg = messageTextField?.text {
             let message = TripAction(member: currentAccount!, type: ActionType.text, message: msg, messageUrl: nil)
-            FirebaseClient.sharedInstance.sendAction(tripId: trip.id, action: message, completion: { (error: Error?) in
+            FirebaseClient.sharedInstance.sendAction(tripId: tripId, action: message, completion: { (error: Error?) in
                 if let error = error {
                     print (error)
                 } else {

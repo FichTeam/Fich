@@ -7,12 +7,23 @@
 //
 
 import UIKit
+import Firebase
 
 class GroupViewController: UIViewController {
 
+    var tripId: String! {
+        didSet {
+            tripRef = Database.database().reference().child("trip").child(tripId)
+            observeTrip()
+        }
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     
     var members = [Account]()
+    
+    var tripRef: DatabaseReference?
+    var tripRefHandle: DatabaseHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +33,12 @@ class GroupViewController: UIViewController {
         
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    deinit {
+        if let refHandle = tripRefHandle {
+            tripRef?.removeObserver(withHandle: refHandle)
+        }
     }
 
 }
@@ -38,4 +55,23 @@ extension GroupViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+}
+
+extension GroupViewController {
+    func observeTrip() {
+        
+        tripRefHandle = tripRef?.observe(.value, with: { (snapshot) in
+            
+            let tripDict = snapshot.value as? [String: Any]
+            if let tripData = tripDict {
+                let trip = Trip(dictionary: tripData)
+                self.members = [Account](trip.members.values)
+            } else {
+                print("error to decode trip. stop trip")
+                self.members = [Account]()
+            }
+            
+        })
+    }
+    
 }

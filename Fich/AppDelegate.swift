@@ -40,8 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if UserDefaults.standard.string(forKey: "user") != nil{
 //            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
 //            window?.rootViewController = lobbyVC
-//            setupLobbyViewController()
-            setupMainViewController()
+            setupLobbyViewController()
+//            setupMainViewController()
         } else {
             //User Not logged in
         }
@@ -53,8 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 //            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
 //            window?.rootViewController = lobbyVC
             
-//            setupLobbyViewController()
-            setupMainViewController()
+            setupLobbyViewController()
+//            setupMainViewController()
         }
         
         

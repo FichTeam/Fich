@@ -31,7 +31,10 @@ class LobbyVC: UIViewController {
     
     @IBAction func onJoin(_ sender: UIButton) {
         FirebaseClient.sharedInstance.joinTrip(tripId: (trip?.id)!) { (error: Error?) in
-            //
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier :"mainViewController") as! MainViewController
+            viewController.tripId = self.trip?.id
+            self.present(viewController, animated: true, completion: nil)
         }
     }
     
