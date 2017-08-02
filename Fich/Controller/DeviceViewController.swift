@@ -31,6 +31,7 @@ class DeviceViewController: UIViewController {
   fileprivate var characteristicsList: [Characteristic] = []
   
   private var isAnimate = false
+  private var isPair = false
 
 
 
@@ -111,9 +112,10 @@ class DeviceViewController: UIViewController {
       isAnimate = true
       self.ConnectAndDiscover(peripheral)
   }
-  func PairDevice()
+  func PairDevice(peripheral: ScannedPeripheral)
   {
-    
+      isPair = true
+      self.ConnectAndDiscover(peripheral)
   }
   private func discoverService(for peripheral: Peripheral) {
     peripheral.discoverServices(nil)
@@ -162,9 +164,17 @@ class DeviceViewController: UIViewController {
     if isAnimate {
       if (characteristic.uuid.uuidString == "3DDA0002-957F-7D4A-34A6-74696673696D")
       {
-        let cmdString = "02F106"
+        let cmdString = "0A11"
         self.writeValueForCharacteristic(hexadecimalString: cmdString, characteristic: characteristic)
         isAnimate = false
+      }
+    }
+    if isPair {
+      if (characteristic.uuid.uuidString == "3DDA0002-957F-7D4A-34A6-74696673696D")
+      {
+        let cmdString = "0A01"
+        self.writeValueForCharacteristic(hexadecimalString: cmdString, characteristic: characteristic)
+        isPair = false
       }
     }
   }
@@ -203,7 +213,7 @@ extension DeviceViewController: UITableViewDelegate, UITableViewDataSource{
             deviceCell.configure(with: peripheral)
             deviceCell.PairBtnPress = { [weak self] (cell) in
               self?.selectedPeripheral = self?.peripheralsArray[indexPath.row]
-              self?.PairDevice()
+              self?.PairDevice( peripheral: (self?.selectedPeripheral)!)
             }
             deviceCell.AnimateBtnPress = { [weak self] (cell) in
               self?.selectedPeripheral = self?.peripheralsArray[indexPath.row]
