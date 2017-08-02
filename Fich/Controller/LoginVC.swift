@@ -83,8 +83,11 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate {
         UserDefaults.standard.set(nil, forKey: "token")
     }
     func moveToHome() {
-        let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
-        present(lobbyVC, animated: true, completion: nil)
+//        let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
+//        present(lobbyVC, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Lobby", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"lobbyVC")
+        present(viewController, animated: true)
     }
     
     func initButton(){

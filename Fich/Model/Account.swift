@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class Account: DataObject {
     var accountId: String?
@@ -14,7 +15,7 @@ class Account: DataObject {
     var avatar: String?
     var phoneNumber: String?
     
-    override init(dictionary: NSDictionary) {
+    override init(dictionary: [String: Any]) {
         super.init(dictionary: dictionary)
         accountId = dictionary["account_id"] as? String
         name = dictionary["name"] as? String
@@ -22,7 +23,7 @@ class Account: DataObject {
         phoneNumber = dictionary["phone_number"] as? String
     }
     
-    func toAccountDictionary() -> NSDictionary {
+    func toAccountDictionary() -> [String: Any] {
         var accountDictionary = [String: Any]()
         accountDictionary["account_id"] = accountId
         accountDictionary["name"] = name
@@ -30,6 +31,14 @@ class Account: DataObject {
         accountDictionary["phone_number"] = phoneNumber
         accountDictionary["created_at"] = (createdAt?.timeIntervalSince1970)! * 1000
         accountDictionary["modified_at"] = (modifiedAt?.timeIntervalSince1970)! * 1000
-        return accountDictionary as NSDictionary
+        return accountDictionary
+    }
+    
+    init(user: User) {
+        super.init()
+        accountId = user.uid
+        name = user.displayName
+        avatar = user.photoURL?.absoluteString
+        phoneNumber = user.phoneNumber
     }
 }

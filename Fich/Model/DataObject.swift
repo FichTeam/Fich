@@ -17,7 +17,7 @@ class DataObject: NSObject {
         modifiedAt = Date()
     }
     
-    init(dictionary: NSDictionary) {
+    init(dictionary: [String: Any]) {
         let createdAtData = dictionary["created_at"] as? Double
         if let createdAtData = createdAtData {
             createdAt = Date(timeIntervalSince1970: createdAtData/1000)

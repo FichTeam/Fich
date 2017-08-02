@@ -70,6 +70,16 @@
 		84EEEB151F1D40150069463D /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		84EEEB1A1F1D42450069463D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SetUpTrip.storyboard; sourceTree = "<group>"; };
 		84EEEB1D1F1D43080069463D /* InitialTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialTripViewController.swift; sourceTree = "<group>"; };
+		84F8B1781F314EAC00CEA867 /* TripAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripAction.swift; sourceTree = "<group>"; };
+		84F8B17A1F314ED500CEA867 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Lobby.storyboard; sourceTree = "<group>"; };
+		84F8B17B1F314EF200CEA867 /* ChatMeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMeCell.swift; sourceTree = "<group>"; };
+		84F8B17C1F314EF200CEA867 /* ChatOtherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatOtherCell.swift; sourceTree = "<group>"; };
+		84F8B17D1F314EF200CEA867 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
+		84F8B17E1F314F1D00CEA867 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		84F8B17F1F314F1D00CEA867 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		84F8B1801F314F1D00CEA867 /* LobbyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyVC.swift; sourceTree = "<group>"; };
+		84F8B1811F314F1D00CEA867 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		84F8B1821F314F1D00CEA867 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		84FD2EBB1F2DFE2600E37CE6 /* GoogleMapThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapThumbView.swift; sourceTree = "<group>"; };
 		B98BD4FAAA19F05A9FF907FA /* Pods_Fich.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fich.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83B63E71F19D11800F14E78 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -209,6 +219,7 @@
 		C83B63E91F19D11800F14E78 /* Base.lproj */ = {
 			isa = PBXGroup;
 			children = (
+				84F8B1791F314ED500CEA867 /* Lobby.storyboard */,
 				C83B63EA1F19D11800F14E78 /* LaunchScreen.storyboard */,
 				C83B63EC1F19D11800F14E78 /* Main.storyboard */,
 				8460B5AC1F19FA940097B534 /* Login.storyboard */,
@@ -220,6 +231,11 @@
 		C83B63EE1F19D11800F14E78 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				84F8B17F1F314F1D00CEA867 /* ChatViewController.swift */,
+				84F8B17E1F314F1D00CEA867 /* GroupViewController.swift */,
+				84F8B1801F314F1D00CEA867 /* LobbyVC.swift */,
+				84F8B1821F314F1D00CEA867 /* MainViewController.swift */,
+				84F8B1811F314F1D00CEA867 /* MapViewController.swift */,
 				84EEEB1C1F1D42EE0069463D /* InitialTrip */,
 				84CB35D61F1BBF7800B64A61 /* Lobby */,
 				84CB35D51F1BBF6F00B64A61 /* Device */,
@@ -231,6 +247,7 @@
 		C83B63F61F19D11800F14E78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84F8B1781F314EAC00CEA867 /* TripAction.swift */,
 				84EEEB131F1D40150069463D /* Account.swift */,
 				84EEEB141F1D40150069463D /* DataObject.swift */,
 				84EEEB151F1D40150069463D /* Position.swift */,
@@ -244,6 +261,9 @@
 		C83B63F71F19D11800F14E78 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84F8B17B1F314EF200CEA867 /* ChatMeCell.swift */,
+				84F8B17C1F314EF200CEA867 /* ChatOtherCell.swift */,
+				84F8B17D1F314EF200CEA867 /* MemberCell.swift */,
 				C83B63F81F19D11800F14E78 /* DeviceCell.xib */,
 				C83B63F91F19D11800F14E78 /* DeviceViewController.xib */,
 				C83B63FA1F19D11800F14E78 /* LobbyViewController.xib */,
@@ -467,6 +487,14 @@
 				84EEEB1A1F1D42450069463D /* Base */,
 			);
 			name = SetUpTrip.storyboard;
+			sourceTree = "<group>";
+		};
+		84F8B1791F314ED500CEA867 /* Lobby.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84F8B17A1F314ED500CEA867 /* Base */,
+			);
+			name = Lobby.storyboard;
 			sourceTree = "<group>";
 		};
 		C83B63EA1F19D11800F14E78 /* LaunchScreen.storyboard */ = {

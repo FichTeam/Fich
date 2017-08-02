@@ -38,8 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let fb =  FBSDKApplicationDelegate .sharedInstance() .application(application, didFinishLaunchingWithOptions: launchOptions)
         
         if UserDefaults.standard.string(forKey: "user") != nil{
-            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
-            window?.rootViewController = lobbyVC
+//            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
+//            window?.rootViewController = lobbyVC
+//            setupLobbyViewController()
+            setupMainViewController()
         } else {
             //User Not logged in
         }
@@ -48,8 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             UserDefaults.standard.set(token.tokenString, forKey: "token")
             UserDefaults.standard.set(token.userID, forKey: "userID")
             
-            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
-            window?.rootViewController = lobbyVC
+//            let lobbyVC = LobbyViewController(nibName: "LobbyViewController", bundle: nil)
+//            window?.rootViewController = lobbyVC
+            
+//            setupLobbyViewController()
+            setupMainViewController()
         }
         
         
@@ -132,6 +137,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         UserDefaults.standard.set(true, forKey: kUserHasOnboardedKey)
     }
     
+    func setupLobbyViewController() {
+        // create whatever your root view controller is going to be, in this case just a simple view controller
+        // wrapped in a navigation controller
+//        let storyboard = UIStoryboard(name: "Lobby", bundle: nil)
+//        let viewController = storyboard.instantiateViewController(withIdentifier :"lobbyVC")
+//        window?.rootViewController = UINavigationController(rootViewController: viewController)
+        
+        let storyboard = UIStoryboard(name: "Lobby", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"lobbyVC")
+        window?.rootViewController = UINavigationController(rootViewController: viewController)
+        
+        UserDefaults.standard.set(true, forKey: kUserHasOnboardedKey)
+    }
+    
+    func setupMainViewController() {
+        // create whatever your root view controller is going to be, in this case just a simple view controller
+        // wrapped in a navigation controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier :"mainViewController")
+        window?.rootViewController = UINavigationController(rootViewController: viewController)
+//        UserDefaults.standard.set(true, forKey: kUserHasOnboardedKey)
+    }
     
     func generateOnboard()-> OnboardingViewController{
         let firstPage = OnboardingContentViewController.content(withTitle: "You Want Safe Trips?", body: "This app will help you!", image: UIImage(named: "blue"), buttonText: "Enable Location Services", action: {() -> Void in
