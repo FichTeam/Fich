@@ -135,6 +135,9 @@ extension MapTabViewController {
                     }
                     FirebaseClient.sharedInstance.getAllPosition(tripid: self.tripId, success: { (posit) in
                         print("is lost \(self.isLostConnection(posit: posit))")
+                        if self.isLostConnection(posit: posit){
+                            
+                        }
                     })
                 })
                 

@@ -19,11 +19,13 @@ class MemberCell: UITableViewCell {
     
     var account: Account! {
         didSet {
-            if let ava = account.avatar{
-                avatarImage.setImageWith(URL(string: ava)!)
+            if account.avatar != ""{
+                avatarImage.setImageWith(URL(string: account.avatar!)!)
+            }else{
+                avatarImage.image = UIImage(named: "noavatar")
             }
-            nameLabel.text = account.name ?? ""
-            phoneNumberLabel.text = account.phoneNumber ?? ""
+            nameLabel.text = account.name ?? "Minh Triet"
+            phoneNumberLabel.text = account.phoneNumber ?? "+84904731209"
         }
     }
     
