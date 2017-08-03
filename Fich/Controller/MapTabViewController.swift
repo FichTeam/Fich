@@ -15,7 +15,7 @@ class MapTabViewController: UIViewController {
     
     
     @IBOutlet weak var mapUIView: UIView!
-    
+    var memberMarker = [GMSMarker]()
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var mapView: GMSMapView!
@@ -113,13 +113,28 @@ extension MapTabViewController {
                         GoogleMapManager.shared.drawPathAgain(currentLocation: origin, destinationLoc: destination)
                     }
                 }
+                
                 FirebaseClient.sharedInstance.getAllMemberPosition(tripid: self.tripId, success: { (position) in
                     for po in 0...position.count-1{
-                        GoogleMapManager.shared.addMarker(id: "Your partner", snippet: "Snippet", lat: position[po].lat!, long: position[po].lng!, imageName: "man-marker")
+                        if self.memberMarker.count == position.count {
+                            for i in 0...self.memberMarker.count-1{
+                                let position2d = CLLocationCoordinate2D(latitude: position[i].lat!, longitude: position[i].lng!)
+                                self.memberMarker[i].position = position2d
+                            }
+                        }else{
+                            let position2d = CLLocationCoordinate2D(latitude: position[po].lat!, longitude: position[po].lng!)
+                            let marker = GMSMarker(position: position2d)
+                            marker.map = self.mapView
+                            let image = UIImage(named: "man-marker")
+                            marker.icon = image
+                            marker.title = "Your partner"
+                            marker.snippet = "Info here"
+                            self.memberMarker.append(marker)
+                        }
                     }
 //                    for i in 0...position.count-1{
 //                        for j in (i+1)...position.count-1{
-//                            calculateDistance(position[i], pos)
+//                            self.calculateDistance(location1: position[i], location2: position[j])
 //                        }
 //                    }
                 })
@@ -130,7 +145,12 @@ extension MapTabViewController {
             
         })
     }
-    
+    func calculateDistance(location1 : Position, location2: Position){
+        let pos1 = CLLocation(latitude: location1.lat!, longitude: location1.lng!)
+        let pos2 = CLLocation(latitude: location2.lat!, longitude: location2.lng!)
+        var distanceMeters = pos1.distance(from: pos2)
+        print("Distance is \(distanceMeters)")
+    }
 }
 
 extension MapTabViewController: CLLocationManagerDelegate {
