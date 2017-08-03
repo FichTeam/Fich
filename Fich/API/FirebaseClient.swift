@@ -230,6 +230,32 @@ class FirebaseClient {
         }
     }
     
+    func getAllMemberPosition(tripid: String, success: @escaping ([Position]) -> ()){
+        var arrPos = [Position]()
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                ref.child("trip").child(tripid).child("members").observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    //print(snapshot)
+                    let arrayMember = snapshot.children.allObjects as? [DataSnapshot] ?? []
+                    arrPos.removeAll()
+                    for member in arrayMember{
+                        if member.key != self.uid{
+                            let dict = member.value as? [String: Any]
+                            let pos = dict!["current_position"] as?  [String: Any]
+                            let p = Position(dictionary: pos!)
+                            arrPos.append(p)
+                        }
+                    }
+                    success(arrPos)
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
     func joinTrip(tripId: String, completion: @escaping (Error?) -> ()) {
         let user = Auth.auth().currentUser
         if let user = user {

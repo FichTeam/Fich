@@ -87,6 +87,14 @@ class GoogleMapManager{
             marker.icon = image
             marker.title = id
             marker.snippet = snippet
+        }else if imageName == "man-marker"{
+            let cllocation = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            let marker = GMSMarker(position: cllocation)
+            marker.map = mapView
+            let image = UIImage(named: imageName)
+            marker.icon = image
+            marker.title = id
+            marker.snippet = snippet
         }
     }
     func getMarker(id:String) -> GMSMarker? {

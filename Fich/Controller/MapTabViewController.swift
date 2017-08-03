@@ -113,6 +113,16 @@ extension MapTabViewController {
                         GoogleMapManager.shared.drawPathAgain(currentLocation: origin, destinationLoc: destination)
                     }
                 }
+                FirebaseClient.sharedInstance.getAllMemberPosition(tripid: self.tripId, success: { (position) in
+                    for po in 0...position.count-1{
+                        GoogleMapManager.shared.addMarker(id: "Your partner", snippet: "Snippet", lat: position[po].lat!, long: position[po].lng!, imageName: "man-marker")
+                    }
+//                    for i in 0...position.count-1{
+//                        for j in (i+1)...position.count-1{
+//                            calculateDistance(position[i], pos)
+//                        }
+//                    }
+                })
                 
             } else {
                 print("error to decode trip. stop trip")
