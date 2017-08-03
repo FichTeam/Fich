@@ -20,6 +20,7 @@ class MapTabViewController: UIViewController {
     var currentLocation: CLLocation?
     var mapView: GMSMapView!
     var zoomLevel: Float = 15.0
+    let MAX_RANGE = 2000.0
     
     @IBAction func onBack(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -132,11 +133,9 @@ extension MapTabViewController {
                             self.memberMarker.append(marker)
                         }
                     }
-//                    for i in 0...position.count-1{
-//                        for j in (i+1)...position.count-1{
-//                            self.calculateDistance(location1: position[i], location2: position[j])
-//                        }
-//                    }
+                    FirebaseClient.sharedInstance.getAllPosition(tripid: self.tripId, success: { (posit) in
+                        print("is lost \(self.isLostConnection(posit: posit))")
+                    })
                 })
                 
             } else {
@@ -145,11 +144,25 @@ extension MapTabViewController {
             
         })
     }
-    func calculateDistance(location1 : Position, location2: Position){
+    func calculateDistance(location1 : Position, location2: Position)->CLLocationDistance{
         let pos1 = CLLocation(latitude: location1.lat!, longitude: location1.lng!)
         let pos2 = CLLocation(latitude: location2.lat!, longitude: location2.lng!)
-        var distanceMeters = pos1.distance(from: pos2)
+        let distanceMeters = pos1.distance(from: pos2)
         print("Distance is \(distanceMeters)")
+        return distanceMeters
+    }
+    func isLostConnection(posit : [Position])->Bool{
+        if posit.count > 1{
+            for i in 0...posit.count-2{
+                for j in (i+1)...posit.count-1{
+                    if self.calculateDistance(location1: posit[i], location2: posit[j]) > MAX_RANGE{
+                        return true
+                    }
+                }
+            }
+        }
+        
+        return false
     }
 }
 
