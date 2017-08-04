@@ -33,7 +33,7 @@ class ActionViewController: UIViewController {
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
-        
+        addDoneButton(to: messageTextField)
         let user = Auth.auth().currentUser
         if let user = user {
             currentAccount = Account(user: user)

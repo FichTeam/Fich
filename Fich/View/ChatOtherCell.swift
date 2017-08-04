@@ -32,7 +32,13 @@ class ChatOtherCell: UITableViewCell {
             default:
                 break
             }
-            avatarImage.setImageWith(URL(string: (action.member?.avatar!)!)!)
+            if let ava = action.member?.avatar{
+                if ava != ""{
+                    avatarImage.setImageWith(URL(string: ava)!)
+                }else{
+                    avatarImage.image = UIImage(named: "noavatar")
+                }
+            }
             timeLabel.text = formatter.string(from: action.createdAt!)
         }
     }

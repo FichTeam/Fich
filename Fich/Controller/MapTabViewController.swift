@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import GoogleMaps
 import CoreLocation
+import AudioToolbox
 
 class MapTabViewController: UIViewController {
     
@@ -137,7 +138,8 @@ extension MapTabViewController {
                         FirebaseClient.sharedInstance.getAllPosition(tripid: self.tripId, success: { (posit) in
                             print("is lost \(self.isLostConnection(posit: posit))")
                             if self.isLostConnection(posit: posit){
-                                
+                                AudioServicesPlayAlertSound(SystemSoundID(1015))
+                                AudioServicesPlayAlertSound(SystemSoundID(1016))
                             }
                         })
                     }
