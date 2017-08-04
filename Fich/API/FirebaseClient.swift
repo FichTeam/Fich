@@ -49,6 +49,7 @@ class FirebaseClient {
     
     func createTripWithDict(dict: NSDictionary) {
         let key = ref.child("trip").childByAutoId().key
+        UserDefaults.standard.set(key, forKey: "tripId")
         let childUpdates = ["/trip/\(key)": dict]
         ref.updateChildValues(childUpdates)
         

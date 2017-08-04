@@ -17,10 +17,10 @@ class Account: DataObject {
     
     override init(dictionary: [String: Any]) {
         super.init(dictionary: dictionary)
-        accountId = dictionary["account_id"] as? String
-        name = dictionary["name"] as? String
-        avatar = dictionary["avatar"] as? String
-        phoneNumber = dictionary["phone_number"] as? String
+        accountId = dictionary["account_id"] as? String ?? ""
+        name = dictionary["name"] as? String ?? ""
+        avatar = dictionary["avatar"] as? String ?? ""
+        phoneNumber = dictionary["phone_number"] as? String ?? ""
     }
     
     func toAccountDictionary() -> [String: Any] {

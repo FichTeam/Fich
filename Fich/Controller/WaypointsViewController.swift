@@ -27,7 +27,8 @@ class WaypointsViewController: UIViewController {
     }
     @IBAction func onGroup(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "GroupAndMap", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier :"groupAndMapViewController")
+        let viewController = storyboard.instantiateViewController(withIdentifier :"groupAndMapViewController") as! GroupAndMapViewController
+        viewController.tripId = UserDefaults.standard.string(forKey: "tripId")
         present(viewController, animated: true)
     }
     
