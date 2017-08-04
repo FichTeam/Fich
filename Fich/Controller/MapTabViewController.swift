@@ -116,29 +116,31 @@ extension MapTabViewController {
                 }
                 
                 FirebaseClient.sharedInstance.getAllMemberPosition(tripid: self.tripId, success: { (position) in
-                    for po in 0...position.count-1{
-                        if self.memberMarker.count == position.count {
-                            for i in 0...self.memberMarker.count-1{
-                                let position2d = CLLocationCoordinate2D(latitude: position[i].lat!, longitude: position[i].lng!)
-                                self.memberMarker[i].position = position2d
+                    if position.count > 0{
+                        for po in 0...position.count-1{
+                            if self.memberMarker.count == position.count {
+                                for i in 0...self.memberMarker.count-1{
+                                    let position2d = CLLocationCoordinate2D(latitude: position[i].lat!, longitude: position[i].lng!)
+                                    self.memberMarker[i].position = position2d
+                                }
+                            }else{
+                                let position2d = CLLocationCoordinate2D(latitude: position[po].lat!, longitude: position[po].lng!)
+                                let marker = GMSMarker(position: position2d)
+                                marker.map = self.mapView
+                                let image = UIImage(named: "man-marker")
+                                marker.icon = image
+                                marker.title = "Your partner"
+                                marker.snippet = "Info here"
+                                self.memberMarker.append(marker)
                             }
-                        }else{
-                            let position2d = CLLocationCoordinate2D(latitude: position[po].lat!, longitude: position[po].lng!)
-                            let marker = GMSMarker(position: position2d)
-                            marker.map = self.mapView
-                            let image = UIImage(named: "man-marker")
-                            marker.icon = image
-                            marker.title = "Your partner"
-                            marker.snippet = "Info here"
-                            self.memberMarker.append(marker)
                         }
+                        FirebaseClient.sharedInstance.getAllPosition(tripid: self.tripId, success: { (posit) in
+                            print("is lost \(self.isLostConnection(posit: posit))")
+                            if self.isLostConnection(posit: posit){
+                                
+                            }
+                        })
                     }
-                    FirebaseClient.sharedInstance.getAllPosition(tripid: self.tripId, success: { (posit) in
-                        print("is lost \(self.isLostConnection(posit: posit))")
-                        if self.isLostConnection(posit: posit){
-                            
-                        }
-                    })
                 })
                 
             } else {
