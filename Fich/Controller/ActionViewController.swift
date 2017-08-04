@@ -31,6 +31,7 @@ class ActionViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         

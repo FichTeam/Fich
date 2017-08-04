@@ -11,6 +11,12 @@ import CoreLocation
 
 class WaypointsViewController: UIViewController {
     // MARK: *** Local variables
+    
+    var tripId: String! {
+        didSet {
+            groupButton.isEnabled = true
+        }
+    }
     var depPlace : String!
     var desPlace: String!
     var steps: [Step] = []
@@ -20,6 +26,7 @@ class WaypointsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var yourDeparture: UILabel!
     @IBOutlet weak var yourDestination: UILabel!
+    @IBOutlet weak var groupButton: UIButton!
     // MARK: *** UI Events
     
     @IBAction func onBack(_ sender: UIButton) {
@@ -27,12 +34,14 @@ class WaypointsViewController: UIViewController {
     }
     @IBAction func onGroup(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "GroupAndMap", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier :"groupAndMapViewController")
+        let viewController = storyboard.instantiateViewController(withIdentifier :"groupAndMapViewController") as! GroupAndMapViewController
+        
         present(viewController, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        groupButton.isEnabled = false
 
         yourDeparture.text = depPlace
         yourDestination.text = desPlace
