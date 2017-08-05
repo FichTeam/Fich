@@ -12,11 +12,6 @@ import CoreLocation
 class WaypointsViewController: UIViewController {
     // MARK: *** Local variables
     
-    var tripId: String! {
-        didSet {
-            groupButton.isEnabled = true
-        }
-    }
     var depPlace : String!
     var desPlace: String!
     var steps: [Step] = []
@@ -41,7 +36,6 @@ class WaypointsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupButton.isEnabled = false
 
         yourDeparture.text = depPlace
         yourDestination.text = desPlace

@@ -72,8 +72,6 @@ class InitialTripViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToSetupWaypoints" {
             let dest = segue.destination as! WaypointsViewController
-            // TODO
-            // dest.tripId =
             dest.depPlace = departureSearch.text!
             dest.desPlace = destinationSearch.text!
         }
