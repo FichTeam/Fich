@@ -49,6 +49,7 @@ class FirebaseClient {
     
     func createTripWithDict(dict: NSDictionary) {
         let key = ref.child("trip").childByAutoId().key
+        UserDefaults.standard.set(key, forKey: "tripId")
         let childUpdates = ["/trip/\(key)": dict]
         ref.updateChildValues(childUpdates)
         
@@ -267,8 +268,10 @@ class FirebaseClient {
                     for member in arrayMember{
                         let dict = member.value as? [String: Any]
                         let pos = dict!["current_position"] as?  [String: Any]
-                        let p = Position(dictionary: pos!)
-                        arrPos.append(p)
+                        if let pos = pos{
+                            let p = Position(dictionary: pos)
+                            arrPos.append(p)
+                        }
                     }
                     success(arrPos)
                 }) { (error) in
