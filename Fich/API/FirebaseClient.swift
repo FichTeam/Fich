@@ -62,6 +62,13 @@ class FirebaseClient {
             let tripLobby = ["/trip_lobby/\(phonenumber)" : id]
             ref.updateChildValues(tripLobby)
         }
+        if Auth.auth().currentUser?.phoneNumber == nil{
+            let code = UserDefaults.standard.string(forKey: "trip_code")
+            if let code = code {
+                let tripLobby = ["/trip_lobby/\(code)" : id]
+                ref.updateChildValues(tripLobby)
+            }
+        }
     }
     func lookupTrip(phoneNumber: String, completion: @escaping (Trip?, Error?) -> ()) {
         ref.child("trip_lobby").child(phoneNumber).observeSingleEvent(of: .value, with: { (snapshot) in
