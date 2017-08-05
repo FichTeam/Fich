@@ -15,6 +15,7 @@ import Firebase
 class FirebaseClient {
     static let sharedInstance = FirebaseClient()
     var ref: DatabaseReference!
+    let storageRef = Storage.storage().reference()
     var uid = Auth.auth().currentUser?.uid
     
     private init() {

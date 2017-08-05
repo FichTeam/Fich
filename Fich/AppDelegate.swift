@@ -124,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // create whatever your root view controller is going to be, in this case just a simple view controller
         // wrapped in a navigation controller
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier :"loginViewController")
+        let viewController = storyboard.instantiateViewController(withIdentifier :"loginViewController") //setupAccount loginViewController
         window?.rootViewController = UINavigationController(rootViewController: viewController)
         UserDefaults.standard.set(true, forKey: kUserHasOnboardedKey)
     }
