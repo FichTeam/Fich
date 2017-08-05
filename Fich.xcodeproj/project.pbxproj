@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8412060D1F35CEC7009D462B /* AddInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8412060C1F35CEC6009D462B /* AddInfoViewController.swift */; };
 		84266B101F24A476004E304D /* WaypointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84266B0F1F24A476004E304D /* WaypointsViewController.swift */; };
 		8434E7F51F2BBC4900795A72 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434E7F41F2BBC4900795A72 /* Stop.swift */; };
 		844AAB761F21442800F20E11 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AAB751F21442800F20E11 /* UIColorExtension.swift */; };
@@ -58,6 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8412060C1F35CEC6009D462B /* AddInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInfoViewController.swift; sourceTree = "<group>"; };
 		84266B0F1F24A476004E304D /* WaypointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaypointsViewController.swift; sourceTree = "<group>"; };
 		8434E7F41F2BBC4900795A72 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
 		844AAB751F21442800F20E11 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				8460B5B21F1A0FB30097B534 /* LoginVC.swift */,
 				84EEEACB1F1C7F2B0069463D /* PhoneSignupViewController.swift */,
 				84EEEACF1F1C9C670069463D /* VerificationCodeViewController.swift */,
+				8412060C1F35CEC6009D462B /* AddInfoViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				84A9C2FF1F31E2D6006B571D /* MapTabViewController.swift in Sources */,
 				C83A021F1F32170D005166DB /* MemberCell.swift in Sources */,
 				8434E7F51F2BBC4900795A72 /* Stop.swift in Sources */,
+				8412060D1F35CEC7009D462B /* AddInfoViewController.swift in Sources */,
 				84A9C2FB1F31DDD8006B571D /* GroupAndMapViewController.swift in Sources */,
 				84E935881F236E640073506C /* LobbyCell.swift in Sources */,
 				84FD2EBC1F2DFE2600E37CE6 /* GoogleMapThumbView.swift in Sources */,

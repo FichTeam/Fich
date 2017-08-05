@@ -43,6 +43,7 @@ class InitialTripViewController: UIViewController {
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var whereToLabel: UIView!
     @IBOutlet weak var resultView: UIView!
+    @IBOutlet weak var tripCode: UILabel!
     
     
     
@@ -118,6 +119,15 @@ class InitialTripViewController: UIViewController {
         mapUIView.addSubview(mapView)
         mapView.isHidden = true
         
+        if let phone = UserDefaults.standard.string(forKey: "phonenumber"){
+            tripCode.text = phone
+        }
+        if UserDefaults.standard.string(forKey: "phonenumber") == nil{
+            let random = Int.random(from: 10000, to: 99999)
+            let code = "+84 " + String(random) + String(random)
+            UserDefaults.standard.set(code, forKey: "trip_code")
+            tripCode.text = code
+        }
         
         whereToLabel.layer.shadowOffset = CGSize(width: -1, height: 1)
         whereToLabel.layer.shadowOpacity = 0.2

@@ -15,6 +15,7 @@ import Firebase
 class FirebaseClient {
     static let sharedInstance = FirebaseClient()
     var ref: DatabaseReference!
+    let storageRef = Storage.storage().reference()
     var uid = Auth.auth().currentUser?.uid
     
     private init() {
@@ -61,6 +62,13 @@ class FirebaseClient {
         if let phonenumber = UserDefaults.standard.string(forKey: "phonenumber"){
             let tripLobby = ["/trip_lobby/\(phonenumber)" : id]
             ref.updateChildValues(tripLobby)
+        }
+        if Auth.auth().currentUser?.phoneNumber == nil{
+            let code = UserDefaults.standard.string(forKey: "trip_code")
+            if let code = code {
+                let tripLobby = ["/trip_lobby/\(code)" : id]
+                ref.updateChildValues(tripLobby)
+            }
         }
     }
     func lookupTrip(phoneNumber: String, completion: @escaping (Trip?, Error?) -> ()) {
