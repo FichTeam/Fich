@@ -253,8 +253,10 @@ class FirebaseClient {
                         if member.key != self.uid{
                             let dict = member.value as? [String: Any]
                             let pos = dict!["current_position"] as?  [String: Any]
-                            let p = Position(dictionary: pos!)
-                            arrPos.append(p)
+                            if let pos = pos{
+                                let p = Position(dictionary: pos)
+                                arrPos.append(p)
+                            }
                         }
                     }
                     success(arrPos)
