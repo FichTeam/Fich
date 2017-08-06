@@ -43,6 +43,8 @@ class JoinLobbyViewController: UIViewController {
         let storyboard = UIStoryboard(name: "SetUpTrip", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"setupTripVC")
         present(viewController, animated: true)
+        
+//        BleApi.sharedInstance.blink()
     }
     
   @IBAction func onSetting(_ sender: UIButton) {

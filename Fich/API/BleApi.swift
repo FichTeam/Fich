@@ -25,7 +25,9 @@ class BleApi {
             .flatMap { Observable.from($0) }
             .flatMap { $0.discoverCharacteristics([CBUUID.init(string: "3DDA0002-957F-7D4A-34A6-74696673696D")])}
             .flatMap { Observable.from($0) }
-            .flatMap { $0.writeValue(Data.fromHexString(string: "0A11"), type: .withoutResponse) }
+            .flatMap { $0.setNotifyValue(true)}
+            .flatMap { Observable.from($0) }
+            .flatMap { $0.writeValue(Data.fromHexString(string: "0A11"), type: .withResponse) }
             .subscribe(onNext: {
                 print("write data success")
                 _ = $0.value
@@ -37,11 +39,15 @@ class BleApi {
         if let deviceId  = deviceId {
             manager.retrievePeripherals(withIdentifiers: [UUID.init(uuidString: deviceId)!])
                 .flatMap { Observable.from($0) }
+                .flatMap { $0.connect() }
+                .flatMap { Observable.from($0) }
                 .flatMap { $0.discoverServices([CBUUID.init(string: "3DDA0001-957F-7D4A-34A6-74696673696D")]) }
                 .flatMap { Observable.from($0) }
                 .flatMap { $0.discoverCharacteristics([CBUUID.init(string: "3DDA0002-957F-7D4A-34A6-74696673696D")])}
                 .flatMap { Observable.from($0) }
-                .flatMap { $0.writeValue(Data.fromHexString(string: "0A11"), type: .withoutResponse) }
+                .flatMap { $0.setNotifyValue(true)}
+                .flatMap { Observable.from($0) }
+                .flatMap { $0.writeValue(Data.fromHexString(string: "0A11"), type: .withResponse) }
                 .subscribe(onNext: {
                     print("write data success")
                     _ = $0.value

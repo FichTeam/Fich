@@ -65,7 +65,7 @@ extension DeviceSettingViewController {
         scanningDisposable = manager.rx_state
             .timeout(4.0, scheduler: scheduler)
             .take(1)
-            .flatMap { _ in self.manager.scanForPeripherals(withServices: nil, options:nil) }
+            .flatMap { _ in self.manager.scanForPeripherals(withServices: [CBUUID.init(string: "3DDA0001-957F-7D4A-34A6-74696673696D")], options:nil) }
             .subscribeOn(MainScheduler.instance)
             .subscribe(onNext: {
                 self.addNewScannedPeripheral($0)
@@ -124,7 +124,7 @@ extension DeviceSettingViewController: DeviceSettingDelegate {
 extension DeviceSettingCell {
     func configure(with peripheral: ScannedPeripheral) {
         print()
-        nameLabel.text = peripheral.peripheral.identifier.uuidString ?? "No name"
+        nameLabel.text = peripheral.advertisementData.localName ?? "No name"
         //peripheral.peripheral.identifier.uuidString
         //        scannedPeripheral = peripheral
     }
