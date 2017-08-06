@@ -66,6 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         FirebaseApp.configure()
         
+        BleApi.sharedInstance
+        
         application.statusBarStyle = .lightContent
         window?.makeKeyAndVisible()
         

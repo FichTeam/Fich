@@ -13,10 +13,13 @@ import CoreBluetooth
 
 class BleApi {
     static let sharedInstance = BleApi()
-    let manager = BluetoothManager(queue: .main)
+    let manager: BluetoothManager!
     let disposeBag = DisposeBag()
     
-    private init() {}
+    private init() {
+        manager = BluetoothManager(queue: .main)
+        
+    }
     
     func connectAndBlink(_ peripheral: Peripheral?){
         guard peripheral != nil else { return }
