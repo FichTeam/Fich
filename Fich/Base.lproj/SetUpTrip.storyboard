@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -266,7 +266,7 @@
                                                     <rect key="frame" x="0.0" y="28" width="287" height="28"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HxJ-E8-o88" id="blt-4D-h2F">
-                                                        <rect key="frame" x="0.0" y="0.0" width="287" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="287" height="27.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NT-UF-m37">
@@ -335,6 +335,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="groupButton" destination="7Fy-zq-LDf" id="W1E-gn-Jg8"/>
                         <outlet property="tableView" destination="KZw-tg-mlH" id="Bb6-SD-r9J"/>
                         <outlet property="yourDeparture" destination="Ma0-R9-7Kb" id="Yw4-RS-k6x"/>
                         <outlet property="yourDestination" destination="b43-Cp-Ltb" id="GzZ-5s-Byt"/>

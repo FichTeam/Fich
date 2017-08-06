@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fLa-yC-He6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fLa-yC-He6">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -49,13 +49,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tran Tien Tin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06U-N5-yBA">
-                                                    <rect key="frame" x="96" y="31" width="94.5" height="18"/>
+                                                    <rect key="frame" x="96" y="31" width="95" height="18"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0902675405" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OB-gX-lrH">
-                                                    <rect key="frame" x="96" y="59" width="94.5" height="16"/>
+                                                    <rect key="frame" x="96" y="59" width="95" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -109,7 +109,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMx-E7-Y1U">
-                                <rect key="frame" x="8" y="36" width="67" height="30"/>
+                                <rect key="frame" x="8" y="36" width="68" height="30"/>
                                 <state key="normal" title="Leave trip">
                                     <color key="titleColor" red="0.13725490200000001" green="0.19215686269999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -274,14 +274,14 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ern-bL-e8j">
                                         <rect key="frame" x="130" y="498" width="60" height="50"/>
                                         <state key="normal" title="DISMISS">
-                                            <color key="titleColor" red="0.97647058819999999" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.99046272039413452" green="0.21102328619228528" blue="0.18606984732044046" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="didDismissPress:" destination="fLa-yC-He6" eventType="touchUpInside" id="Ojt-px-aw9"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.89667609279141103" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.80277032208588961" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="YPg-rq-nbH" firstAttribute="centerX" secondItem="zKz-q0-CDd" secondAttribute="centerX" id="1Jo-ZO-Naw"/>
                                     <constraint firstAttribute="bottom" secondItem="ern-bL-e8j" secondAttribute="bottom" id="VoC-Ns-NY8"/>
@@ -339,10 +339,20 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSf-Fk-Zj7" userLabel="MapView">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMp-qz-4QD">
+                                        <rect key="frame" x="8" y="76" width="100" height="100"/>
+                                        <color key="backgroundColor" red="1" green="0.72910606800144873" blue="0.42458130296536667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="m1E-f1-EVG"/>
+                                            <constraint firstAttribute="height" constant="100" id="s5v-jH-dSt"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtI-Oo-Ax6">
-                                <rect key="frame" x="8" y="36" width="67" height="30"/>
+                                <rect key="frame" x="8" y="36" width="68" height="30"/>
                                 <state key="normal" title="Leave trip">
                                     <color key="titleColor" red="0.85882352939999995" green="0.8862745098" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -353,11 +363,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="nMp-qz-4QD" firstAttribute="leading" secondItem="ZtI-Oo-Ax6" secondAttribute="leading" id="DkO-kA-fNW"/>
                             <constraint firstItem="ZtI-Oo-Ax6" firstAttribute="top" secondItem="MSf-Fk-Zj7" secondAttribute="top" constant="16" id="Nle-qS-dTv"/>
                             <constraint firstItem="ZtI-Oo-Ax6" firstAttribute="leading" secondItem="D4a-Pj-pAR" secondAttribute="leading" constant="8" id="PxK-RE-A9H"/>
                             <constraint firstAttribute="trailing" secondItem="MSf-Fk-Zj7" secondAttribute="trailing" id="U4m-0X-rmS"/>
                             <constraint firstItem="MSf-Fk-Zj7" firstAttribute="leading" secondItem="D4a-Pj-pAR" secondAttribute="leading" id="VCV-cc-YUn"/>
                             <constraint firstItem="MSf-Fk-Zj7" firstAttribute="top" secondItem="xYb-v1-4XB" secondAttribute="bottom" id="k5M-xC-yXN"/>
+                            <constraint firstItem="nMp-qz-4QD" firstAttribute="top" secondItem="ZtI-Oo-Ax6" secondAttribute="bottom" constant="30" id="oPH-Vv-Dnq"/>
                             <constraint firstItem="uge-VF-IJH" firstAttribute="top" secondItem="MSf-Fk-Zj7" secondAttribute="bottom" id="tlF-cA-eAo"/>
                         </constraints>
                     </view>
@@ -368,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGW-ht-9VZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1356" y="-483"/>
+            <point key="canvasLocation" x="-1357.5" y="-483.80281690140845"/>
         </scene>
         <!--Action View Controller-->
         <scene sceneID="Iv0-2e-s1W">

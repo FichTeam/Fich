@@ -34,6 +34,7 @@ class GroupTabViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableViewAutomaticDimension
     }
