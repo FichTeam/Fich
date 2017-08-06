@@ -205,7 +205,7 @@ class DeviceViewController: UIViewController {
     print("char: \(characteristic.uuid.uuidString)")
     let hexadecimalData: Data = Data.fromHexString(string: hexadecimalString)
     let type: CBCharacteristicWriteType = characteristic.properties.contains(.write) ? .withResponse : .withoutResponse
-    characteristic.writeValue(hexadecimalData as Data, type: type)
+    characteristic.writeValue(hexadecimalData, type: type)
       .subscribe(onNext: { [weak self] _ in
         print("send cmd already")
       }).addDisposableTo(disposeBag)

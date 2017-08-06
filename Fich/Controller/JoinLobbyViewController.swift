@@ -43,12 +43,15 @@ class JoinLobbyViewController: UIViewController {
         let storyboard = UIStoryboard(name: "SetUpTrip", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"setupTripVC")
         present(viewController, animated: true)
+        
+//        BleApi.sharedInstance.blink()
     }
-  @IBAction func onSetting(_ sender: UIButton) {
-    let deviceVC = DeviceViewController(nibName: "DeviceViewController", bundle: nil)
     
-    present(deviceVC, animated: true, completion: nil)
-
+  @IBAction func onSetting(_ sender: UIButton) {
+//    let deviceVC = DeviceViewController(nibName: "DeviceViewController", bundle: nil)
+//    
+//    present(deviceVC, animated: true, completion: nil)
+    performSegue(withIdentifier: "deviceSettingSegue", sender: self)
   }
     
     func editingChanged(_ textField: UITextField) {
