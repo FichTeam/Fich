@@ -140,6 +140,7 @@ extension MapTabViewController {
                             if self.isLostConnection(posit: posit){
                                 AudioServicesPlayAlertSound(SystemSoundID(1015))
                                 AudioServicesPlayAlertSound(SystemSoundID(1016))
+                                BleApi.sharedInstance.blink()
                             }
                         })
                     }
