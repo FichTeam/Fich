@@ -77,8 +77,12 @@ class FirebaseClient {
             let value = snapshot.value as? [String: Any]
             
             if let value = value {
-                let trip = Trip(dictionary: value)
-                completion(trip, nil)
+                let tripId = value["id"] as? String ?? ""
+                self.ref.child("trip").child(tripId).observeSingleEvent(of: .value, with: { (snapshot) in
+                    let value2 = snapshot.value as? [String: Any]
+                    let trip = Trip(dictionary: value2!)
+                    completion(trip, nil)
+                })
             } else {
                 print ("nil")
                 completion(nil, nil)

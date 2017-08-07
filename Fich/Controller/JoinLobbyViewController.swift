@@ -72,7 +72,7 @@ class JoinLobbyViewController: UIViewController {
     
     func showTrip(trip: Trip?) {
         if let trip = trip {
-            tripNameLabel.text = trip.name ?? "Nguyen Hong Phat"
+            tripNameLabel.text = trip.name ?? "\(trip.source!.name!) - \(trip.destination!.name!)"
             if let ava = trip.owner?.avatar{
                 tripOwnerAvatarImage.setImageWith(URL(string: ava)!)
             }
