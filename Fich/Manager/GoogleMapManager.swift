@@ -242,7 +242,7 @@ class GoogleMapManager{
                 
                 if (cllocation.latitude < destinationLoc.lat! && cllocation.latitude > currentLocation.lat!) || (cllocation.latitude > destinationLoc.lat! && cllocation.latitude < currentLocation.lat!) || (cllocation.longitude < destinationLoc.lng! && cllocation.longitude > currentLocation.lng!)
                     || (cllocation.longitude > destinationLoc.lng! && cllocation.longitude < currentLocation.lng!){
-                    GoogleMapManager.shared.addMarker(id: stop.name!, snippet: stop.placeId!, lat: cllocation.latitude, long: cllocation.longitude, imageName: "location_stop_w")
+                    GoogleMapManager.shared.addMarker(id: stop.name!, snippet: "Not in your stops", lat: cllocation.latitude, long: cllocation.longitude, imageName: "location_stop_w")
                 }
             }
             
@@ -260,7 +260,7 @@ class GoogleMapManager{
                         let cllocation = CLLocationCoordinate2D(latitude: (stop.location?.lat)!, longitude: (stop.location?.lng)!)
                         if (cllocation.latitude < destinationLoc.lat! && cllocation.latitude > currentLocation.lat!) || (cllocation.latitude > destinationLoc.lat! && cllocation.latitude < currentLocation.lat!) || (cllocation.longitude < destinationLoc.lng! && cllocation.longitude > currentLocation.lng!)
                             || (cllocation.longitude > destinationLoc.lng! && cllocation.longitude < currentLocation.lng!){ 
-                            GoogleMapManager.shared.addMarker(id: stop.name!, snippet: stop.placeId!, lat: cllocation.latitude, long: cllocation.longitude, imageName: "location_stop_w")
+                            GoogleMapManager.shared.addMarker(id: stop.name!, snippet: "Not in your stops", lat: cllocation.latitude, long: cllocation.longitude, imageName: "location_stop_w")
                         }
                     }
                 }

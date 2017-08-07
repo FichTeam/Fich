@@ -222,7 +222,7 @@ extension InitialTripViewController: GMSMapViewDelegate{
             stopsLocation.append(stop)
             FirebaseClient.sharedInstance.addStopToDatabase(dict: stop.toPositionDictionaryDetail())
             GoogleMapManager.shared.drawPathWithWaypoints(currentLocation: depLocation, destinationLoc: desLocation, waypoints: stopsLocation)
-        }else{
+        }else if marker.snippet == "Added in your stops"{
             marker.snippet = "Not in your stops"
             let stop = Position(loc: marker.position, name: marker.title!, address: marker.snippet!)
             stopsLocation.removeAll()
