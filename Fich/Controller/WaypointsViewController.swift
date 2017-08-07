@@ -11,6 +11,7 @@ import CoreLocation
 
 class WaypointsViewController: UIViewController {
     // MARK: *** Local variables
+    
     var depPlace : String!
     var desPlace: String!
     var steps: [Step] = []
@@ -20,6 +21,7 @@ class WaypointsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var yourDeparture: UILabel!
     @IBOutlet weak var yourDestination: UILabel!
+    @IBOutlet weak var groupButton: UIButton!
     // MARK: *** UI Events
     
     @IBAction func onBack(_ sender: UIButton) {
