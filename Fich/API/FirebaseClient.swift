@@ -55,7 +55,7 @@ class FirebaseClient {
         ref.updateChildValues(childUpdates)
         
         let tripId : NSDictionary = ["trip_id": key]
-        let update = ["/user/\(uid!)" : tripId]
+        let update = ["/user/\(uid!)/trip/" : tripId]
         ref.updateChildValues(update)
         
         let id : NSDictionary = ["id": key]
@@ -125,7 +125,7 @@ class FirebaseClient {
             if let user = user {
                 let uid = user.uid
                 var tripID = ""
-                ref.child("user").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                ref.child("user").child(uid).child("trip").observeSingleEvent(of: .value, with: { (snapshot) in
                     // Get user value
                     print(snapshot)
                     let value = snapshot.value as? NSDictionary
@@ -148,7 +148,7 @@ class FirebaseClient {
             if let user = user {
                 let uid = user.uid
                 var tripID = ""
-                ref.child("user").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                ref.child("user").child(uid).child("trip").observeSingleEvent(of: .value, with: { (snapshot) in
                     // Get user value
                     print(snapshot)
                     let value = snapshot.value as? NSDictionary
@@ -183,7 +183,7 @@ class FirebaseClient {
             if let user = user {
                 let uid = user.uid
                 var tripID = ""
-                ref.child("user").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                ref.child("user").child(uid).child("trip").observeSingleEvent(of: .value, with: { (snapshot) in
                     // Get user value
                     print(snapshot)
                     let value = snapshot.value as? NSDictionary
@@ -208,7 +208,7 @@ class FirebaseClient {
             if let user = user {
                 let uid = user.uid
                 var tripID = ""
-                ref.child("user").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                ref.child("user").child(uid).child("trip").observeSingleEvent(of: .value, with: { (snapshot) in
                     // Get user value
                     print(snapshot)
                     let value = snapshot.value as? NSDictionary
