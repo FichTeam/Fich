@@ -21,11 +21,17 @@ class AddInfoViewController: UIViewController, UIImagePickerControllerDelegate, 
             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
             changeRequest?.displayName = name.text!
             changeRequest?.photoURL = URL(string: imageURL!)!
-            
-            UserDefaults.standard.set("User logged in by phonenumber", forKey: "user")
-            let storyboard = UIStoryboard(name: "JoinLobby", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier :"lobbyVC")
-            self.present(viewController, animated: true)
+            changeRequest?.commitChanges(completion: { (error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }else{
+                    UserDefaults.standard.set("User logged in by phonenumber", forKey: "user")
+                    let storyboard = UIStoryboard(name: "JoinLobby", bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier :"lobbyVC")
+                    self.present(viewController, animated: true)
+                }
+            })
+            FirebaseClient.sharedInstance.update()
         }else{
             alert(title: "Oops", message: "Your name must have at least 4 characters and you must have avatar!")
         }

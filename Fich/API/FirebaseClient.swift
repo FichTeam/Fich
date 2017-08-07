@@ -27,7 +27,7 @@ class FirebaseClient {
         if let user = user {
             let account = Account(user: user)
             let accountDictionary = account.toAccountDictionary()
-            let childUpdates = ["account/\(account.accountId!)": accountDictionary]
+            let childUpdates = ["user/\(uid!)": accountDictionary]
             ref.updateChildValues(childUpdates) { (error: Error?, data: DatabaseReference) in
                 if let error = error {
                     print (error)

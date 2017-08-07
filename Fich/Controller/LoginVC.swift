@@ -73,6 +73,7 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate {
                         return
                     }
                     print("login firebase success")
+                    FirebaseClient.sharedInstance.update()
                 }
                 moveToHome()
             }
