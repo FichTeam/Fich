@@ -13,8 +13,10 @@ class ActionViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextField: UITextField!
+    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     
-    
+    @IBOutlet weak var messageTextFieldBottomConstraint: NSLayoutConstraint!
+    var activeField: UITextField?
     var tripId: String! {
         didSet {
             messageRef = Database.database().reference().child("trip_action").child(tripId)
@@ -39,6 +41,14 @@ class ActionViewController: UIViewController {
         if let user = user {
             currentAccount = Account(user: user)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        registerForKeyboardNotifications()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        deregisterFromKeyboardNotifications()
     }
     
     @IBAction func onBack(_ sender: UIBarButtonItem) {
@@ -111,5 +121,53 @@ extension ActionViewController {
             }
             
         })
+    }
+}
+
+extension ActionViewController {
+    func registerForKeyboardNotifications(){
+        //Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications(){
+        //Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardWasShown(notification: NSNotification){
+        //Need to calculate keyboard exact size due to Apple suggestions
+        
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(0.5)
+        messageTextFieldBottomConstraint.constant += (keyboardSize?.height)!
+        UIView.commitAnimations()
+        
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        //Once keyboard disappears, restore original positions
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(0.4)
+        messageTextFieldBottomConstraint.constant -= (keyboardSize?.height)!
+        UIView.commitAnimations()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        activeField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField){
+        activeField = nil
     }
 }
