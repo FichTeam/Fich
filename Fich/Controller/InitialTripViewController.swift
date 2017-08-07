@@ -28,6 +28,8 @@ class InitialTripViewController: UIViewController {
     
     var depLocation: CLLocationCoordinate2D!
     var desLocation: CLLocationCoordinate2D!
+    var depPosition: Position!
+    var desPosition: Position!
     
     var stopsLocation = [Position]()
     
@@ -216,15 +218,15 @@ extension InitialTripViewController: GMSMapViewDelegate{
         print(marker.title!)
         if marker.snippet == "Not in your stops"{
             marker.snippet = "Added in your stops"
-            let stop = Position(location: marker.position)
+            let stop = Position(loc: marker.position, name: marker.title!, address: marker.snippet!)
             stopsLocation.append(stop)
-            FirebaseClient.sharedInstance.addStopToDatabase(dict: stop.toPositionDictionary())
+            FirebaseClient.sharedInstance.addStopToDatabase(dict: stop.toPositionDictionaryDetail())
             GoogleMapManager.shared.drawPathWithWaypoints(currentLocation: depLocation, destinationLoc: desLocation, waypoints: stopsLocation)
         }else{
             marker.snippet = "Not in your stops"
-            let stop = Position(location: marker.position)
+            let stop = Position(loc: marker.position, name: marker.title!, address: marker.snippet!)
             stopsLocation.removeAll()
-            FirebaseClient.sharedInstance.removeStopFromDatabase(dict: stop.toPositionDictionary())
+            FirebaseClient.sharedInstance.removeStopFromDatabase(dict: stop.toPositionDictionaryDetail())
             GoogleMapManager.shared.drawPathAgain(currentLocation: depLocation, destinationLoc: desLocation)
         }
         return false
@@ -275,11 +277,13 @@ extension InitialTripViewController: GMSAutocompleteTableDataSourceDelegate{
         self.mapView.isHidden = false
         if UserDefaults.standard.bool(forKey: "is_departure"){
             depLocation = place.coordinate
+            depPosition = Position(loc: place.coordinate, name: place.name, address: place.formattedAddress!)
             departureSearch.resignFirstResponder()
             self.departureSearch.text = "\(place.name)"
             GoogleMapManager.shared.addMarker(id: place.name, snippet: place.formattedAddress!, lat: place.coordinate.latitude, long: place.coordinate.longitude, imageName: "icon_dep")
         }else{
             desLocation = place.coordinate
+            desPosition = Position(loc: place.coordinate, name: place.name, address: place.formattedAddress!)
             destinationSearch.resignFirstResponder()
             self.destinationSearch.text = "\(place.name)"
             GoogleMapManager.shared.addMarker(id: place.name, snippet: place.formattedAddress!, lat: place.coordinate.latitude, long: place.coordinate.longitude, imageName: "icon_des")
@@ -288,8 +292,8 @@ extension InitialTripViewController: GMSAutocompleteTableDataSourceDelegate{
         mapView.animate(to: camera)
         if depLocation != nil && desLocation != nil{
             GoogleMapManager.shared.clearPath()
-            GoogleMapManager.shared.drawPath(currentLocation: depLocation, destinationLoc: desLocation)
-            GoogleMapManager.shared.showSuggestStops(currentLocation: depLocation, destinationLoc: desLocation)
+            GoogleMapManager.shared.drawPath(currentLocation: depPosition, destinationLoc: desPosition)
+            GoogleMapManager.shared.showSuggestStops(currentLocation: depPosition, destinationLoc: desPosition)
         }
     }
     

@@ -106,19 +106,17 @@ class GoogleMapManager{
             return nil
         }
     }
-    func drawPath(currentLocation: CLLocationCoordinate2D, destinationLoc : CLLocationCoordinate2D)
+    func drawPath(currentLocation: Position, destinationLoc : Position)
     {
-        let ori = Position(location: currentLocation)
-        let des = Position(location: destinationLoc)
         let tripDict: NSDictionary = [
             "user_id": FirebaseClient.sharedInstance.getUserUID()!,
-            "source" : ori.toPositionDictionary(),
-            "destination" : des.toPositionDictionary()
+            "source" : currentLocation.toPositionDictionaryDetail(),
+            "destination" : destinationLoc.toPositionDictionaryDetail()
         ]
         FirebaseClient.sharedInstance.createTripWithDict(dict: tripDict)
         
-        let origin = "\(currentLocation.latitude),\(currentLocation.longitude)"
-        let destination = "\(destinationLoc.latitude),\(destinationLoc.longitude)"
+        let origin = "\(currentLocation.lat!),\(currentLocation.lng!)"
+        let destination = "\(destinationLoc.lat!),\(destinationLoc.lng!)"
         let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving&key=\(googleKey)"
         
         Alamofire.request(url).responseJSON { response in
@@ -230,8 +228,8 @@ class GoogleMapManager{
         }
     }
     
-    func showSuggestStops(currentLocation: CLLocationCoordinate2D, destinationLoc : CLLocationCoordinate2D){
-        let origin = "\(currentLocation.latitude),\(currentLocation.longitude)"
+    func showSuggestStops(currentLocation: Position, destinationLoc : Position){
+        let origin = "\(currentLocation.lat!),\(currentLocation.lng!)"
         //let destination = "\(destinationLoc.latitude),\(destinationLoc.longitude)"
         let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(origin)&radius=10000&types=food,hospital,gas_station&key=\(googleKey)"
         
@@ -242,8 +240,8 @@ class GoogleMapManager{
             for stop in self.suggestStop{
                 let cllocation = CLLocationCoordinate2D(latitude: (stop.location?.lat)!, longitude: (stop.location?.lng)!)
                 
-                if (cllocation.latitude < destinationLoc.latitude && cllocation.latitude > currentLocation.latitude) || (cllocation.latitude > destinationLoc.latitude && cllocation.latitude < currentLocation.latitude) || (cllocation.longitude < destinationLoc.longitude && cllocation.longitude > currentLocation.longitude)
-                || (cllocation.longitude > destinationLoc.longitude && cllocation.longitude < currentLocation.longitude){
+                if (cllocation.latitude < destinationLoc.lat! && cllocation.latitude > currentLocation.lat!) || (cllocation.latitude > destinationLoc.lat! && cllocation.latitude < currentLocation.lat!) || (cllocation.longitude < destinationLoc.lng! && cllocation.longitude > currentLocation.lng!)
+                    || (cllocation.longitude > destinationLoc.lng! && cllocation.longitude < currentLocation.lng!){
                     GoogleMapManager.shared.addMarker(id: stop.name!, snippet: stop.placeId!, lat: cllocation.latitude, long: cllocation.longitude, imageName: "location_stop_w")
                 }
             }
@@ -260,8 +258,8 @@ class GoogleMapManager{
                     self.suggestStop = Stop.stopsWithArray(jsons: stopsJSON)
                     for stop in self.suggestStop{
                         let cllocation = CLLocationCoordinate2D(latitude: (stop.location?.lat)!, longitude: (stop.location?.lng)!)
-                        if (cllocation.latitude < destinationLoc.latitude && cllocation.latitude > currentLocation.latitude) || (cllocation.latitude > destinationLoc.latitude && cllocation.latitude < currentLocation.latitude) || (cllocation.longitude < destinationLoc.longitude && cllocation.longitude > currentLocation.longitude)
-                            || (cllocation.longitude > destinationLoc.longitude && cllocation.longitude < currentLocation.longitude){
+                        if (cllocation.latitude < destinationLoc.lat! && cllocation.latitude > currentLocation.lat!) || (cllocation.latitude > destinationLoc.lat! && cllocation.latitude < currentLocation.lat!) || (cllocation.longitude < destinationLoc.lng! && cllocation.longitude > currentLocation.lng!)
+                            || (cllocation.longitude > destinationLoc.lng! && cllocation.longitude < currentLocation.lng!){ 
                             GoogleMapManager.shared.addMarker(id: stop.name!, snippet: stop.placeId!, lat: cllocation.latitude, long: cllocation.longitude, imageName: "location_stop_w")
                         }
                     }
