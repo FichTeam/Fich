@@ -118,6 +118,7 @@ extension DeviceSettingViewController: DeviceSettingDelegate {
         let deviceId = peripheral.peripheral.identifier.uuidString
         UserDefaults.standard.setValue(deviceId, forKey: "deviceId")
         deviceLabel.text = deviceId
+        BleApi.sharedInstance.connect()
     }
 }
 
