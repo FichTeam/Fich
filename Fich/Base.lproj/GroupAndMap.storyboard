@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fLa-yC-He6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fLa-yC-He6">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -250,7 +250,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="didMessagePress:" destination="fLa-yC-He6" eventType="touchUpInside" id="clw-YH-oid"/>
-                                                    <segue destination="YMW-w7-Niq" kind="presentation" id="IP3-Mz-KP0"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -319,6 +318,7 @@
                         <outletCollection property="buttons" destination="bPm-I5-NBK" collectionClass="NSMutableArray" id="3Zt-RH-cFG"/>
                         <outletCollection property="buttonBackgrounds" destination="7YK-Y9-Wr4" collectionClass="NSMutableArray" id="E1A-p2-rk4"/>
                         <outletCollection property="buttonBackgrounds" destination="gne-hQ-oMF" collectionClass="NSMutableArray" id="eAa-Kf-HPW"/>
+                        <segue destination="YMW-w7-Niq" kind="presentation" identifier="ChatSegueID" id="xs5-Mg-NU6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWv-qS-UkQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -531,6 +531,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YMW-w7-Niq" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="TUx-U5-T39"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6xX-mk-acP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

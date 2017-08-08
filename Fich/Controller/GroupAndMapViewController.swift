@@ -32,7 +32,8 @@ class GroupAndMapViewController: UIViewController {
     var selectedIndex: Int = 0
     var tripRef: DatabaseReference?
     var tripRefHandle: DatabaseHandle?
-    
+    var currentAccount: Account?
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         let storyboard = UIStoryboard(name: "GroupAndMap", bundle: nil)
@@ -46,8 +47,14 @@ class GroupAndMapViewController: UIViewController {
         buttonBackgrounds[selectedIndex].backgroundColor = UIColor.darkGray
         didPressTab(buttons[selectedIndex])
         menuBacground.isHidden = true
+      
+        // 
+        let user = Auth.auth().currentUser
+        if let user = user {
+          currentAccount = Account(user: user)
+        }
     }
-    
+  
     @IBAction func didPressTab(_ sender: UIButton) {
         let previousIndex = selectedIndex
         selectedIndex = sender.tag
@@ -73,24 +80,27 @@ class GroupAndMapViewController: UIViewController {
     
     @IBAction func didLostPress(_ sender: UIButton) {
         print("didLostPress")
+        self.sendInstantMessage(action: ActionType.lost)
         menuBacground.isHidden = true
     }
     
     @IBAction func didBikeBrokenPress(_ sender: UIButton) {
         print("didBikeBrokenPress")
+        self.sendInstantMessage(action: ActionType.bikeBroken)
         menuBacground.isHidden = true
     }
     
     @IBAction func didMessagePress(_ sender: UIButton) {
         print("didMessagePress")
         menuBacground.isHidden = true
+        self.performSegue(withIdentifier: "ChatSegueID", sender: self)
     }
     
     @IBAction func didDismissPress(_ sender: UIButton) {
         print("didDismissPress")
         menuBacground.isHidden = true
     }
-    
+  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navController = segue.destination as! UINavigationController
         let vc = navController.viewControllers.first as! ActionViewController
@@ -105,6 +115,18 @@ class GroupAndMapViewController: UIViewController {
 }
 
 extension GroupAndMapViewController {
+  func sendInstantMessage(action: ActionType)
+    {
+      let message = TripAction(member: currentAccount!, type: action, message: nil, messageUrl: nil)
+      FirebaseClient.sharedInstance.sendAction(tripId: tripId, action: message, completion: { (error: Error?) in
+        if let error = error {
+          print (error)
+        } else {
+          self.performSegue(withIdentifier: "ChatSegueID", sender: self)
+        }
+      })
+      
+    }
     func observeTrip() {
         
         tripRefHandle = tripRef?.observe(.value, with: { (snapshot) in
