@@ -48,11 +48,20 @@ class GroupAndMapViewController: UIViewController {
         didPressTab(buttons[selectedIndex])
         menuBacground.isHidden = true
       
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.dismissMenu (_:)))
+        menuBacground.addGestureRecognizer(gesture)
+        
+        
         // 
         let user = Auth.auth().currentUser
         if let user = user {
           currentAccount = Account(user: user)
         }
+    }
+    
+    func dismissMenu(_ sender:UITapGestureRecognizer){
+        print("didDismissPress")
+        menuBacground.isHidden = true
     }
   
     @IBAction func didPressTab(_ sender: UIButton) {
@@ -94,11 +103,6 @@ class GroupAndMapViewController: UIViewController {
         print("didMessagePress")
         menuBacground.isHidden = true
         self.performSegue(withIdentifier: "ChatSegueID", sender: self)
-    }
-    
-    @IBAction func didDismissPress(_ sender: UIButton) {
-        print("didDismissPress")
-        menuBacground.isHidden = true
     }
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
