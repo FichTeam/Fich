@@ -253,11 +253,13 @@ extension InitialTripViewController: UITextFieldDelegate{
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        self.mapView.isHidden = false
+        self.resultsController.view.isHidden = true
         resultsController.willMove(toParentViewController: nil)
         UIView.animate(withDuration: 0.5, animations: {() -> Void in
             self.resultsController.view.alpha = 0.0
         }, completion: {(_ finished: Bool) -> Void in
-            self.resultsController.view.removeFromSuperview()
+            //self.resultsController.view.removeFromSuperview()
         })
     }
     
