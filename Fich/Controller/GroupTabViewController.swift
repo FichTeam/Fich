@@ -20,6 +20,7 @@ class GroupTabViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBAction func onBack(_ sender: UIButton) {
+        FirebaseClient.sharedInstance.leaveTrip(tripId: tripId)
         dismiss(animated: true, completion: nil)
     }
     
