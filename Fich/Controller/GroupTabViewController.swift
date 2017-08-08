@@ -44,6 +44,8 @@ class GroupTabViewController: UIViewController {
       
         // alert control
         alertControlInit()
+        // prepare data to display
+        prepareData()
       
     }
     
@@ -61,6 +63,7 @@ class GroupTabViewController: UIViewController {
     var distanceList : [Int: String] = [2: "2km", 3: "3km", 5: "5km"]
     var tripStatus : String = "Planning"
     var distanceSet = 2
+    var isBLEDeviceReady = true
   
 
   
@@ -95,11 +98,16 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
       case 1:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
         cell.statusLabel.text = distanceList[distanceSet]
-        // TODO-PHAT: You should put this data on Firebase to compute distance
+        // TODO-PHAT: You should put this data "distanceSet" on Firebase to compute distance
         return cell
       case 2:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
-        cell.statusLabel.text =  "No device"
+        if (isBLEDeviceReady){
+          cell.statusLabel.text =  "Device is connected"
+        }
+        else{
+          cell.statusLabel.text =  "Click to add Device"
+        }
         return cell
       case 3:
         let cell = tableView.dequeueReusableCell(withIdentifier: "memberCell") as! MemberCell
@@ -116,7 +124,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
       switch section {
       case 0: headerTitle.text = "Trip Status"
       case 1: headerTitle.text = "Safe Distance"
-      case 2: headerTitle.text = "Device info"
+      case 2: headerTitle.text = "Device"
       case 3: headerTitle.text = "Group"
       default: headerTitle.text = ""
       }
@@ -132,11 +140,23 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      switch indexPath.section {
      case 0: break
-      
-      
      case 1:
         self.present(alertController, animated: true, completion: nil)
-     case 2: break
+     case 2:
+        // check status of device
+        if (BleApi.sharedInstance.CheckAnyFichDeviceConnected() > 0)
+        {
+          print("Device ready")
+          isBLEDeviceReady = true
+          // show a message device is ready and reload this section
+        }
+        else
+        {
+          print("No device")
+          isBLEDeviceReady = false
+          // perform a segue to BLE page
+        }
+      self.tableView.reloadSections(IndexSet(integer: 2), with: .automatic)
      case 3: break
      default: break
     }
@@ -194,6 +214,22 @@ extension GroupTabViewController {
       alertController.addAction(_cancelAction)
 
     }
+  func prepareData(){
+    // TODO-PHAT: You should update clone the distance data and update for "distanceSet"
+    // currently I set this value is 2
+    distanceSet = 2
+    // check BLE device
+    if (BleApi.sharedInstance.CheckAnyFichDeviceConnected() > 0)
+    {
+     isBLEDeviceReady = true
+    }
+    else
+    {
+     isBLEDeviceReady = false
+    }
+
     
+  }
+  
 }
 
