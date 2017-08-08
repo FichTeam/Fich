@@ -348,16 +348,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSf-Fk-Zj7" userLabel="MapView">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMp-qz-4QD">
-                                        <rect key="frame" x="8" y="76" width="100" height="100"/>
-                                        <color key="backgroundColor" red="1" green="0.72910606800144873" blue="0.42458130296536667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="m1E-f1-EVG"/>
-                                            <constraint firstAttribute="height" constant="100" id="s5v-jH-dSt"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtI-Oo-Ax6">
@@ -372,13 +362,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nMp-qz-4QD" firstAttribute="leading" secondItem="ZtI-Oo-Ax6" secondAttribute="leading" id="DkO-kA-fNW"/>
                             <constraint firstItem="ZtI-Oo-Ax6" firstAttribute="top" secondItem="MSf-Fk-Zj7" secondAttribute="top" constant="16" id="Nle-qS-dTv"/>
                             <constraint firstItem="ZtI-Oo-Ax6" firstAttribute="leading" secondItem="D4a-Pj-pAR" secondAttribute="leading" constant="8" id="PxK-RE-A9H"/>
                             <constraint firstAttribute="trailing" secondItem="MSf-Fk-Zj7" secondAttribute="trailing" id="U4m-0X-rmS"/>
                             <constraint firstItem="MSf-Fk-Zj7" firstAttribute="leading" secondItem="D4a-Pj-pAR" secondAttribute="leading" id="VCV-cc-YUn"/>
                             <constraint firstItem="MSf-Fk-Zj7" firstAttribute="top" secondItem="xYb-v1-4XB" secondAttribute="bottom" id="k5M-xC-yXN"/>
-                            <constraint firstItem="nMp-qz-4QD" firstAttribute="top" secondItem="ZtI-Oo-Ax6" secondAttribute="bottom" constant="30" id="oPH-Vv-Dnq"/>
                             <constraint firstItem="uge-VF-IJH" firstAttribute="top" secondItem="MSf-Fk-Zj7" secondAttribute="bottom" id="tlF-cA-eAo"/>
                         </constraints>
                     </view>
