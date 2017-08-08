@@ -15,7 +15,8 @@ class BleApi {
     static let sharedInstance = BleApi()
     let manager: BluetoothManager!
     let disposeBag = DisposeBag()
-    
+    private let FichService : CBUUID = CBUUID.init(string: "3DDA0001-957F-7D4A-34A6-74696673696D")
+  
     private init() {
         manager = BluetoothManager(queue: .main)
         
@@ -80,5 +81,22 @@ class BleApi {
     {
       peripheral.cancelConnection().subscribe(onNext: { peripheral in
       print("Disconnect to: \(peripheral)")})
+    }
+    func CheckAnyFichDeviceConnected() -> Int
+    {
+      
+      var isComplete = false
+      var numOfDevice = 0
+      
+      self.manager.retrieveConnectedPeripherals(withServices: [FichService]).subscribe(onNext: { peripheral in
+        numOfDevice = peripheral.count
+        isComplete = true
+      }).addDisposableTo(disposeBag)
+      while(!isComplete)
+      {
+        
+      }
+      print("num of connect device \(numOfDevice)")
+      return numOfDevice
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class GroupTabViewController: UIViewController {
     
     var tripId: String! {
@@ -26,8 +27,11 @@ class GroupTabViewController: UIViewController {
     var members = [Account]()
     var tripRef: DatabaseReference?
     var tripRefHandle: DatabaseHandle?
-    
-    
+  
+    //Initialize UIAlertController for Safe Distance action sheet
+  
+  var alertController : UIAlertController!
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +41,12 @@ class GroupTabViewController: UIViewController {
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableViewAutomaticDimension
+      
+        // alert control
+        alertControlInit()
+        // prepare data to display
+        prepareData()
+      
     }
     
     deinit {
@@ -44,21 +54,113 @@ class GroupTabViewController: UIViewController {
             tripRef?.removeObserver(withHandle: refHandle)
         }
     }
-    
+  
+  // Section initialize
+  // 0: Trip status       1
+  // 1: Distance set      1
+  // 2: Device info       1
+  // 3: Group             count
+    var distanceList : [Int: String] = [2: "2km", 3: "3km", 5: "5km"]
+    var tripStatus : String = "Planning"
+    var distanceSet = 2
+    var isBLEDeviceReady = true
+  
+
+  
 }
 
 extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
+  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return members.count
+      
+      switch section {
+      case 0: return 1
+      case 1: return 1
+      case 2: return 1
+      case 3: return members.count
+      default: return 0
+      }
+    }
+  
+    func numberOfSections(in tableView: UITableView) -> Int {
+      return 4
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "memberCell") as! MemberCell
-
-        cell.account = members[indexPath.row]
-
+      switch indexPath.section {
+      case 0:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
+        // TODO-TIN : we will have trip-status on Firebase
+        // you could pull this data then update for variable tripStatus
+        
+        cell.statusLabel.text = tripStatus
         return cell
+      case 1:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
+        cell.statusLabel.text = distanceList[distanceSet]
+        // TODO-PHAT: You should put this data "distanceSet" on Firebase to compute distance
+        return cell
+      case 2:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
+        if (isBLEDeviceReady){
+          cell.statusLabel.text =  "Device is connected"
+        }
+        else{
+          cell.statusLabel.text =  "Click to add Device"
+        }
+        return cell
+      case 3:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "memberCell") as! MemberCell
+        cell.account = members[indexPath.row]
+        return cell
+      default:
+        return UITableViewCell()
+      }
     }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+      let headerView = UIView()
+      var headerTitle = UILabel()
+      headerTitle = UILabel(frame: CGRect(x: 15, y: 15, width: 200, height: 35))
+      switch section {
+      case 0: headerTitle.text = "Trip Status"
+      case 1: headerTitle.text = "Safe Distance"
+      case 2: headerTitle.text = "Device"
+      case 3: headerTitle.text = "Group"
+      default: headerTitle.text = ""
+      }
+      headerTitle.textColor = UIColor(red: 0, green: 0.7, blue: 0, alpha: 1)
+      headerView.addSubview(headerTitle)
+      headerView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+      return headerView
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+      return 35
+    }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     switch indexPath.section {
+     case 0: break
+     case 1:
+        self.present(alertController, animated: true, completion: nil)
+     case 2:
+        // check status of device
+        if (BleApi.sharedInstance.CheckAnyFichDeviceConnected() > 0)
+        {
+          print("Device ready")
+          isBLEDeviceReady = true
+          // show a message device is ready and reload this section
+        }
+        else
+        {
+          print("No device")
+          isBLEDeviceReady = false
+          // perform a segue to BLE page
+        }
+      self.tableView.reloadSections(IndexSet(integer: 2), with: .automatic)
+     case 3: break
+     default: break
+    }
+  }
 }
 
 extension GroupTabViewController {
@@ -77,6 +179,57 @@ extension GroupTabViewController {
             
         })
     }
+  
+    func alertControlInit()
+    {
+      alertController = UIAlertController(title: "Chose Safe Distance", message: "Always keep all members in this distance", preferredStyle: UIAlertControllerStyle.actionSheet)
+      let _2kmAction = UIAlertAction(title: "Distance: 2km", style: UIAlertActionStyle.default) { (action)-> Void in
+        // chose 2km
+        print("chose 2km")
+        self.distanceSet = 2
+        self.tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+      }
+      
+      let _3kmAction = UIAlertAction(title: "Distance: 3km", style: UIAlertActionStyle.default) { (action)-> Void in
+        // chose 2km
+        print("chose 3km")
+        self.distanceSet = 3
+        self.tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+      }
+      
+      let _5kmAction = UIAlertAction(title: "Distance: 5km", style: UIAlertActionStyle.default) { (action)-> Void in
+        // chose 2km
+        print("chose 5km")
+        self.distanceSet = 5
+        self.tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+      }
+      
+      let _cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (action)-> Void in
+        // chose 2km
+        print("Cancel")
+      }
+      alertController.addAction(_2kmAction)
+      alertController.addAction(_3kmAction)
+      alertController.addAction(_5kmAction)
+      alertController.addAction(_cancelAction)
+
+    }
+  func prepareData(){
+    // TODO-PHAT: You should update clone the distance data and update for "distanceSet"
+    // currently I set this value is 2
+    distanceSet = 2
+    // check BLE device
+    if (BleApi.sharedInstance.CheckAnyFichDeviceConnected() > 0)
+    {
+     isBLEDeviceReady = true
+    }
+    else
+    {
+     isBLEDeviceReady = false
+    }
+
     
+  }
+  
 }
 
