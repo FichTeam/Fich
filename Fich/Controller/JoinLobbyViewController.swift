@@ -24,9 +24,6 @@ class JoinLobbyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         joinButton.isHidden = true
-        joinButton.layer.cornerRadius = 0.5 * joinButton.bounds.size.height
-        
-        startButton.layer.cornerRadius = 0.5 * startButton.bounds.size.height
         
         addDoneButton(to: phoneNumberTextField)
         phoneNumberTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
