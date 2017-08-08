@@ -24,6 +24,7 @@ class MapTabViewController: UIViewController {
     let MAX_RANGE = 2000.0
     
     @IBAction func onBack(_ sender: UIButton) {
+        FirebaseClient.sharedInstance.leaveTrip(tripId: tripId)
         dismiss(animated: true, completion: nil)
     }
     
