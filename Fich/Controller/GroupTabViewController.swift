@@ -8,7 +8,9 @@
 
 import UIKit
 import Firebase
-
+import RxBluetoothKit
+import RxSwift
+import CoreBluetooth
 
 class GroupTabViewController: UIViewController {
     
@@ -144,6 +146,9 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
         self.present(alertController, animated: true, completion: nil)
      case 2:
         // check status of device
+      if (BleApi.sharedInstance.checkBTstate() != BluetoothState.poweredOn ){
+        break}
+      
         if (BleApi.sharedInstance.CheckAnyFichDeviceConnected() > 0)
         {
           print("Device ready")
@@ -155,6 +160,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
           print("No device")
           isBLEDeviceReady = false
           // perform a segue to BLE page
+          self.performSegue(withIdentifier: "BLESegueID", sender: self)
         }
       self.tableView.reloadSections(IndexSet(integer: 2), with: .automatic)
      case 3: break
@@ -219,14 +225,24 @@ extension GroupTabViewController {
     // currently I set this value is 2
     distanceSet = 2
     // check BLE device
-    if (BleApi.sharedInstance.CheckAnyFichDeviceConnected() > 0)
+    
+    if(BleApi.sharedInstance.checkBTstate() == BluetoothState.poweredOn )
     {
-     isBLEDeviceReady = true
+      print("BT on")
+      if (BleApi.sharedInstance.CheckAnyFichDeviceConnected() > 0)
+      {
+        isBLEDeviceReady = true
+      }
+      else
+      {
+        isBLEDeviceReady = false
+      }
     }
     else
     {
-     isBLEDeviceReady = false
+      print("BT off")
     }
+    
 
     
   }
