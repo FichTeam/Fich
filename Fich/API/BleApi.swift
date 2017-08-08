@@ -17,9 +17,10 @@ class BleApi {
     let disposeBag = DisposeBag()
     private let FichService : CBUUID = CBUUID.init(string: "3DDA0001-957F-7D4A-34A6-74696673696D")
   
-    private init() {
-        manager = BluetoothManager(queue: .main)
-        
+  
+  
+  private init() {
+      manager = BluetoothManager(queue: .main)
     }
     
     func connectAndBlink(_ peripheral: Peripheral?){
@@ -87,16 +88,40 @@ class BleApi {
       
       var isComplete = false
       var numOfDevice = 0
-      
-      self.manager.retrieveConnectedPeripherals(withServices: [FichService]).subscribe(onNext: { peripheral in
-        numOfDevice = peripheral.count
-        isComplete = true
-      }).addDisposableTo(disposeBag)
-      while(!isComplete)
+      if (self.checkBTstate() == BluetoothState.poweredOn)
       {
-        
+        self.manager.retrieveConnectedPeripherals(withServices: [FichService]).subscribe(onNext: { peripheral in
+          numOfDevice = peripheral.count
+          isComplete = true
+        }).addDisposableTo(disposeBag)
+        while(!isComplete)
+        {
+          
+        }
+      }
+      else
+      {
+        // pop up a message
       }
       print("num of connect device \(numOfDevice)")
       return numOfDevice
+    }
+  
+    func checkBTstate() -> BluetoothState {
+      let stateObservable = manager.state as BluetoothState
+      switch stateObservable {
+      case BluetoothState.unknown:
+        print("unknown")
+        break
+      case BluetoothState.poweredOff:
+        print("poweredOff")
+        break
+      case BluetoothState.poweredOn:
+        print("poweredOn")
+        break
+      default:
+        break
+      }
+      return stateObservable
     }
 }
