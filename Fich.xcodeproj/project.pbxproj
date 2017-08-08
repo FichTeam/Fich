@@ -13,6 +13,7 @@
 		844AAB761F21442800F20E11 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AAB751F21442800F20E11 /* UIColorExtension.swift */; };
 		8460B5AE1F19FA940097B534 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8460B5AC1F19FA940097B534 /* Login.storyboard */; };
 		8460B5B31F1A0FB30097B534 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8460B5B21F1A0FB30097B534 /* LoginVC.swift */; };
+		8462D6B91F3A0955006CF17A /* GoogleMapThumbAvaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8462D6B81F3A0955006CF17A /* GoogleMapThumbAvaView.swift */; };
 		84A132861F271727002B324B /* StepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A132851F271727002B324B /* StepCell.swift */; };
 		84A9C2F41F31D040006B571D /* JoinLobby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84A9C2F21F31D040006B571D /* JoinLobby.storyboard */; };
 		84A9C2F61F31D32A006B571D /* JoinLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A9C2F51F31D32A006B571D /* JoinLobbyViewController.swift */; };
@@ -68,6 +69,7 @@
 		844AAB751F21442800F20E11 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8460B5AD1F19FA940097B534 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Login.storyboard; sourceTree = "<group>"; };
 		8460B5B21F1A0FB30097B534 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		8462D6B81F3A0955006CF17A /* GoogleMapThumbAvaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapThumbAvaView.swift; sourceTree = "<group>"; };
 		84A132851F271727002B324B /* StepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCell.swift; sourceTree = "<group>"; };
 		84A9C2F31F31D040006B571D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = JoinLobby.storyboard; sourceTree = "<group>"; };
 		84A9C2F51F31D32A006B571D /* JoinLobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinLobbyViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			children = (
 				84B676981F2211A300AD7E20 /* GoogleMapManager.swift */,
 				84FD2EBB1F2DFE2600E37CE6 /* GoogleMapThumbView.swift */,
+				8462D6B81F3A0955006CF17A /* GoogleMapThumbAvaView.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				84A9C2FF1F31E2D6006B571D /* MapTabViewController.swift in Sources */,
 				C83A021F1F32170D005166DB /* MemberCell.swift in Sources */,
 				C83A02211F3640CD005166DB /* DeviceSettingViewController.swift in Sources */,
+				8462D6B91F3A0955006CF17A /* GoogleMapThumbAvaView.swift in Sources */,
 				8434E7F51F2BBC4900795A72 /* Stop.swift in Sources */,
 				8412060D1F35CEC7009D462B /* AddInfoViewController.swift in Sources */,
 				84A9C2FB1F31DDD8006B571D /* GroupAndMapViewController.swift in Sources */,

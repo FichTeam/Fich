@@ -260,6 +260,8 @@ class FirebaseClient {
                             let pos = dict!["current_position"] as?  [String: Any]
                             if let pos = pos{
                                 let p = Position(dictionary: pos)
+                                p.name = dict!["name"] as? String
+                                p.address = dict!["avatar"] as? String
                                 arrPos.append(p)
                             }
                         }
