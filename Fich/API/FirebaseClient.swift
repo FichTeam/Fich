@@ -298,12 +298,13 @@ class FirebaseClient {
         }
     }
     
-    func joinTrip(tripId: String, completion: @escaping (Error?) -> ()) {
+    func joinTrip(tripId: String) {
         let user = Auth.auth().currentUser
         if let user = user {
             let account = Account(user: user)
             let accountMap = account.toAccountDictionary()
-            //accountMap["owner"] = false
+            
+            // add member to trip
             ref.child("trip")
                 .child(tripId)
                 .child("members")
@@ -314,9 +315,40 @@ class FirebaseClient {
                     } else{
                         print(data)
                     }
-                    completion(error)
             }
-        } else {
+            // update user status
+            let userTripValue = ["trip_id": tripId]
+            ref.child("user")
+                .child(user.uid)
+                .child("trip")
+                .updateChildValues(userTripValue) { (error: Error?, data: DatabaseReference) in
+                    if (error != nil) {
+                        print(error)
+                    } else{
+                        print(data)
+                    }
+            }
+            
+        }
+    }
+    
+    func leaveTrip(tripId: String) {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let account = Account(user: user)
+            
+            // remove member to trip
+            ref.child("trip")
+                .child(tripId)
+                .child("members")
+                .child(account.accountId!)
+                .removeValue()
+            
+            // update user status
+            ref.child("user")
+                .child(user.uid)
+                .child("trip")
+                .removeValue()
             
         }
     }
