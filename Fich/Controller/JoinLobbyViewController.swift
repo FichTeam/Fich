@@ -17,12 +17,17 @@ class JoinLobbyViewController: UIViewController {
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tripOwnerAvatarImage: UIImageView!
     @IBOutlet weak var tripOwnerNameLabel: UILabel!
+    @IBOutlet weak var startButton: UIButton!
     
     var trip: Trip?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        joinButton.isEnabled = false
+        joinButton.isHidden = true
+        joinButton.layer.cornerRadius = 0.5 * joinButton.bounds.size.height
+        
+        startButton.layer.cornerRadius = 0.5 * startButton.bounds.size.height
+        
         addDoneButton(to: phoneNumberTextField)
         phoneNumberTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         
@@ -85,16 +90,15 @@ class JoinLobbyViewController: UIViewController {
             tripNameLabel.isHidden = false
             tripOwnerAvatarImage.isHidden = false
             tripOwnerNameLabel.isHidden = false
+            joinButton.isHidden = false
             
             self.trip = trip
-            joinButton.isEnabled = true
         } else {
             tripNameLabel.isHidden = true
             tripOwnerAvatarImage.isHidden = true
             tripOwnerNameLabel.isHidden = true
-            
+            self.joinButton.isHidden = true
             self.trip = nil
-            self.joinButton.isEnabled = false
         }
     }
     

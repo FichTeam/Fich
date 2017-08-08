@@ -26,7 +26,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bitmap" translatesAutoresizingMaskIntoConstraints="NO" id="gvs-jd-9Vr">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                             </imageView>
-                            <visualEffectView opaque="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Iwt-NM-1Of">
+                            <visualEffectView opaque="NO" alpha="0.94999999999999996" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Iwt-NM-1Of">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2I9-Ro-0tV">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
@@ -39,63 +39,33 @@
                                                 <constraint firstAttribute="height" constant="160" id="tnC-vk-rjS"/>
                                             </constraints>
                                         </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AvX-Ap-i18" customClass="PhoneNumberTextField" customModule="PhoneNumberKit">
-                                            <rect key="frame" x="60" y="228" width="202" height="30"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trip Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AvX-Ap-i18" customClass="PhoneNumberTextField" customModule="PhoneNumberKit">
+                                            <rect key="frame" x="60" y="196" width="213.5" height="30"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                         </textField>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You want to join a trip. Input your leader phone number or code" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fry-cn-iuc">
-                                            <rect key="frame" x="16" y="184" width="288" height="36"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.13725490200000001" green="0.19215686269999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qou-Er-7u9">
-                                            <rect key="frame" x="270" y="228" width="34" height="30"/>
-                                            <state key="normal" title="JOIN">
-                                                <color key="titleColor" red="0.13725490200000001" green="0.19215686269999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="onJoin:" destination="Z59-EH-Mur" eventType="touchUpInside" id="pdH-r8-O9D"/>
-                                            </connections>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are leader. Start a trip now" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0r7-8I-YSK">
-                                            <rect key="frame" x="16" y="362" width="288" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.13725490200000001" green="0.19215686269999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWL-pq-DU7">
-                                            <rect key="frame" x="104.5" y="388" width="112" height="30"/>
-                                            <state key="normal" title="Create your trip!">
-                                                <color key="titleColor" red="0.36470588240000001" green="0.59607843140000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="onStart:" destination="Z59-EH-Mur" eventType="touchUpInside" id="p2S-jT-26b"/>
-                                            </connections>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coder School" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQQ-Ih-A0A">
-                                            <rect key="frame" x="104" y="290" width="200" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.13725490200000001" green="0.19215686269999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coder School" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQQ-Ih-A0A">
+                                            <rect key="frame" x="56" y="254.5" width="93" height="17"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <color key="textColor" red="0.9277913627320955" green="0.25471515328864525" blue="0.18765311743422008" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="04N-f9-3IM">
-                                            <rect key="frame" x="16" y="266" width="80" height="80"/>
+                                            <rect key="frame" x="8" y="236" width="40" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="80" id="O6P-ig-vtW"/>
-                                                <constraint firstAttribute="width" constant="80" id="eqv-x0-njG"/>
+                                                <constraint firstAttribute="height" constant="40" id="O6P-ig-vtW"/>
+                                                <constraint firstAttribute="width" constant="40" id="eqv-x0-njG"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tran Tien Tin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJN-va-Jl9">
-                                            <rect key="frame" x="104" y="266" width="200" height="16"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" red="0.13725490200000001" green="0.19215686269999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tran Tien Tin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJN-va-Jl9">
+                                            <rect key="frame" x="56" y="236" width="78.5" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.73017613879999999" blue="0.87602577920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvf-RN-r7b">
-                                            <rect key="frame" x="257" y="510" width="47" height="30"/>
+                                            <rect key="frame" x="265" y="8" width="47" height="30"/>
                                             <state key="normal" title="Device">
                                                 <color key="titleColor" red="0.85882352939999995" green="0.8862745098" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
@@ -104,37 +74,52 @@
                                                 <segue destination="0Rm-uE-jZw" kind="presentation" identifier="deviceSettingSegue" id="2GD-yD-kE2"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qou-Er-7u9">
+                                            <rect key="frame" x="271" y="242" width="41" height="28"/>
+                                            <color key="backgroundColor" red="0.0" green="0.73017613879999999" blue="0.87602577920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                            <state key="normal" title="  Join  ">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="onJoin:" destination="Z59-EH-Mur" eventType="touchUpInside" id="pdH-r8-O9D"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWL-pq-DU7">
+                                            <rect key="frame" x="197" y="504" width="113" height="28"/>
+                                            <color key="backgroundColor" red="0.0" green="0.73017613877617438" blue="0.87602577917771884" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                            <state key="normal" title="  Create new trip  ">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="onStart:" destination="Z59-EH-Mur" eventType="touchUpInside" id="p2S-jT-26b"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="LJN-va-Jl9" firstAttribute="top" secondItem="04N-f9-3IM" secondAttribute="top" id="26R-Rw-Ib4"/>
-                                        <constraint firstItem="Qou-Er-7u9" firstAttribute="trailing" secondItem="Fry-cn-iuc" secondAttribute="trailing" id="2yu-Nx-i1X"/>
-                                        <constraint firstItem="sQQ-Ih-A0A" firstAttribute="trailing" secondItem="Qou-Er-7u9" secondAttribute="trailing" id="4jz-Pn-Ude"/>
-                                        <constraint firstItem="0r7-8I-YSK" firstAttribute="top" secondItem="04N-f9-3IM" secondAttribute="bottom" constant="16" id="7dJ-Ph-7WN"/>
-                                        <constraint firstItem="Tvf-RN-r7b" firstAttribute="trailing" secondItem="Qou-Er-7u9" secondAttribute="trailing" id="CWQ-eR-BKG"/>
-                                        <constraint firstItem="04N-f9-3IM" firstAttribute="top" secondItem="AvX-Ap-i18" secondAttribute="bottom" constant="8" id="Ljv-rf-aPe"/>
-                                        <constraint firstAttribute="bottom" secondItem="Tvf-RN-r7b" secondAttribute="bottom" constant="8" id="M6n-ze-pcM"/>
-                                        <constraint firstItem="LJN-va-Jl9" firstAttribute="trailing" secondItem="Qou-Er-7u9" secondAttribute="trailing" id="N3r-5A-UmE"/>
-                                        <constraint firstItem="0r7-8I-YSK" firstAttribute="centerX" secondItem="eS9-Tj-ql0" secondAttribute="centerX" id="Syz-am-gdi"/>
-                                        <constraint firstAttribute="trailing" secondItem="0r7-8I-YSK" secondAttribute="trailing" constant="16" id="TqB-Tf-KU7"/>
-                                        <constraint firstItem="Qou-Er-7u9" firstAttribute="leading" secondItem="AvX-Ap-i18" secondAttribute="trailing" constant="8" id="a9w-un-74D"/>
-                                        <constraint firstItem="WWL-pq-DU7" firstAttribute="centerX" secondItem="0r7-8I-YSK" secondAttribute="centerX" id="beo-gW-hej"/>
-                                        <constraint firstAttribute="trailing" secondItem="Fry-cn-iuc" secondAttribute="trailing" constant="16" id="c2c-jv-c2y"/>
+                                        <constraint firstAttribute="trailing" secondItem="Qou-Er-7u9" secondAttribute="trailing" constant="8" id="2JI-Xp-J39"/>
+                                        <constraint firstItem="04N-f9-3IM" firstAttribute="leading" secondItem="2I9-Ro-0tV" secondAttribute="leading" constant="8" id="5dg-Vr-hj1"/>
+                                        <constraint firstItem="Qou-Er-7u9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sQQ-Ih-A0A" secondAttribute="trailing" constant="4" id="DuW-aB-TNK"/>
+                                        <constraint firstItem="AvX-Ap-i18" firstAttribute="top" secondItem="eS9-Tj-ql0" secondAttribute="bottom" constant="20" id="Fpc-Hl-xGb"/>
+                                        <constraint firstItem="04N-f9-3IM" firstAttribute="top" secondItem="AvX-Ap-i18" secondAttribute="bottom" constant="10" id="Ljv-rf-aPe"/>
+                                        <constraint firstAttribute="trailing" secondItem="Tvf-RN-r7b" secondAttribute="trailing" constant="8" id="Moe-4N-Rzd"/>
+                                        <constraint firstItem="AvX-Ap-i18" firstAttribute="width" secondItem="2I9-Ro-0tV" secondAttribute="width" multiplier="2:3" id="Mte-Uy-uzk"/>
+                                        <constraint firstAttribute="bottom" secondItem="WWL-pq-DU7" secondAttribute="bottom" constant="16" id="QPp-pq-Im5"/>
+                                        <constraint firstAttribute="trailing" secondItem="WWL-pq-DU7" secondAttribute="trailing" constant="10" id="R0O-m4-aO6"/>
+                                        <constraint firstItem="Qou-Er-7u9" firstAttribute="centerY" secondItem="04N-f9-3IM" secondAttribute="centerY" id="V5n-c1-N1I"/>
                                         <constraint firstItem="eS9-Tj-ql0" firstAttribute="top" secondItem="2I9-Ro-0tV" secondAttribute="top" constant="16" id="eOc-El-tj5"/>
                                         <constraint firstItem="sQQ-Ih-A0A" firstAttribute="leading" secondItem="LJN-va-Jl9" secondAttribute="leading" id="eav-rj-d4k"/>
                                         <constraint firstItem="AvX-Ap-i18" firstAttribute="leading" secondItem="eS9-Tj-ql0" secondAttribute="leading" id="eeh-Kw-cS3"/>
-                                        <constraint firstItem="04N-f9-3IM" firstAttribute="leading" secondItem="Fry-cn-iuc" secondAttribute="leading" id="ghu-1b-urx"/>
                                         <constraint firstItem="LJN-va-Jl9" firstAttribute="leading" secondItem="04N-f9-3IM" secondAttribute="trailing" constant="8" id="huO-zz-UhB"/>
-                                        <constraint firstItem="0r7-8I-YSK" firstAttribute="leading" secondItem="2I9-Ro-0tV" secondAttribute="leading" constant="16" id="kCT-uL-OrU"/>
                                         <constraint firstItem="eS9-Tj-ql0" firstAttribute="centerX" secondItem="2I9-Ro-0tV" secondAttribute="centerX" id="kHq-TG-Ex9"/>
-                                        <constraint firstItem="WWL-pq-DU7" firstAttribute="top" secondItem="0r7-8I-YSK" secondAttribute="bottom" constant="8" id="kLc-ps-iBG"/>
-                                        <constraint firstItem="Fry-cn-iuc" firstAttribute="leading" secondItem="2I9-Ro-0tV" secondAttribute="leading" constant="16" id="pOf-yc-RcJ"/>
-                                        <constraint firstItem="Qou-Er-7u9" firstAttribute="centerY" secondItem="AvX-Ap-i18" secondAttribute="centerY" id="tYr-6P-U8I"/>
-                                        <constraint firstItem="Fry-cn-iuc" firstAttribute="top" secondItem="eS9-Tj-ql0" secondAttribute="bottom" constant="8" id="xLR-1U-pVf"/>
-                                        <constraint firstItem="sQQ-Ih-A0A" firstAttribute="top" secondItem="LJN-va-Jl9" secondAttribute="bottom" constant="8" id="xjT-cn-SMJ"/>
-                                        <constraint firstItem="AvX-Ap-i18" firstAttribute="top" secondItem="Fry-cn-iuc" secondAttribute="bottom" constant="8" id="yUx-Sl-Y1i"/>
+                                        <constraint firstItem="Qou-Er-7u9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LJN-va-Jl9" secondAttribute="trailing" constant="4" id="o2p-aU-CaV"/>
+                                        <constraint firstItem="Tvf-RN-r7b" firstAttribute="top" secondItem="2I9-Ro-0tV" secondAttribute="top" constant="8" id="pXP-R3-wGu"/>
+                                        <constraint firstItem="sQQ-Ih-A0A" firstAttribute="top" secondItem="LJN-va-Jl9" secondAttribute="bottom" constant="4" id="xjT-cn-SMJ"/>
                                     </constraints>
                                 </view>
-                                <blurEffect style="light"/>
+                                <blurEffect style="regular"/>
                             </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -152,6 +137,7 @@
                     <connections>
                         <outlet property="joinButton" destination="Qou-Er-7u9" id="ZQH-fa-oDb"/>
                         <outlet property="phoneNumberTextField" destination="AvX-Ap-i18" id="Nyx-Fq-FoD"/>
+                        <outlet property="startButton" destination="WWL-pq-DU7" id="gUv-80-VIC"/>
                         <outlet property="tripNameLabel" destination="sQQ-Ih-A0A" id="m62-Dc-rBl"/>
                         <outlet property="tripOwnerAvatarImage" destination="04N-f9-3IM" id="XPV-QX-dom"/>
                         <outlet property="tripOwnerNameLabel" destination="LJN-va-Jl9" id="SFR-vy-WPj"/>
