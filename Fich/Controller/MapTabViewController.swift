@@ -16,18 +16,33 @@ class MapTabViewController: UIViewController {
     
     
     @IBOutlet weak var mapUIView: UIView!
+    @IBOutlet weak var switchFake: UISwitch!
     var memberMarker = [GMSMarker]()
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var mapView: GMSMapView!
     var zoomLevel: Float = 15.0
     let MAX_RANGE = 2000.0
+    let MIN_FAKE_VELO = 25
+    let MAX_FAKE_VELO = 35
     
     @IBAction func onBack(_ sender: UIButton) {
         FirebaseClient.sharedInstance.leaveTrip(tripId: tripId)
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func onSwitchFakeLocation(_ sender: UISwitch) {
+        let start = 10.643509
+        let velocity = Int.random(from: MIN_FAKE_VELO, to: MAX_FAKE_VELO)
+        print(velocity)
+        for i in 1...20 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i * 10)) {
+                print(start + 0.000082 * Double(i))
+                let location = CLLocation(latitude: start + 0.000082 * Double(i * velocity), longitude: 106.588177)
+                FirebaseClient.sharedInstance.memberUpdatePosition(tripid: self.tripId, cllocation: location)
+            }
+        }
+    }
     
     var tripId: String! {
         didSet {
@@ -141,8 +156,11 @@ extension MapTabViewController {
                                 marker.map = self.mapView
                                 let image = UIImage(named: "man-marker")
                                 marker.icon = image
-                                marker.title = position[po].name!
-                                marker.snippet = position[po].address!
+                                if let name = position[po].name{
+                                    marker.title = name
+                                    marker.snippet = position[po].address!
+                                }
+                                
                                 self.memberMarker.append(marker)
                             }
                         }
@@ -187,21 +205,33 @@ extension MapTabViewController {
 
 extension MapTabViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location: CLLocation = locations.last!
-        print("Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
-        FirebaseClient.sharedInstance.memberUpdatePosition(tripid: tripId, cllocation: location)
-        
-        if UserDefaults.standard.string(forKey: "is_map_member_loaded") == nil{
-            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,longitude: location.coordinate.longitude, zoom: zoomLevel)
-            if mapView.isHidden {
-                mapView.isHidden = false
-                mapView.camera = camera
-            } else {
-                UserDefaults.standard.setValue("Map loaded", forKey: "is_map_member_loaded")
-                mapView.animate(to: camera)
+        if switchFake.isOn{
+//            var fakePosition = [Position]()
+//            let beginCoord = CLLocationCoordinate2D(latitude: 10.776642, longitude: 106.683577)
+//            let beginPosition = Position(location: beginCoord)
+//
+//            for i in 0...10{
+//                let coord = CLLocationCoordinate2D(latitude: beginPosition.lat! + 0.000082 + Double(i) * 0.00002, longitude: 106.6814703)
+//                let pos = Position(location: coord)
+//                fakePosition.append(pos)
+//            }
+            
+        }else{
+            let location: CLLocation = locations.last!
+            print("Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+            FirebaseClient.sharedInstance.memberUpdatePosition(tripid: tripId, cllocation: location)
+            
+            if UserDefaults.standard.string(forKey: "is_map_member_loaded") == nil{
+                let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,longitude: location.coordinate.longitude, zoom: zoomLevel)
+                if mapView.isHidden {
+                    mapView.isHidden = false
+                    mapView.camera = camera
+                } else {
+                    UserDefaults.standard.setValue("Map loaded", forKey: "is_map_member_loaded")
+                    mapView.animate(to: camera)
+                }
             }
         }
-        
     }
     // Handle authorization for the location manager.
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
