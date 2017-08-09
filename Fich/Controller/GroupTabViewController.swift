@@ -95,21 +95,21 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
             // TODO-TIN : we will have trip-status on Firebase
             // you could pull this data then update for variable tripStatus
-            
+            cell.statusLabel.text = "Trip Status"
             if let trip = trip {
                 cell.button.isHidden = false
                 
                 switch trip.status! {
                 case TripStatus.prepare:
-                    cell.statusLabel.text = "PREPARING"
+                    cell.statusLabel.text = "Planing"
                     cell.button.setTitle("START", for: .normal)
                     break
                 case TripStatus.run:
-                    cell.statusLabel.text = "RUNNING"
+                    cell.statusLabel.text = "Running"
                     cell.button.setTitle("FINISH", for: .normal)
                     break
                 case TripStatus.finish:
-                    cell.statusLabel.text = "FINISH"
+                    cell.statusLabel.text = "Finish"
                     cell.button.setTitle("FINISH", for: .normal)
                     break
                 }
