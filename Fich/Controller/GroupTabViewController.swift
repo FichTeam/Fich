@@ -41,8 +41,8 @@ class GroupTabViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        tableView.estimatedRowHeight = 150
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        tableView.estimatedRowHeight = 400
         tableView.rowHeight = UITableViewAutomaticDimension
         
         // alert control
@@ -62,11 +62,13 @@ class GroupTabViewController: UIViewController {
     // 0: Trip status       1
     // 1: Distance set      1
     // 2: Device info       1
-    // 3: Group             count
+    // 3: Fake Label        1
+    // 4: Group             count
     var distanceList : [Int: String] = [2: "2km", 3: "3km", 5: "5km"]
     var tripStatus : String = "Planning"
     var distanceSet = 2
     var isBLEDeviceReady = true
+    var isBTOn = false
     
     
     
@@ -80,13 +82,14 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
         case 0: return 1
         case 1: return 1
         case 2: return 1
-        case 3: return members.count
+        case 3: return 1
+        case 4: return members.count
         default: return 0
         }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -95,53 +98,46 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
             // TODO-TIN : we will have trip-status on Firebase
             // you could pull this data then update for variable tripStatus
-            
+            cell.titleLabel.text = "Trip Status"
             cell.statusLabel.text = tripStatus
             cell.button.isHidden = false
             cell.delegate = self
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
+            cell.titleLabel.text = "Safe Distance"
             cell.statusLabel.text = distanceList[distanceSet]
             cell.button.isHidden = true
             // TODO-PHAT: You should put this data "distanceSet" on Firebase to compute distance
             return cell
         case 2:
+          
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
+            cell.titleLabel.text = "Device Info"
             if (isBLEDeviceReady){
                 cell.statusLabel.text =  "Device is connected"
             }
             else{
-                cell.statusLabel.text =  "Click to add Device"
+              if (isBTOn == false){
+                  cell.statusLabel.text =  "Turn on Bluetooth"
+              }
+              else{
+                  cell.statusLabel.text =  "Click to add Device"
+              }
             }
             cell.button.isHidden = true
             return cell
         case 3:
+          let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell") as! GroupCell
+          cell.selectionStyle = .none
+          return cell
+        case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: "memberCell") as! MemberCell
             cell.account = members[indexPath.row]
             return cell
         default:
             return UITableViewCell()
         }
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        var headerTitle = UILabel()
-        headerTitle = UILabel(frame: CGRect(x: 15, y: 15, width: 200, height: 35))
-        switch section {
-        case 0: headerTitle.text = "Trip Status"
-        case 1: headerTitle.text = "Safe Distance"
-        case 2: headerTitle.text = "Device"
-        case 3: headerTitle.text = "Group"
-        default: headerTitle.text = ""
-        }
-        headerTitle.textColor = UIColor(red: 0, green: 0.7, blue: 0, alpha: 1)
-        headerView.addSubview(headerTitle)
-        headerView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-        return headerView
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 35
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -152,8 +148,12 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
         case 2:
             // check status of device
             if (BleApi.sharedInstance.checkBTstate() != BluetoothState.poweredOn ){
+                isBTOn = false
+                isBLEDeviceReady = false
+                self.tableView.reloadSections(IndexSet(integer: 2), with: .automatic)
                 break}
             
+            isBTOn = true
             if (BleApi.sharedInstance.CheckAnyFichDeviceConnected() > 0)
             {
                 print("Device ready")
@@ -169,14 +169,42 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
             }
             self.tableView.reloadSections(IndexSet(integer: 2), with: .automatic)
         case 3: break
+        case 4: break
         default: break
         }
     }
+  
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//      let headerView = UIView()
+//      var headerTitle = UILabel()
+//      var x_ = self.view.frame.width/2 - 100
+//      headerTitle = UILabel(frame: CGRect(x: x_, y: 5, width: 200, height: 20))
+//      switch section {
+//      case 0: return nil
+//      case 1: return nil
+//      case 2: return nil
+//      case 3: headerTitle.text = "Group"
+//      default: headerTitle.text = ""
+//      }
+//      headerTitle.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+////      headerTitle.font = UIFont(name: label.font.fontName, size: 20)
+//      headerView.addSubview(headerTitle)
+//      headerView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0)
+//      return headerView
+//    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//      if (section == 3)
+//      {
+//        return 20
+//      }
+//      return 0
+//    }
+
 }
 
 extension GroupTabViewController {
     func observeTrip() {
-        
+      
         tripRefHandle = tripRef?.observe(.value, with: { (snapshot) in
             
             let tripDict = snapshot.value as? [String: Any]
@@ -233,6 +261,7 @@ extension GroupTabViewController {
         
         if(BleApi.sharedInstance.checkBTstate() == BluetoothState.poweredOn){
             print("BT on")
+            isBTOn = true
             if (BleApi.sharedInstance.CheckAnyFichDeviceConnected() > 0){
                 isBLEDeviceReady = true
             } else {
@@ -240,10 +269,10 @@ extension GroupTabViewController {
             }
         }
         else {
+            isBTOn = false
             print("BT off")
         }
     }
-    
 }
 
 extension GroupTabViewController: SettingButtonDelegate {
