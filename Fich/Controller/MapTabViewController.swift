@@ -71,13 +71,23 @@ class MapTabViewController: UIViewController {
 
 extension MapTabViewController: GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        let thumbView: GoogleMapThumbView = GoogleMapThumbView()
-        marker.tracksInfoWindowChanges = true
-        if let id = marker.title {
-            thumbView.titleLabel.text = id
-            //thumbView.snippetLabel.text = ""
+        if (marker.snippet?.contains("https"))!{
+            let thumbAvatarView: GoogleMapThumbAvaView = GoogleMapThumbAvaView()
+            marker.tracksInfoWindowChanges = true
+            if let id = marker.title {
+                thumbAvatarView.titleLabel.text = id
+                thumbAvatarView.avatar.setImageWith(URL(string: marker.snippet!)!)
+            }
+            return thumbAvatarView
+        }else{
+            let thumbView: GoogleMapThumbView = GoogleMapThumbView()
+            marker.tracksInfoWindowChanges = true
+            if let id = marker.title {
+                thumbView.titleLabel.text = id
+                thumbView.snippetLabel.text = marker.snippet
+            }
+            return thumbView
         }
-        return thumbView
     }
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         print(marker.title!)
@@ -96,15 +106,15 @@ extension MapTabViewController {
                 let trip = Trip(dictionary: tripData)
                 
                 if let origin = trip.source{
-                    GoogleMapManager.shared.addMarker(id: "Origin", snippet: "Snippet", lat: origin.lat!, long: origin.lng!, imageName: "icon_dep")
+                    GoogleMapManager.shared.addMarker(id: origin.name!, snippet: origin.address!, lat: origin.lat!, long: origin.lng!, imageName: "icon_dep")
                 }
                 if let destination = trip.destination{
-                    GoogleMapManager.shared.addMarker(id: "Destination", snippet: "Snippet", lat: destination.lat!, long: destination.lng!, imageName: "icon_des")
+                    GoogleMapManager.shared.addMarker(id: destination.name!, snippet: destination.address!, lat: destination.lat!, long: destination.lng!, imageName: "icon_des")
                 }
                 
                 if trip.stops.count > 0{
                     for stop in trip.stops{
-                        GoogleMapManager.shared.addMarker(id: "Stop", snippet: "Snippet", lat: stop.lat!, long: stop.lng!, imageName: "location_stop_w")
+                        GoogleMapManager.shared.addMarker(id: stop.name!, snippet: stop.address!, lat: stop.lat!, long: stop.lng!, imageName: "location_stop_w")
                     }
                 }
                 if trip.source != nil && trip.destination != nil{
@@ -131,8 +141,8 @@ extension MapTabViewController {
                                 marker.map = self.mapView
                                 let image = UIImage(named: "man-marker")
                                 marker.icon = image
-                                marker.title = "Your partner"
-                                marker.snippet = "Info here"
+                                marker.title = position[po].name!
+                                marker.snippet = position[po].address!
                                 self.memberMarker.append(marker)
                             }
                         }

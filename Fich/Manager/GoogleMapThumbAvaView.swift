@@ -1,15 +1,15 @@
 //
-//  GoogleMapThumbView.swift
+//  GoogleMapThumbAvaView.swift
 //  Fich
 //
-//  Created by admin on 7/30/17.
+//  Created by admin on 8/8/17.
 //  Copyright © 2017 fichteam. All rights reserved.
 //
 
 import UIKit
 import SnapKit
 
-class GoogleMapThumbView: UIView {
+class GoogleMapThumbAvaView: UIView {
     private let padding: Int = 5
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,7 +23,7 @@ class GoogleMapThumbView: UIView {
     
     private func setUpView(){
         self.addSubview(titleLabel)
-        self.addSubview(snippetLabel)
+        self.addSubview(avatar)
         self.backgroundColor = UIColor(rgb: 0x10828C)
         
         self.frame.size = CGSize(width: 150, height: 100)
@@ -35,17 +35,13 @@ class GoogleMapThumbView: UIView {
             view.right.equalToSuperview().inset(padding)
             view.height.equalTo(35.0)
         }
-        self.snippetLabel.snp.makeConstraints { (view) in
+        self.avatar.snp.makeConstraints { (view) in
             view.top.equalTo(titleLabel.snp.bottom).offset(padding)
             view.left.equalToSuperview().offset(padding)
             view.right.equalToSuperview().inset(padding)
-            view.height.equalTo(35.0)
+            view.height.equalTo(40.0)
         }
     }
-    func fillData(name: String) {
-        titleLabel.text = name
-    }
-    
     
     var titleLabel: UILabel = {
         let label: UILabel = UILabel()
@@ -57,27 +53,14 @@ class GoogleMapThumbView: UIView {
         return label
     }()
     
-    var snippetLabel: UILabel = {
-        let label: UILabel = UILabel()
-        label.textAlignment = .center
-        label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 10)
-        label.textColor = .white
-        //label.text = "Tap/untap to add/remove stop!"
-        return label
+    var avatar: UIImageView = {
+        let ava: UIImageView = UIImageView()
+        ava.contentMode = .scaleAspectFit
+        ava.frame.size = CGSize(width: 40, height: 40)
+        ava.layer.cornerRadius = 20.0
+        ava.clipsToBounds = true
+        ava.layer.shadowOffset = CGSize(width: -1, height: 1)
+        ava.layer.shadowOpacity = 0.2
+        return ava
     }()
-    
-//    var button: UIButton = {
-//        let button : UIButton = UIButton()
-//        button.backgroundColor = UIColor(rgb: 0x10828C)
-//        button.setTitle("Tap again to add this to your stops!", for: .normal)
-//        button.addTarget(self, action:#selector(GoogleMapThumbView.handleRegister(sender:)), for: .touchUpInside)
-//
-//        return button
-//    }()
-//
-//    func handleRegister(sender: UIButton){
-//        print("Tap again to add this to your stops!")
-//    }
 }
