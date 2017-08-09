@@ -23,12 +23,6 @@ class MapTabViewController: UIViewController {
     var zoomLevel: Float = 15.0
     let MAX_RANGE = 2000.0
     
-    @IBAction func onBack(_ sender: UIButton) {
-        FirebaseClient.sharedInstance.leaveTrip(tripId: tripId)
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
     var tripId: String! {
         didSet {
             tripRef = Database.database().reference().child("trip").child(tripId)

@@ -21,11 +21,9 @@ class GroupTabViewController: UIViewController {
         }
     }
     
+    var trip:Trip?
+    
     @IBOutlet weak var tableView: UITableView!
-    @IBAction func onBack(_ sender: UIButton) {
-        FirebaseClient.sharedInstance.leaveTrip(tripId: tripId)
-        dismiss(animated: true, completion: nil)
-    }
     
     var members = [Account]()
     var tripRef: DatabaseReference?
@@ -64,7 +62,6 @@ class GroupTabViewController: UIViewController {
     // 2: Device info       1
     // 3: Group             count
     var distanceList : [Int: String] = [2: "2km", 3: "3km", 5: "5km"]
-    var tripStatus : String = "Planning"
     var distanceSet = 2
     var isBLEDeviceReady = true
     
@@ -96,9 +93,35 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
             // TODO-TIN : we will have trip-status on Firebase
             // you could pull this data then update for variable tripStatus
             
-            cell.statusLabel.text = tripStatus
-            cell.button.isHidden = false
-            cell.delegate = self
+            if let trip = trip {
+                cell.button.isHidden = false
+                
+                switch trip.status! {
+                case TripStatus.prepare:
+                    cell.statusLabel.text = "PREPARING"
+                    cell.button.setTitle("START", for: .normal)
+                    break
+                case TripStatus.run:
+                    cell.statusLabel.text = "RUNNING"
+                    cell.button.setTitle("FINISH", for: .normal)
+                    break
+                case TripStatus.finish:
+                    cell.statusLabel.text = "FINISH"
+                    cell.button.setTitle("FINISH", for: .normal)
+                    break
+                }
+                
+                if (trip.userId != Auth.auth().currentUser?.uid){
+                    cell.button.setTitle("LEAVE", for: .normal)
+                }
+                cell.delegate = self
+            } else {
+                cell.statusLabel.text = "Planning"
+                cell.button.isHidden = false
+                cell.button.setTitle("LEAVE", for: .normal)
+                cell.delegate = self
+            }
+            cell.selectionStyle = .none
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
@@ -181,14 +204,25 @@ extension GroupTabViewController {
             
             let tripDict = snapshot.value as? [String: Any]
             if let tripData = tripDict {
-                let trip = Trip(dictionary: tripData)
-                self.members = [Account](trip.members.values)
+                self.trip = Trip(dictionary: tripData)
+                self.members = [Account](self.trip!.members.values)
+                if (self.tableView != nil){
+                    self.tableView.reloadData()
+                }
+                if (self.trip?.status == TripStatus.finish) {
+                    self.leaveTrip()
+                }
             } else {
                 print("error to decode trip. stop trip")
                 self.members = [Account]()
             }
             
         })
+    }
+    
+    func leaveTrip() {
+        FirebaseClient.sharedInstance.leaveTrip(tripId: tripId)
+        dismiss(animated: true, completion: nil)
     }
     
     func alertControlInit(){
@@ -249,6 +283,32 @@ extension GroupTabViewController {
 extension GroupTabViewController: SettingButtonDelegate {
     func buttonPress(cell: SettingCell) {
         // trip action
+        print("button press")
+        if let trip = trip {
+            if (trip.userId == Auth.auth().currentUser?.uid){
+                switch trip.status! {
+                case TripStatus.prepare:
+                    // start
+                    FirebaseClient.sharedInstance.startTrip(tripId: tripId)
+                    break
+                case TripStatus.run:
+                    // finish
+                    FirebaseClient.sharedInstance.finishTrip(tripId: tripId)
+                    dismiss(animated: true, completion: nil)
+                    break
+                case TripStatus.finish:
+                    // finish
+                    FirebaseClient.sharedInstance.finishTrip(tripId: tripId)
+                    dismiss(animated: true, completion: nil)
+                    break
+                }
+                
+            } else {
+                leaveTrip()
+            }
+        } else {
+            leaveTrip()
+        }
     }
 }
 

@@ -113,9 +113,11 @@ extension ActionViewController {
                 let action = TripAction(dictionary: msgData)
                 self.actions.append(action)
                 
-                self.tableView.reloadData()
-                let ip = NSIndexPath(row: self.actions.count-1, section: 0) as IndexPath
-                self.tableView.scrollToRow(at: ip, at: UITableViewScrollPosition.top, animated: true)
+                if (self.tableView != nil){
+                    self.tableView.reloadData()
+                    let ip = NSIndexPath(row: self.actions.count-1, section: 0) as IndexPath
+                    self.tableView.scrollToRow(at: ip, at: UITableViewScrollPosition.top, animated: true)
+                }
             } else {
                 print("Error! Could not decode message data")
             }
