@@ -23,8 +23,8 @@ class MapTabViewController: UIViewController {
     var mapView: GMSMapView!
     var zoomLevel: Float = 15.0
     let MAX_RANGE = 2000.0
-    let MIN_FAKE_VELO = 25
-    let MAX_FAKE_VELO = 35
+    let MIN_FAKE_VELO = 3
+    let MAX_FAKE_VELO = 8
     
     @IBAction func onBack(_ sender: UIButton) {
         FirebaseClient.sharedInstance.leaveTrip(tripId: tripId)
@@ -32,15 +32,37 @@ class MapTabViewController: UIViewController {
     }
     
     @IBAction func onSwitchFakeLocation(_ sender: UISwitch) {
-        let start = 10.643509
-        let velocity = Int.random(from: MIN_FAKE_VELO, to: MAX_FAKE_VELO)
-        print(velocity)
-        for i in 1...20 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i * 10)) {
-                print(start + 0.000082 * Double(i))
-                let location = CLLocation(latitude: start + 0.000082 * Double(i * velocity), longitude: 106.588177)
-                FirebaseClient.sharedInstance.memberUpdatePosition(tripid: self.tripId, cllocation: location)
-            }
+//        let start = 10.79313720899426
+//        let velocity = Int.random(from: MIN_FAKE_VELO, to: MAX_FAKE_VELO)
+//        print(velocity)
+//        for i in 1...20 {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i * 10)) {
+//                print(start + 0.000082 * Double(i))
+//                let location = CLLocation(latitude: start + 0.000082 * Double(i * velocity), longitude: 106.6265463013392)
+//                FirebaseClient.sharedInstance.memberUpdatePosition(tripid: self.tripId, cllocation: location)
+//            }
+//        }
+        
+        let randomVelocity = Int.random(from: MIN_FAKE_VELO, to: MAX_FAKE_VELO)
+        FirebaseClient.sharedInstance.loadFakeData { (position) in
+            print(position.count)
+            FirebaseClient.sharedInstance.getStopUser(success: { (user) in
+                if Auth.auth().currentUser!.uid == user{
+                    for i in 1...5{
+                        DispatchQueue.main.asyncAfter(deadline: .now() + Double(i * randomVelocity)) {
+                            let location = CLLocation(latitude: position[i].lat!, longitude: position[i].lng!)
+                            FirebaseClient.sharedInstance.memberUpdatePosition(tripid: self.tripId, cllocation: location)
+                        }
+                    }
+                }else{
+                    for i in 1...position.count-1{
+                        DispatchQueue.main.asyncAfter(deadline: .now() + Double(i * randomVelocity)) {
+                            let location = CLLocation(latitude: position[i].lat!, longitude: position[i].lng!)
+                            FirebaseClient.sharedInstance.memberUpdatePosition(tripid: self.tripId, cllocation: location)
+                        }
+                    }
+                }
+            })
         }
     }
     
@@ -154,7 +176,7 @@ extension MapTabViewController {
                                 let position2d = CLLocationCoordinate2D(latitude: position[po].lat!, longitude: position[po].lng!)
                                 let marker = GMSMarker(position: position2d)
                                 marker.map = self.mapView
-                                let image = UIImage(named: "man-marker")
+                                let image = UIImage(named: "man_maker")
                                 marker.icon = image
                                 if let name = position[po].name{
                                     marker.title = name

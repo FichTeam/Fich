@@ -11,8 +11,7 @@ import AFNetworking
 import Firebase
 
 class JoinLobbyViewController: UIViewController {
-    
-    
+
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var joinButton: UIButton!
     @IBOutlet weak var tripNameLabel: UILabel!
