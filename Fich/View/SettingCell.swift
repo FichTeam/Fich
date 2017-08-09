@@ -13,6 +13,7 @@ protocol SettingButtonDelegate {
 
 class SettingCell: UITableViewCell {
   @IBOutlet weak var statusLabel: UILabel!
+  @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var button: UIButton!
 
     var delegate: SettingButtonDelegate!
