@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fLa-yC-He6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fLa-yC-He6">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="143" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ggB-TK-BYl">
-                                <rect key="frame" x="0.0" y="74" width="320" height="494"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="memberCell" rowHeight="143" id="Fha-sk-Y7A" customClass="MemberCell" customModule="Fich" customModuleProvider="target">
@@ -221,7 +221,11 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mma-YF-wuM">
                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="50"/>
-                                                <state key="normal" title="Map"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <state key="normal" title="MAP">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="didPressTab:" destination="fLa-yC-He6" eventType="touchUpInside" id="6vv-1E-9eu"/>
                                                 </connections>
@@ -240,7 +244,10 @@
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPm-I5-NBK">
                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="50"/>
-                                                <state key="normal" title="Group"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <state key="normal" title="GROUP">
+                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="didPressTab:" destination="fLa-yC-He6" eventType="touchUpInside" id="Zn2-zU-TCs"/>
                                                 </connections>
@@ -255,8 +262,12 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb2-E9-Tt4">
-                                        <rect key="frame" x="130" y="-10" width="60" height="60"/>
-                                        <state key="normal" image="logo"/>
+                                        <rect key="frame" x="122.5" y="-25" width="75" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="1tX-Vu-tCI"/>
+                                            <constraint firstAttribute="width" constant="75" id="XnB-5D-VwH"/>
+                                        </constraints>
+                                        <state key="normal" image="tab_icon"/>
                                         <connections>
                                             <action selector="didPressAction:" destination="fLa-yC-He6" eventType="touchUpInside" id="NL3-03-Oia"/>
                                         </connections>
@@ -749,7 +760,7 @@
         <image name="audio-wave" width="28" height="23"/>
         <image name="car_broken" width="36" height="37"/>
         <image name="get_lost" width="36" height="37"/>
-        <image name="logo" width="60" height="60"/>
         <image name="mesage" width="37" height="37"/>
+        <image name="tab_icon" width="122" height="128"/>
     </resources>
 </document>

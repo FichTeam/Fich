@@ -131,13 +131,13 @@ extension MapTabViewController {
                                 }
                             }else{
                                 let position2d = CLLocationCoordinate2D(latitude: position[po].lat!, longitude: position[po].lng!)
-                                let marker = GMSMarker(position: position2d)
-                                marker.map = self.mapView
-                                let image = UIImage(named: "man-marker")
-                                marker.icon = image
-                                marker.title = position[po].name!
-                                marker.snippet = position[po].address!
-                                self.memberMarker.append(marker)
+//                                let marker = GMSMarker(position: position2d)
+//                                marker.map = self.mapView
+//                                let image = UIImage(named: "man-marker")
+//                                marker.icon = image
+//                                marker.title = position[po].name!
+//                                marker.snippet = position[po].address!
+//                                self.memberMarker.append(marker)
                             }
                         }
                         FirebaseClient.sharedInstance.getAllPosition(tripid: self.tripId, success: { (posit) in

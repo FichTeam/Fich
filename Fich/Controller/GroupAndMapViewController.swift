@@ -29,7 +29,7 @@ class GroupAndMapViewController: UIViewController {
     
     var viewControllers: [UIViewController]!
     
-    var selectedIndex: Int = 0
+    var selectedIndex: Int = 1
     var tripRef: DatabaseReference?
     var tripRefHandle: DatabaseHandle?
     var currentAccount: Account?
@@ -44,8 +44,7 @@ class GroupAndMapViewController: UIViewController {
         
         viewControllers = [mapViewController, groupViewController]
         
-        buttonBackgrounds[selectedIndex].backgroundColor = UIColor.darkGray
-        didPressTab(buttons[selectedIndex])
+        didPressTab(buttons[0])
         menuBacground.isHidden = true
       
         let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.dismissMenu (_:)))
@@ -69,12 +68,16 @@ class GroupAndMapViewController: UIViewController {
         selectedIndex = sender.tag
         
         buttonBackgrounds[previousIndex].backgroundColor = UIColor.lightGray
+        buttons[previousIndex].setTitleColor(UIColor.darkText, for: .normal)
+        buttons[previousIndex].titleLabel!.font = UIFont.boldSystemFont(ofSize: 16)
         let previousVC = viewControllers[previousIndex]
         previousVC.willMove(toParentViewController: nil)
         previousVC.view.removeFromSuperview()
         previousVC.removeFromParentViewController()
         
-        buttonBackgrounds[selectedIndex].backgroundColor = UIColor.darkGray
+        buttonBackgrounds[selectedIndex].backgroundColor = UIColor.init(rgb: 0xD8524F)
+        buttons[selectedIndex].setTitleColor(UIColor.white, for: .normal)
+        buttons[selectedIndex].titleLabel!.font = UIFont.boldSystemFont(ofSize: 20)
         let vc = viewControllers[selectedIndex]
         addChildViewController(vc)
         vc.view.frame = contentView.bounds
