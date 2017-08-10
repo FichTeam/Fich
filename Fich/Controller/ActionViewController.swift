@@ -51,7 +51,7 @@ class ActionViewController: UIViewController {
         deregisterFromKeyboardNotifications()
     }
     
-    @IBAction func onBack(_ sender: UIBarButtonItem) {
+    @IBAction func onBack(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
