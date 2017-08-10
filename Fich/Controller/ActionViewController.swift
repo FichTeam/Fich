@@ -27,6 +27,11 @@ class ActionViewController: UIViewController {
     var messageRefHandle: DatabaseHandle?
     var currentAccount: Account?
     var actions = [TripAction]()
+    
+    @IBAction func onBackScr(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
