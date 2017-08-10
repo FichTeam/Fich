@@ -8,15 +8,10 @@
 
 import UIKit
 
-protocol SettingButtonDelegate {
-    func buttonPress(cell: SettingCell)}
-
 class SettingCell: UITableViewCell {
   @IBOutlet weak var statusLabel: UILabel!
   @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var button: UIButton!
-
-    var delegate: SettingButtonDelegate!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,9 +22,5 @@ class SettingCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-
-    @IBAction func buttonPress(_ sender: UIButton) {
-        delegate.buttonPress(cell: self)
     }
 }

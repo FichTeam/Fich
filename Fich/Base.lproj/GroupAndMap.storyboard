@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="143" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ggB-TK-BYl">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                                        <rect key="frame" x="0.0" y="20" width="320" height="498"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <prototypes>
@@ -56,14 +56,14 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tran Tien Tin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06U-N5-yBA">
-                                                            <rect key="frame" x="96" y="31" width="95" height="18"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                            <rect key="frame" x="96" y="31" width="103.5" height="23.5"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0902675405" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OB-gX-lrH">
-                                                            <rect key="frame" x="96" y="59" width="95" height="16"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <rect key="frame" x="96" y="64.5" width="103.5" height="23.5"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -115,66 +115,50 @@
                                                     <outlet property="phoneNumberLabel" destination="1OB-gX-lrH" id="aAe-fa-fn8"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingCell" id="Grx-JY-j7T" userLabel="settingCell" customClass="SettingCell" customModule="Fich" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="171" width="320" height="143"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingCell" rowHeight="118" id="Grx-JY-j7T" userLabel="settingCell" customClass="SettingCell" customModule="Fich" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="171" width="320" height="118"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Grx-JY-j7T" id="CM2-Fy-xQC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="142.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="117.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0E-GS-reI">
-                                                            <rect key="frame" x="16" y="43" width="36" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peG-Bb-Hj4">
+                                                            <rect key="frame" x="18" y="23" width="55" height="25"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j0w-31-Ozd">
-                                                            <rect key="frame" x="260" y="37.5" width="44" height="29"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <state key="normal" title="START"/>
-                                                            <connections>
-                                                                <action selector="buttonPress:" destination="Grx-JY-j7T" eventType="touchUpInside" id="qYF-sC-Tb6"/>
-                                                            </connections>
-                                                        </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peG-Bb-Hj4">
-                                                            <rect key="frame" x="95" y="12" width="130" height="21"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="130" id="Eh3-fC-Qzp"/>
-                                                                <constraint firstAttribute="height" constant="21" id="MBe-0i-F4g"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0E-GS-reI">
+                                                            <rect key="frame" x="239" y="64" width="48" height="25"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
+                                                            <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="j0w-31-Ozd" firstAttribute="centerY" secondItem="p0E-GS-reI" secondAttribute="centerY" id="5oI-IC-Xk7"/>
-                                                        <constraint firstItem="peG-Bb-Hj4" firstAttribute="centerX" secondItem="CM2-Fy-xQC" secondAttribute="centerX" id="AXO-OT-aGO"/>
-                                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="p0E-GS-reI" secondAttribute="bottom" id="HGu-9x-oPw"/>
-                                                        <constraint firstItem="p0E-GS-reI" firstAttribute="leading" secondItem="CM2-Fy-xQC" secondAttribute="leadingMargin" constant="8" id="LzA-uW-EMf"/>
-                                                        <constraint firstItem="peG-Bb-Hj4" firstAttribute="top" secondItem="CM2-Fy-xQC" secondAttribute="topMargin" constant="4" id="Oh7-lJ-g1e"/>
-                                                        <constraint firstItem="p0E-GS-reI" firstAttribute="top" secondItem="peG-Bb-Hj4" secondAttribute="bottom" constant="10" id="WML-eF-mTu"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="j0w-31-Ozd" secondAttribute="trailing" constant="8" id="eem-FJ-1vF"/>
-                                                        <constraint firstItem="j0w-31-Ozd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="p0E-GS-reI" secondAttribute="trailing" constant="4" id="j1d-3n-b9a"/>
+                                                        <constraint firstItem="peG-Bb-Hj4" firstAttribute="leading" secondItem="CM2-Fy-xQC" secondAttribute="leadingMargin" constant="10" id="DZL-Ma-XNk"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="p0E-GS-reI" secondAttribute="bottom" constant="20.5" id="Lhh-JP-P9d"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="p0E-GS-reI" secondAttribute="trailing" constant="25" id="M8e-oH-J4E"/>
+                                                        <constraint firstItem="peG-Bb-Hj4" firstAttribute="top" secondItem="CM2-Fy-xQC" secondAttribute="topMargin" constant="15" id="ab5-Nk-2wW"/>
+                                                        <constraint firstItem="p0E-GS-reI" firstAttribute="top" secondItem="peG-Bb-Hj4" secondAttribute="bottom" constant="16" id="ndc-fM-lDX"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <connections>
-                                                    <outlet property="button" destination="j0w-31-Ozd" id="4I0-no-gHa"/>
                                                     <outlet property="statusLabel" destination="p0E-GS-reI" id="xwP-gw-WkV"/>
                                                     <outlet property="titleLabel" destination="peG-Bb-Hj4" id="ibg-9w-vOa"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" id="tcQ-KL-jTn" customClass="GroupCell" customModule="Fich" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="314" width="320" height="143"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" rowHeight="173" id="tcQ-KL-jTn" customClass="GroupCell" customModule="Fich" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="289" width="320" height="173"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tcQ-KL-jTn" id="p4u-Z9-e6D">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="142.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="172.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m59-EF-OeB">
-                                                            <rect key="frame" x="137.5" y="8" width="45.5" height="18"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GROUP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m59-EF-OeB">
+                                                            <rect key="frame" x="129.5" y="8" width="62.5" height="23.5"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -199,7 +183,7 @@
                                     <constraint firstAttribute="bottom" secondItem="ggB-TK-BYl" secondAttribute="bottom" id="U3r-GL-bPi"/>
                                     <constraint firstItem="ggB-TK-BYl" firstAttribute="leading" secondItem="IKO-Gi-oh1" secondAttribute="leading" id="ZQ6-cn-9e4"/>
                                     <constraint firstAttribute="trailing" secondItem="ggB-TK-BYl" secondAttribute="trailing" id="fXj-bF-hNy"/>
-                                    <constraint firstItem="ggB-TK-BYl" firstAttribute="top" secondItem="IKO-Gi-oh1" secondAttribute="top" id="jEX-6d-Y2n"/>
+                                    <constraint firstItem="ggB-TK-BYl" firstAttribute="top" secondItem="IKO-Gi-oh1" secondAttribute="top" constant="20" id="jEX-6d-Y2n"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S5B-o1-dok">
@@ -208,6 +192,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3p-xF-gPp">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                                         <state key="normal" image="status_btn"/>
+                                        <connections>
+                                            <action selector="onTripStatusPressed:" destination="eTd-g7-txP" eventType="touchUpInside" id="f1C-uv-Dpj"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLANNING..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MG-Nn-cLM">
                                         <rect key="frame" x="8" y="11" width="153" height="33"/>
@@ -236,6 +223,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CsR-eX-mVk">
                                         <rect key="frame" x="-1" y="0.0" width="146" height="78"/>
                                         <state key="normal" image="red_btn_bg"/>
+                                        <connections>
+                                            <action selector="onLeavePressed:" destination="eTd-g7-txP" eventType="touchUpInside" id="Blk-cZ-wrv"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEAVE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mot-ZK-4ZX">
                                         <rect key="frame" x="52" y="20" width="85" height="31"/>
@@ -278,6 +268,7 @@
                     <tabBarItem key="tabBarItem" title="Group" id="XZ7-WN-Ihm"/>
                     <connections>
                         <outlet property="tableView" destination="ggB-TK-BYl" id="7ej-ll-zxM"/>
+                        <outlet property="tripStatusLabel" destination="2MG-Nn-cLM" id="31g-M5-rUW"/>
                         <segue destination="6fr-x6-AeW" kind="presentation" identifier="BLESegueID" id="rj5-46-FcI"/>
                     </connections>
                 </viewController>
