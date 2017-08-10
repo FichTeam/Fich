@@ -17,6 +17,8 @@ class ActionViewController: UIViewController {
     
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var messageTextFieldBottomConstraint: NSLayoutConstraint!
+    
+    var bottomHeight: CGFloat!
     var activeField: UITextField?
     var tripId: String! {
         didSet {
@@ -33,6 +35,8 @@ class ActionViewController: UIViewController {
         
         messageTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         editingChanged(messageTextField)
+        
+        bottomHeight = messageTextFieldBottomConstraint.constant
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -165,9 +169,11 @@ extension ActionViewController {
                            animations: { self.view.layoutIfNeeded() },
                            completion: nil)
             
-            self.tableView.reloadData()
-            let ip = NSIndexPath(row: self.actions.count-1, section: 0) as IndexPath
-            self.tableView.scrollToRow(at: ip, at: UITableViewScrollPosition.top, animated: true)
+            if (self.tableView != nil){
+                self.tableView.reloadData()
+                let ip = NSIndexPath(row: self.actions.count-1, section: 0) as IndexPath
+                self.tableView.scrollToRow(at: ip, at: UITableViewScrollPosition.top, animated: true)
+            }
         }
         
     }
@@ -180,7 +186,7 @@ extension ActionViewController {
             let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
             let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
             
-            messageTextFieldBottomConstraint.constant -= (keyboardSize?.height)!
+            messageTextFieldBottomConstraint.constant = bottomHeight
             UIView.animate(withDuration: duration,
                            delay: TimeInterval(0),
                            options: animationCurve,

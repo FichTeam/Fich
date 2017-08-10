@@ -52,9 +52,10 @@ class JoinLobbyViewController: UIViewController {
     }
     
     @IBAction func onJoin(_ sender: UIButton) {
-        phoneNumberTextField.text = ""
-        joinButton.isHidden = true
         FirebaseClient.sharedInstance.joinTrip(tripId: (tripSearchResult?.id)!)
+        phoneNumberTextField.text = ""
+        editingChanged(phoneNumberTextField)
+        joinButton.isHidden = true
     }
     
     @IBAction func onStart(_ sender: UIButton) {
