@@ -22,6 +22,7 @@ class DeviceSettingViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var deviceLabel: UILabel!
+    @IBOutlet weak var connectedLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +35,12 @@ class DeviceSettingViewController: UIViewController {
         
         let deviceId = UserDefaults.standard.string(forKey: "deviceId")
         if let deviceId  = deviceId {
+            deviceLabel.isHidden = false
+            connectedLabel.isHidden = false
             deviceLabel.text = deviceId
         } else {
+            deviceLabel.isHidden = true
+            connectedLabel.isHidden = true
             deviceLabel.text = ""
         }
 
@@ -49,7 +54,7 @@ class DeviceSettingViewController: UIViewController {
         stopScanning()
     }
 
-    @IBAction func onDone(_ sender: UIBarButtonItem) {
+    @IBAction func onDone(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
 }
@@ -117,6 +122,8 @@ extension DeviceSettingViewController: DeviceSettingDelegate {
         let peripheral = peripheralsArray[(ip?.row)!]
         let deviceId = peripheral.peripheral.identifier.uuidString
         UserDefaults.standard.setValue(deviceId, forKey: "deviceId")
+        deviceLabel.isHidden = false
+        connectedLabel.isHidden = false
         deviceLabel.text = deviceId
         BleApi.sharedInstance.connect()
     }
