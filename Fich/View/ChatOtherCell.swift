@@ -58,6 +58,10 @@ class ChatOtherCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         formatter.dateFormat = "HH:mm"
+        avatarImage.layer.cornerRadius = avatarImage.frame.height/2
+        avatarImage.clipsToBounds = true
+        avatarImage.layer.shadowOffset = CGSize(width: -1, height: 1)
+        avatarImage.layer.shadowOpacity = 0.2
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
