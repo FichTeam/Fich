@@ -12,7 +12,7 @@ import AFNetworking
 class ChatOtherCell: UITableViewCell {
 
     @IBOutlet weak var avatarImage: UIImageView!
-    @IBOutlet weak var mesageLabel: InsetLabel!
+    @IBOutlet weak var mesageLabel: UILabelWithPadding!
     @IBOutlet weak var timeLabel: UILabel!
     
     let formatter = DateFormatter()

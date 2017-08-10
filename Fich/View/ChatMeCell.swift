@@ -10,7 +10,7 @@ import UIKit
 
 class ChatMeCell: UITableViewCell {
 
-    @IBOutlet weak var mesageLabel: InsetLabel!
+    @IBOutlet weak var mesageLabel: UILabelWithPadding!
     @IBOutlet weak var timeLabel: UILabel!
     
     let formatter = DateFormatter()

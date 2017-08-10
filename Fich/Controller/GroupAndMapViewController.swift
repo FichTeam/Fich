@@ -109,8 +109,7 @@ class GroupAndMapViewController: UIViewController {
     }
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let navController = segue.destination as! UINavigationController
-        let vc = navController.viewControllers.first as! ActionViewController
+        let vc = segue.destination as! ActionViewController
         vc.tripId = tripId
     }
     
