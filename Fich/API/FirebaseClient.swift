@@ -397,4 +397,46 @@ class FirebaseClient {
         })
     }
     
+    func loadFakeData(success: @escaping ([Position]) -> ()){
+        var arrPos = [Position]()
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                ref.child("fake_location").child("mid_points").observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    //print(snapshot)
+                    let arrayMidpoints = snapshot.children.allObjects as? [DataSnapshot] ?? []
+                    arrPos.removeAll()
+                    for mid in arrayMidpoints{
+                        let pos = mid.value as? [String: Any]
+                        if let pos = pos{
+                            let p = Position(dictionary: pos)
+                            arrPos.append(p)
+                        }
+                    }
+                    success(arrPos)
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func getStopUser(success: @escaping (String) -> ()){
+        var stopId = ""
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                ref.child("fake_location").observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    //print(snapshot)
+                    let value = snapshot.value as? NSDictionary
+                    stopId = value?["stop_id"] as? String ?? ""
+                    success(stopId)
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
 }

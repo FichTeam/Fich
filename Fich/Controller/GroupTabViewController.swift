@@ -95,7 +95,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
             // TODO-TIN : we will have trip-status on Firebase
             // you could pull this data then update for variable tripStatus
-            cell.statusLabel.text = "Trip Status"
+            
             if let trip = trip {
                 cell.button.isHidden = false
                 
@@ -124,6 +124,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.button.setTitle("LEAVE", for: .normal)
                 cell.delegate = self
             }
+            cell.titleLabel.text = "Trip Status"
             cell.selectionStyle = .none
             return cell
         case 1:

@@ -87,7 +87,7 @@ class GoogleMapManager{
             marker.icon = image
             marker.title = id
             marker.snippet = snippet
-        }else if imageName == "man-marker"{
+        }else if imageName == "man_maker"{
             let cllocation = CLLocationCoordinate2D(latitude: lat, longitude: long)
             let marker = GMSMarker(position: cllocation)
             marker.map = mapView
