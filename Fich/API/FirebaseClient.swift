@@ -440,4 +440,21 @@ class FirebaseClient {
             }
         }
     }
+    func isFakeData(success: @escaping (Bool) -> ()){
+        var isFakeData = false
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                ref.child("fake_location").observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    //print(snapshot)
+                    let value = snapshot.value as? NSDictionary
+                    isFakeData = value?["is_on"] as? Bool ?? false
+                    success(isFakeData)
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
 }

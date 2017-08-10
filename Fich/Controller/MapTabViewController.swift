@@ -84,6 +84,13 @@ class MapTabViewController: UIViewController {
         GoogleMapManager.shared.manage(mapView: self.mapView, mapUIView: mapUIView)
         UserDefaults.standard.setValue(nil, forKey: "is_map_member_loaded")
         setupLocationAndMap()
+        
+        switchFake.isHidden = true
+        FirebaseClient.sharedInstance.isFakeData { (isOn) in
+            if isOn == true{
+                self.switchFake.isHidden = false
+            }
+        }
     }
     
     func setupLocationAndMap(){
