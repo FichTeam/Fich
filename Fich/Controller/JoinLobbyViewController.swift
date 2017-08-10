@@ -18,20 +18,26 @@ class JoinLobbyViewController: UIViewController {
     @IBOutlet weak var tripOwnerAvatarImage: UIImageView!
     @IBOutlet weak var tripOwnerNameLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var tripSearchResult: Trip?
     var userStatusRef: DatabaseReference?
     var userStatusRefHandle: DatabaseHandle?
+    var bottomHeight: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        joinButton.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardShowNotification(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardHideNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        
+        joinButton.isHidden = true
+        bottomHeight = bottomConstraint.constant
         addDoneButton(to: phoneNumberTextField)
         phoneNumberTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         
         self.showTrip(trip: nil)
-        // Do any additional setup after loading the view.
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +53,7 @@ class JoinLobbyViewController: UIViewController {
     
     @IBAction func onJoin(_ sender: UIButton) {
         phoneNumberTextField.text = ""
+        joinButton.isHidden = true
         FirebaseClient.sharedInstance.joinTrip(tripId: (tripSearchResult?.id)!)
     }
     
@@ -56,13 +63,6 @@ class JoinLobbyViewController: UIViewController {
         present(viewController, animated: true)
         
         //        BleApi.sharedInstance.blink()
-    }
-    
-    @IBAction func onSetting(_ sender: UIButton) {
-        //    let deviceVC = DeviceViewController(nibName: "DeviceViewController", bundle: nil)
-        //
-        //    present(deviceVC, animated: true, completion: nil)
-        performSegue(withIdentifier: "deviceSettingSegue", sender: self)
     }
     
     func editingChanged(_ textField: UITextField) {
@@ -108,6 +108,11 @@ class JoinLobbyViewController: UIViewController {
         }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
 }
 
 extension JoinLobbyViewController {
@@ -133,5 +138,39 @@ extension JoinLobbyViewController {
             }
             
         })
+    }
+    
+    func keyboardShowNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+            
+            let delta = (keyboardSize?.height)! - (view.frame.size.height - (tripOwnerAvatarImage.frame.size.height + tripOwnerAvatarImage.frame.origin.y))
+            bottomConstraint.constant = bottomHeight - (delta + 5)
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+        }
+    }
+    
+    func keyboardHideNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            
+            bottomConstraint.constant = bottomHeight
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+        }
     }
 }

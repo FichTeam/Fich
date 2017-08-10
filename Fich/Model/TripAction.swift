@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 
 enum ActionType: String {
-    case lost = "LOST", bikeBroken = "BIKE_BROKEN", text = "TEXT", audio = "AUDIO"
+    case lost = "LOST", bikeBroken = "BIKE_BROKEN", text = "TEXT", buzz = "BUZZ"
 }
 
 

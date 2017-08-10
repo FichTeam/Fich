@@ -8,15 +8,20 @@
 
 import UIKit
 import Firebase
+import AudioToolbox
 
 class GroupAndMapViewController: UIViewController {
     
-        var tripId: String! {
-            didSet {
-                tripRef = Database.database().reference().child("trip").child(tripId)
-                observeTrip()
-            } 
+    var tripId: String! {
+        didSet {
+            tripRef = Database.database().reference().child("trip").child(tripId)
+            observeTrip()
+            messageRef = Database.database().reference().child("trip_action").child(tripId)
+            self.observeNewMessages()
         }
+    }
+    var messageRef: DatabaseReference?
+    var messageRefHandle: DatabaseHandle?
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet var buttons: [UIButton]!
@@ -33,7 +38,7 @@ class GroupAndMapViewController: UIViewController {
     var tripRef: DatabaseReference?
     var tripRefHandle: DatabaseHandle?
     var currentAccount: Account?
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let storyboard = UIStoryboard(name: "GroupAndMap", bundle: nil)
@@ -46,15 +51,15 @@ class GroupAndMapViewController: UIViewController {
         
         didPressTab(buttons[0])
         menuBacground.isHidden = true
-      
+        
         let gesture = UITapGestureRecognizer(target: self, action:  #selector (self.dismissMenu (_:)))
         menuBacground.addGestureRecognizer(gesture)
         
         
-        // 
+        //
         let user = Auth.auth().currentUser
         if let user = user {
-          currentAccount = Account(user: user)
+            currentAccount = Account(user: user)
         }
     }
     
@@ -62,7 +67,7 @@ class GroupAndMapViewController: UIViewController {
         print("didDismissPress")
         menuBacground.isHidden = true
     }
-  
+    
     @IBAction func didPressTab(_ sender: UIButton) {
         let previousIndex = selectedIndex
         selectedIndex = sender.tag
@@ -107,7 +112,7 @@ class GroupAndMapViewController: UIViewController {
         menuBacground.isHidden = true
         self.performSegue(withIdentifier: "ChatSegueID", sender: self)
     }
-  
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ActionViewController
         vc.tripId = tripId
@@ -121,25 +126,48 @@ class GroupAndMapViewController: UIViewController {
 }
 
 extension GroupAndMapViewController {
-  func sendInstantMessage(action: ActionType)
+    func sendInstantMessage(action: ActionType)
     {
-      let message = TripAction(member: currentAccount!, type: action, message: nil, messageUrl: nil)
-      FirebaseClient.sharedInstance.sendAction(tripId: tripId, action: message, completion: { (error: Error?) in
-        if let error = error {
-          print (error)
-        } else {
-          self.performSegue(withIdentifier: "ChatSegueID", sender: self)
-        }
-      })
-      
+        let message = TripAction(member: currentAccount!, type: action, message: nil, messageUrl: nil)
+        FirebaseClient.sharedInstance.sendAction(tripId: tripId, action: message, completion: { (error: Error?) in
+            if let error = error {
+                print (error)
+            } else {
+                self.performSegue(withIdentifier: "ChatSegueID", sender: self)
+            }
+        })
+        
     }
+    
+    func observeNewMessages() {
+        
+        messageRefHandle = messageRef?.queryLimited(toLast: 1).observe(.childAdded, with: { (snapshot) in
+            
+            let messageDict = snapshot.value as? [String: Any]
+            
+            if let msgData = messageDict {
+                let action = TripAction(dictionary: msgData)
+                if action.type != ActionType.text {
+                    print("notify notify")
+                    AudioServicesPlayAlertSound(SystemSoundID(1015))
+                    AudioServicesPlayAlertSound(SystemSoundID(1016))
+                    BleApi.sharedInstance.blink()
+                }
+            } else {
+                print("Error! Could not decode message data")
+            }
+            
+        })
+    }
+    
+    
     func observeTrip() {
         
         tripRefHandle = tripRef?.observe(.value, with: { (snapshot) in
             
             let tripDict = snapshot.value as? [String: Any]
             if let tripData = tripDict {
-                let trip = Trip(dictionary: tripData)
+                //                let trip = Trip(dictionary: tripData)
                 
             } else {
                 print("error to decode trip. stop trip")

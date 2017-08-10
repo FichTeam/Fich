@@ -18,19 +18,26 @@ class ChatMeCell: UITableViewCell {
     var action: TripAction! {
         didSet {
             switch action.type! {
-            case ActionType.text:
+            case .text:
                 mesageLabel.text = action.message
+                mesageLabel.backgroundColor = UIColor.init(rgb: 0x3E75D2)
                 break
-            case ActionType.lost:
+            case .lost:
                 mesageLabel.text = "I'm lost"
+                mesageLabel.backgroundColor = UIColor.init(rgb: 0xD8524F)
                 break
-            case ActionType.bikeBroken:
+            case .bikeBroken:
                 mesageLabel.text = "My bike is broken"
+                mesageLabel.backgroundColor = UIColor.init(rgb: 0xD8524F)
                 break
-            default:
+            case .buzz:
+                mesageLabel.text = "BUZZ"
+                mesageLabel.textColor = UIColor.white
+                mesageLabel.backgroundColor = UIColor.init(rgb: 0xD8524F)
                 break
             }
-            
+            mesageLabel.layer.masksToBounds = true
+            mesageLabel.layer.cornerRadius = 7
             timeLabel.text = formatter.string(from: action.createdAt!)
         }
     }

@@ -496,7 +496,7 @@
                                     <action selector="onSend:" destination="HXg-fd-6e1" eventType="touchUpInside" id="x0I-LJ-cTD"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lqA-hr-MJs">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lqA-hr-MJs">
                                 <rect key="frame" x="8" y="72" width="304" height="450"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -514,9 +514,9 @@
                                                         <constraint firstAttribute="width" constant="48" id="SWs-p5-YSL"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Stop, I have a problem, can you go back to help me" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcs-RH-ynC">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Stop, I have a problem, can you go back to help me" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcs-RH-ynC" customClass="UILabelWithPadding" customModule="Fich" customModuleProvider="target">
                                                     <rect key="frame" x="64" y="0.0" width="190" height="36"/>
-                                                    <color key="backgroundColor" red="0.87602577917771884" green="0.87602577917771884" blue="0.87602577917771884" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -553,11 +553,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="304" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OK" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Xl-iN-f4s">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OK" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Xl-iN-f4s" customClass="UILabelWithPadding" customModule="Fich" customModuleProvider="target">
                                                     <rect key="frame" x="267" y="8" width="21" height="18"/>
-                                                    <color key="backgroundColor" red="0.38401710865324179" green="0.54042556820876819" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.29160442949999998" green="0.56568789480000004" blue="0.88535696269999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11:40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7T-fT-Xe1">
@@ -609,6 +609,7 @@
                     <connections>
                         <outlet property="messageTextField" destination="O59-H2-2EB" id="get-ix-jii"/>
                         <outlet property="messageTextFieldBottomConstraint" destination="SRy-97-FIw" id="J7a-oa-kqP"/>
+                        <outlet property="sendButton" destination="L1z-bJ-RzE" id="Tcq-tU-X61"/>
                         <outlet property="tableView" destination="lqA-hr-MJs" id="nC1-tf-VqE"/>
                         <outlet property="tableViewBottomConstraint" destination="Oeb-k1-oL2" id="xgy-sa-y4r"/>
                     </connections>
