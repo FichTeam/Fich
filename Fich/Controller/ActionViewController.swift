@@ -177,7 +177,9 @@ extension ActionViewController {
             if (self.tableView != nil){
                 self.tableView.reloadData()
                 let ip = NSIndexPath(row: self.actions.count-1, section: 0) as IndexPath
-                self.tableView.scrollToRow(at: ip, at: UITableViewScrollPosition.top, animated: true)
+                if ip.row > -1{
+                    self.tableView.scrollToRow(at: ip, at: UITableViewScrollPosition.top, animated: true)
+                }
             }
         }
         
