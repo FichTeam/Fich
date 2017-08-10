@@ -176,7 +176,7 @@ extension MapTabViewController {
                                 let position2d = CLLocationCoordinate2D(latitude: position[po].lat!, longitude: position[po].lng!)
                                 let marker = GMSMarker(position: position2d)
                                 marker.map = self.mapView
-                                let image = UIImage(named: "man_maker")
+                                let image = UIImage(named: "man_marker-1")
                                 marker.icon = image
                                 if let name = position[po].name{
                                     marker.title = name
