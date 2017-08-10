@@ -122,6 +122,9 @@ class GroupAndMapViewController: UIViewController {
         if let refHandle = tripRefHandle {
             tripRef?.removeObserver(withHandle: refHandle)
         }
+        if let refHandle = messageRefHandle {
+            messageRef?.removeObserver(withHandle: refHandle)
+        }
     }
 }
 
