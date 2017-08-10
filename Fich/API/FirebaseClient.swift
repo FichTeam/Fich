@@ -353,6 +353,41 @@ class FirebaseClient {
         }
     }
     
+    func startTrip(tripId: String) {
+            // change trip status
+            ref.child("trip")
+                .child(tripId)
+                .child("status").setValue(TripStatus.run.rawValue)
+        
+        if let phonenumber = UserDefaults.standard.string(forKey: "phonenumber"){
+            ref.child("trip_lobby").child(phonenumber).removeValue()
+        }
+        if Auth.auth().currentUser?.phoneNumber == nil{
+            let code = UserDefaults.standard.string(forKey: "trip_code")
+            if let code = code {
+                ref.child("trip_lobby").child(code).removeValue()
+            }
+        }
+    }
+    
+    func finishTrip(tripId: String) {
+        let user = Auth.auth().currentUser
+        if let user = user {
+                    
+            // change trip status
+            ref.child("trip")
+                .child(tripId)
+                .child("status").setValue(TripStatus.finish.rawValue)
+            
+            // update user status
+            ref.child("user")
+                .child(user.uid)
+                .child("trip")
+                .removeValue()
+            
+        }
+    }
+    
     func sendAction(tripId: String, action: TripAction, completion: @escaping (Error?) -> ()) {
         let actionRef = ref.child("trip_action").child(tripId)
         let newActionRef = actionRef.childByAutoId()

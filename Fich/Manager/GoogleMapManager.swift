@@ -111,7 +111,8 @@ class GoogleMapManager{
         let tripDict: NSDictionary = [
             "user_id": FirebaseClient.sharedInstance.getUserUID()!,
             "source" : currentLocation.toPositionDictionaryDetail(),
-            "destination" : destinationLoc.toPositionDictionaryDetail()
+            "destination" : destinationLoc.toPositionDictionaryDetail(),
+            "status": TripStatus.prepare.rawValue
         ]
         FirebaseClient.sharedInstance.createTripWithDict(dict: tripDict)
         
