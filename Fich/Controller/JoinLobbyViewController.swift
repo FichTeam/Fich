@@ -74,12 +74,14 @@ class JoinLobbyViewController: UIViewController {
         if textField.text?.characters.count == 1 {
             if textField.text?.characters.first == " " {
                 textField.text = ""
+                showTrip(trip: nil)
                 return
             }
         }
         guard let phoneNumber = phoneNumberTextField.text, !phoneNumber.isEmpty
-            else {
-                return
+        else {
+            showTrip(trip: nil)
+            return
         }
         FirebaseClient.sharedInstance().lookupTrip(phoneNumber: phoneNumberTextField.text!) { (trip: Trip?, error: Error?) in
             self.showTrip(trip: trip)
@@ -151,7 +153,7 @@ extension JoinLobbyViewController {
             let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
             let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
             let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
-            let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+            let keyboardSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size
             
             let delta = (keyboardSize?.height)! - (view.frame.size.height - (tripOwnerAvatarImage.frame.size.height + tripOwnerAvatarImage.frame.origin.y))
             bottomConstraint.constant = bottomHeight - (delta + 5)
