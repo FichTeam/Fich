@@ -86,7 +86,7 @@ class MapTabViewController: UIViewController {
         setupLocationAndMap()
         
         switchFake.isHidden = true
-        FirebaseClient.sharedInstance.isFakeData { (isOn) in
+        FirebaseClient.sharedInstance().isFakeData { (isOn) in
             if isOn == true{
                 self.switchFake.isHidden = false
             }
