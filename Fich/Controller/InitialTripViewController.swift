@@ -125,6 +125,7 @@ class InitialTripViewController: UIViewController {
         
         if let phone = UserDefaults.standard.string(forKey: "phonenumber"){
             tripCode.text = phone
+            UserDefaults.standard.set(phone, forKey: "trip_code")
         }
         if UserDefaults.standard.string(forKey: "phonenumber") == nil{
             let random = Int.random(from: 1000, to: 9999)
