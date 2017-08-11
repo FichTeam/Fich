@@ -74,9 +74,9 @@ class GroupTabViewController: UIViewController {
     let tripIDSection = 0
     let distanceSection = 1
     let deviceSection = 2
-    let simulateSection = 3
-    let groupSection = 4
-    let memberSection = 5
+    let groupSection = 3
+    let memberSection = 4
+    let simulateSection = 5
   
     var distanceList : [Int: String] = [2: "2km", 3: "3km", 5: "5km"]
     var distanceSet = 2
