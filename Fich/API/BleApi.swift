@@ -12,7 +12,16 @@ import RxSwift
 import CoreBluetooth
 
 class BleApi {
-    static let sharedInstance = BleApi()
+    static var instance: BleApi? = nil
+    
+    static func sharedInstance() -> BleApi {
+        if let instance = instance {
+            return instance
+        } else {
+            return BleApi()
+        }
+    }
+    
     let manager: BluetoothManager!
     let disposeBag = DisposeBag()
     private let FichService : CBUUID = CBUUID.init(string: "3DDA0001-957F-7D4A-34A6-74696673696D")

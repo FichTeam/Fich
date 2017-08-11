@@ -177,14 +177,14 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
           
         case self.deviceSection:
             // check status of device
-            if (BleApi.sharedInstance.checkBTstate() != BluetoothState.poweredOn ){
+            if (BleApi.sharedInstance().checkBTstate() != BluetoothState.poweredOn ){
                 self.isBTOn = false
                 self.isBLEDeviceReady = false
               self.tableView.reloadSections(IndexSet(integer: self.deviceSection), with: .automatic)
                 break}
             
             self.isBTOn = true
-            if (BleApi.sharedInstance.CheckAnyFichDeviceConnected() > 0)
+            if (BleApi.sharedInstance().CheckAnyFichDeviceConnected() > 0)
             {
                 print("Device ready")
                 self.isBLEDeviceReady = true
@@ -308,10 +308,10 @@ extension GroupTabViewController {
         distanceSet = 2
         // check BLE device
         
-        if(BleApi.sharedInstance.checkBTstate() == BluetoothState.poweredOn){
+        if(BleApi.sharedInstance().checkBTstate() == BluetoothState.poweredOn){
             print("BT on")
             self.isBTOn = true
-            if (BleApi.sharedInstance.CheckAnyFichDeviceConnected() > 0){
+            if (BleApi.sharedInstance().CheckAnyFichDeviceConnected() > 0){
                 self.isBLEDeviceReady = true
             } else {
                 self.isBLEDeviceReady = false
