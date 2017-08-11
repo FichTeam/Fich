@@ -47,19 +47,10 @@ class MapTabViewController: UIViewController {
         FirebaseClient.sharedInstance().loadFakeData { (position) in
             print(position.count)
             FirebaseClient.sharedInstance().getStopUser(success: { (user) in
-                if Auth.auth().currentUser!.uid == user{
-                    for i in 1...5{
-                        DispatchQueue.main.asyncAfter(deadline: .now() + Double(i * randomVelocity)) {
-                            let location = CLLocation(latitude: position[i].lat!, longitude: position[i].lng!)
-                            FirebaseClient.sharedInstance().memberUpdatePosition(tripid: self.tripId, cllocation: location)
-                        }
-                    }
-                }else{
-                    for i in 1...position.count-1{
-                        DispatchQueue.main.asyncAfter(deadline: .now() + Double(i * randomVelocity)) {
-                            let location = CLLocation(latitude: position[i].lat!, longitude: position[i].lng!)
-                            FirebaseClient.sharedInstance().memberUpdatePosition(tripid: self.tripId, cllocation: location)
-                        }
+                for i in 1...position.count-1{
+                    DispatchQueue.main.asyncAfter(deadline: .now() + Double(i * randomVelocity)) {
+                        let location = CLLocation(latitude: position[i].lat!, longitude: position[i].lng!)
+                        FirebaseClient.sharedInstance().memberUpdatePosition(tripid: self.tripId, cllocation: location)
                     }
                 }
             })

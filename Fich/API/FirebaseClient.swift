@@ -339,7 +339,7 @@ class FirebaseClient {
                         print(data)
                     }
             }
-            
+            UserDefaults.standard.set(tripId, forKey: "current_trip")
         }
     }
     
@@ -461,6 +461,22 @@ class FirebaseClient {
                     let value = snapshot.value as? NSDictionary
                     isFakeData = value?["is_on"] as? Bool ?? false
                     success(isFakeData)
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    func getCurrentTrip(success: @escaping (String) -> ()){
+        var tripId = ""
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                ref.child("user").child(uid!).child("trip").observeSingleEvent(of: .value, with: { (snapshot) in
+                    //print(snapshot)
+                    let value = snapshot.value as? NSDictionary
+                    tripId = value?["trip_id"] as? String ?? ""
+                    success(tripId)
                 }) { (error) in
                     print(error.localizedDescription)
                 }

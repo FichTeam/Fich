@@ -25,12 +25,14 @@ class Trip: DataObject {
     var stops = [Position]()
     var owner: Account?
     var members = [String: Account]()
-    
+    var tripcode : String?
+  
     override init(dictionary: [String: Any]) {
         super.init(dictionary: dictionary)
         id = dictionary["id"] as? String
         userId = dictionary["user_id"] as? String
         name = dictionary["name"] as? String
+        tripcode = dictionary["code"] as? String
         let statusString = dictionary["status"] as? String
         if let statusString = statusString {
             status = TripStatus(rawValue: statusString)
@@ -71,9 +73,11 @@ class Trip: DataObject {
     
     func toTripDictionary() -> [String : Any] {
         var tripDictionary = [String: Any]()
+
         tripDictionary["id"] = id
         tripDictionary["user_id"] = userId
         tripDictionary["name"] = name
+        tripDictionary["code"] = tripcode
         tripDictionary["status"] = status?.rawValue
         tripDictionary["phone_number"] = phoneNumber!
         tripDictionary["start_time"] = (startTime?.timeIntervalSince1970)! * 1000

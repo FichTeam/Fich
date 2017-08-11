@@ -87,7 +87,7 @@ class GoogleMapManager{
             marker.icon = image
             marker.title = id
             marker.snippet = snippet
-        }else if imageName == "man_marker"{
+        }else if imageName == "man_marker-1"{
             let cllocation = CLLocationCoordinate2D(latitude: lat, longitude: long)
             let marker = GMSMarker(position: cllocation)
             marker.map = mapView
@@ -108,11 +108,16 @@ class GoogleMapManager{
     }
     func drawPath(currentLocation: Position, destinationLoc : Position)
     {
+        var code = ""
+        if let cd = UserDefaults.standard.string(forKey: "trip_code"){
+            code = cd
+        }
         let tripDict: NSDictionary = [
             "user_id": FirebaseClient.sharedInstance().getUserUID()!,
             "source" : currentLocation.toPositionDictionaryDetail(),
             "destination" : destinationLoc.toPositionDictionaryDetail(),
-            "status": TripStatus.prepare.rawValue
+            "status": TripStatus.prepare.rawValue,
+            "code" : code
         ]
         FirebaseClient.sharedInstance().createTripWithDict(dict: tripDict)
         
