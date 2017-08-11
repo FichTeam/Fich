@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -112,7 +112,7 @@
                                 <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYm-tn-3TG">
-                                <rect key="frame" x="128" y="528" width="64" height="40"/>
+                                <rect key="frame" x="128" y="535" width="64" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="mbg-md-ypo"/>
@@ -135,7 +135,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.86666666670000003" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="AlO-ic-ZvX" firstAttribute="top" secondItem="SYm-tn-3TG" secondAttribute="bottom" id="6hb-Zm-NHB"/>
+                            <constraint firstItem="AlO-ic-ZvX" firstAttribute="top" secondItem="SYm-tn-3TG" secondAttribute="bottom" constant="-7" id="6hb-Zm-NHB"/>
                             <constraint firstItem="lB0-K4-Fyj" firstAttribute="top" secondItem="JQe-45-7Ar" secondAttribute="bottom" id="6xF-QR-qwq"/>
                             <constraint firstItem="wBX-wT-ltm" firstAttribute="leading" secondItem="Drb-ZC-3fj" secondAttribute="leading" id="8GP-fG-DJ6"/>
                             <constraint firstItem="Drb-ZC-3fj" firstAttribute="top" secondItem="Vqs-Da-HhX" secondAttribute="bottom" constant="-124" id="8KZ-8k-GnE"/>

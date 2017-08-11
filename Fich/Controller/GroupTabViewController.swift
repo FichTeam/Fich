@@ -144,6 +144,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
           let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
           cell.titleLabel.text = "TRIP ID"
           cell.statusLabel.text = self.trip?.tripcode ?? ""
+          cell.selectionStyle = .none
           return cell
         case self.distanceSection:
           print("section \(indexPath.section)")
@@ -209,6 +210,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
                 print("Device ready")
                 self.isBLEDeviceReady = true
                 // show a message device is ready and reload this section
+                self.performSegue(withIdentifier: "BLESegueID", sender: self)
             }
             else
             {
