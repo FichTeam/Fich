@@ -200,11 +200,14 @@ extension MapTabViewController {
                         }
                         FirebaseClient.sharedInstance().getAllPosition(tripid: self.tripId, success: { (posit) in
                             print("is lost \(self.isLostConnection(posit: posit))")
+                          if (trip.status == TripStatus.run)
+                          {
                             if self.isLostConnection(posit: posit){
-                                AudioServicesPlayAlertSound(SystemSoundID(1015))
-                                AudioServicesPlayAlertSound(SystemSoundID(1016))
-                                BleApi.sharedInstance.blink()
+                              AudioServicesPlayAlertSound(SystemSoundID(1015))
+                              AudioServicesPlayAlertSound(SystemSoundID(1016))
+                              BleApi.sharedInstance.blink()
                             }
+                          }
                         })
                     }
                 })
@@ -224,7 +227,7 @@ extension MapTabViewController {
     }
     func isLostConnection(posit : [Position])->Bool{
         if posit.count > 1{
-            for i in 0...posit.count-2{
+            for i in 0...posit.count-1{
                 for j in (i+1)...posit.count-1{
                     if self.calculateDistance(location1: posit[i], location2: posit[j]) > MAX_RANGE{
                         return true

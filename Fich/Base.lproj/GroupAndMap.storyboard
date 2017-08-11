@@ -71,7 +71,7 @@
                                                                 <action selector="didCallPress:" destination="Fha-sk-Y7A" eventType="touchUpInside" id="fIb-ff-Jgx"/>
                                                             </connections>
                                                         </button>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="45d-DR-bEZ">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="45d-DR-bEZ">
                                                             <rect key="frame" x="8" y="12" width="80" height="80"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="80" id="IvI-DI-Cu7"/>
