@@ -115,7 +115,7 @@ extension DeviceSettingViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPeripheral = peripheralsArray[indexPath.row]
 //        connectAndBlink(selectedPeripheral.peripheral)
-        BleApi.sharedInstance().connectAndBlink(selectedPeripheral.peripheral)
+        BleApi.sharedInstance.connectAndBlink(selectedPeripheral.peripheral)
     }
 }
 
@@ -129,7 +129,7 @@ extension DeviceSettingViewController: DeviceSettingDelegate {
         deviceLabel.isHidden = false
         connectedLabel.isHidden = false
         deviceLabel.text = deviceId
-        BleApi.sharedInstance().connect()
+        BleApi.sharedInstance.connect()
     }
 }
 

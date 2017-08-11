@@ -12,15 +12,8 @@ import RxSwift
 import CoreBluetooth
 
 class BleApi {
-    private static var instance: BleApi?
     
-    static func sharedInstance() -> BleApi {
-        if let instance = instance {
-            return instance
-        } else {
-            return BleApi()
-        }
-    }
+    static let sharedInstance = BleApi()
     
     let manager: BluetoothManager!
     let disposeBag = DisposeBag()

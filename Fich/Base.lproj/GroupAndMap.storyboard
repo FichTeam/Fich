@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fLa-yC-He6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fLa-yC-He6">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -67,6 +67,9 @@
                                                                 <constraint firstAttribute="width" constant="40" id="jq5-oE-9lx"/>
                                                             </constraints>
                                                             <state key="normal" image="icon_phone"/>
+                                                            <connections>
+                                                                <action selector="didCallPress:" destination="Fha-sk-Y7A" eventType="touchUpInside" id="fIb-ff-Jgx"/>
+                                                            </connections>
                                                         </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="45d-DR-bEZ">
                                                             <rect key="frame" x="8" y="12" width="80" height="80"/>
@@ -537,23 +540,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your message here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O59-H2-2EB">
-                                <rect key="frame" x="8" y="530" width="236" height="30"/>
+                                <rect key="frame" x="8" y="520" width="236" height="40"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KPO-8d-5HE"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1z-bJ-RzE">
-                                <rect key="frame" x="252" y="531" width="60" height="29"/>
+                                <rect key="frame" x="252" y="520.5" width="60" height="40"/>
                                 <color key="backgroundColor" red="0.99860984086990356" green="0.70792365074157715" blue="0.44983994960784912" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="VN7-kv-0Fe"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <state key="normal" title="   SEND   "/>
                                 <connections>
                                     <action selector="onSend:" destination="HXg-fd-6e1" eventType="touchUpInside" id="x0I-LJ-cTD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGy-MW-iko">
+                                <rect key="frame" x="0.0" y="20" width="104" height="52"/>
+                                <state key="normal" image="back_icon"/>
+                                <connections>
+                                    <action selector="onBackScr:" destination="HXg-fd-6e1" eventType="touchUpInside" id="5vd-Af-fZE"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lqA-hr-MJs">
-                                <rect key="frame" x="8" y="72" width="304" height="450"/>
+                                <rect key="frame" x="8" y="72" width="304" height="440"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="chatOtherCell" rowHeight="88" id="dZu-D8-03h" customClass="ChatOtherCell" customModule="Fich" customModuleProvider="target">
@@ -641,13 +657,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LGy-MW-iko">
-                                <rect key="frame" x="0.0" y="20" width="104" height="52"/>
-                                <state key="normal" image="back_icon"/>
-                                <connections>
-                                    <action selector="onBackScr:" destination="HXg-fd-6e1" eventType="touchUpInside" id="5vd-Af-fZE"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.082938916981220245" green="0.27731788158416748" blue="0.35661274194717407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

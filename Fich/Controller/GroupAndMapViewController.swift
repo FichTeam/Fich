@@ -158,7 +158,7 @@ extension GroupAndMapViewController {
                     print("notify notify")
                     AudioServicesPlayAlertSound(SystemSoundID(1015))
                     AudioServicesPlayAlertSound(SystemSoundID(1016))
-                    BleApi.sharedInstance().blink()
+                    BleApi.sharedInstance.blink()
                 }
             } else {
                 print("Error! Could not decode message data")
