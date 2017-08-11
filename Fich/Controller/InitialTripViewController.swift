@@ -95,6 +95,10 @@ class InitialTripViewController: UIViewController {
         self.resultsController.tableView.dataSource = tableDataSource
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     func viewTapped(tapGestureRecognizer: UITapGestureRecognizer){
         self.searchView.frame.origin.y = self.searchView.frame.origin.y - self.searchView.frame.height
         whereToLabel.isHidden = true

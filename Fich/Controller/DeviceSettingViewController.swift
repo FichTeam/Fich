@@ -46,6 +46,10 @@ class DeviceSettingViewController: UIViewController {
 
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         startScanning()
     }
