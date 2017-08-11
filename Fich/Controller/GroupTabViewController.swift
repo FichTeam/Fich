@@ -63,13 +63,15 @@ class GroupTabViewController: UIViewController {
     // Section initialize
     // 0: Distance set      1
     // 1: Device info       1
-    // 2: Fake Label        1
-    // 3: Group             count
+    // 2: Simulate          1
+    // 3: Group Label        1
+    // 4: Group             count
   
     let distanceSection = 0
     let deviceSection = 1
-    let groupSection = 2
-    let memberSection = 3
+    let simulateSection = 2
+    let groupSection = 3
+    let memberSection = 4
   
     var distanceList : [Int: String] = [2: "2km", 3: "3km", 5: "5km"]
     var distanceSet = 2
@@ -121,12 +123,13 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
         case self.deviceSection: return 1
         case self.groupSection: return 1
         case self.memberSection: return members.count
+        case self.simulateSection: return 1
         default: return 0
         }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -155,6 +158,10 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
               }
             }
             return cell
+        case self.simulateSection:
+          let cell = tableView.dequeueReusableCell(withIdentifier: "simulateCell") as! SimulateCell
+          return cell
+
         case self.groupSection:
           print("section \(indexPath.section)")
           let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell") as! GroupCell
@@ -165,7 +172,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "memberCell") as! MemberCell
             cell.account = members[indexPath.row]
             return cell
-        default:
+                default:
             return UITableViewCell()
         }
     }
@@ -200,6 +207,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
             self.tableView.reloadSections(IndexSet(integer: self.deviceSection), with: .automatic)
         case self.groupSection: break
         case self.memberSection: break
+        case self.simulateSection: break
         default: break
         }
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fLa-yC-He6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fLa-yC-He6">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -138,11 +138,11 @@
                                                     <outlet property="titleLabel" destination="peG-Bb-Hj4" id="ibg-9w-vOa"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" rowHeight="173" id="tcQ-KL-jTn" customClass="GroupCell" customModule="Fich" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="249" width="320" height="173"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" rowHeight="113" id="tcQ-KL-jTn" customClass="GroupCell" customModule="Fich" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="249" width="320" height="113"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tcQ-KL-jTn" id="p4u-Z9-e6D">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="172.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="112.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GROUP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m59-EF-OeB">
@@ -163,6 +163,34 @@
                                                 <variation key="heightClass=regular-widthClass=compact">
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </variation>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="simulateCell" rowHeight="82" id="GEz-ey-0vV" customClass="SimulateCell" customModule="Fich" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="362" width="320" height="82"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GEz-ey-0vV" id="iRX-jM-4J5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="81.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIMULATE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9Z-mb-um5">
+                                                            <rect key="frame" x="18" y="23" width="90" height="30"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6q-Rz-cLd">
+                                                            <rect key="frame" x="235" y="22.5" width="51" height="31"/>
+                                                            <color key="onTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </switch>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="S6q-Rz-cLd" secondAttribute="bottom" constant="20" id="DTo-Jh-HyW"/>
+                                                        <constraint firstItem="g9Z-mb-um5" firstAttribute="top" secondItem="iRX-jM-4J5" secondAttribute="topMargin" constant="15" id="KyN-UW-izv"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="S6q-Rz-cLd" secondAttribute="trailing" constant="28" id="S5X-h0-1hg"/>
+                                                        <constraint firstItem="S6q-Rz-cLd" firstAttribute="centerY" secondItem="g9Z-mb-um5" secondAttribute="centerY" id="di4-Rn-OA0"/>
+                                                        <constraint firstItem="g9Z-mb-um5" firstAttribute="leading" secondItem="iRX-jM-4J5" secondAttribute="leadingMargin" constant="10" id="ey8-PY-Huq"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" red="0.29160442949999998" green="0.56568789480000004" blue="0.88535696269999997" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
