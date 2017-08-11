@@ -199,6 +199,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
             if (BleApi.sharedInstance.checkBTstate() != BluetoothState.poweredOn ){
                 self.isBTOn = false
                 self.isBLEDeviceReady = false
+              alert(title: "Notify", message: "Turn on Bluetooth to connect with device")
               self.tableView.reloadSections(IndexSet(integer: self.deviceSection), with: .automatic)
                 break}
             
