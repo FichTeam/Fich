@@ -59,7 +59,8 @@ class GroupTabViewController: UIViewController {
             tripRef?.removeObserver(withHandle: refHandle)
         }
     }
-    
+  
+
     // Section initialize
     // 0: Distance set      1
     // 1: Device info       1
@@ -67,11 +68,12 @@ class GroupTabViewController: UIViewController {
     // 3: Group Label        1
     // 4: Group             count
   
-    let distanceSection = 0
-    let deviceSection = 1
-    let simulateSection = 2
-    let groupSection = 3
-    let memberSection = 4
+    let tripIDSection = 0
+    let distanceSection = 1
+    let deviceSection = 2
+    let simulateSection = 3
+    let groupSection = 4
+    let memberSection = 5
   
     var distanceList : [Int: String] = [2: "2km", 3: "3km", 5: "5km"]
     var distanceSet = 2
@@ -118,23 +120,31 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       
-        switch section {
-        case self.distanceSection: return 1
-        case self.deviceSection: return 1
-        case self.groupSection: return 1
-        case self.memberSection: return members.count
-        case self.simulateSection: return 1
+        switch section
+        {
+        case tripIDSection: return 1
+        case distanceSection: return 1
+        case deviceSection: return 1
+        case groupSection: return 1
+        case memberSection: return members.count
+        case simulateSection: return 1
         default: return 0
         }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       print("tableview load")
         switch indexPath.section {
+        case self.tripIDSection:
+          print("section \(indexPath.section)")
+          let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
+          cell.titleLabel.text = "TRIP ID"
+          cell.statusLabel.text = "XXXX"
+          return cell
         case self.distanceSection:
           print("section \(indexPath.section)")
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
@@ -179,6 +189,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
+        case self.tripIDSection: break
         case self.distanceSection:
             self.present(alertController, animated: true, completion: nil)
           
