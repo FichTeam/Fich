@@ -63,6 +63,10 @@ class GroupAndMapViewController: UIViewController {
         }
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     func dismissMenu(_ sender:UITapGestureRecognizer){
         print("didDismissPress")
         menuBacground.isHidden = true

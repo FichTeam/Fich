@@ -50,6 +50,10 @@ class GroupTabViewController: UIViewController {
         
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     deinit {
         if let refHandle = tripRefHandle {
             tripRef?.removeObserver(withHandle: refHandle)

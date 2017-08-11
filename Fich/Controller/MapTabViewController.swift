@@ -86,6 +86,10 @@ class MapTabViewController: UIViewController {
         setupLocationAndMap()
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     func setupLocationAndMap(){
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest

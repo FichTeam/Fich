@@ -56,6 +56,10 @@ class ActionViewController: UIViewController {
         }
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         registerForKeyboardNotifications()
     }
@@ -213,7 +217,7 @@ extension ActionViewController {
             sendButton.backgroundColor = UIColor.init(rgb: 0xD8524F)
             sendButton.setTitle("   BUZZ   ", for: .normal)
         } else {
-            sendButton.backgroundColor = UIColor.init(rgb: 0x3E75D2)
+            sendButton.backgroundColor = UIColor.init(rgb: 0xFFB573)
             sendButton.setTitle("   SEND   ", for: .normal)
         }
     }

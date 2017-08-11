@@ -40,6 +40,10 @@ class JoinLobbyViewController: UIViewController {
         
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         observeUserStatus()
     }
