@@ -84,6 +84,13 @@ class MapTabViewController: UIViewController {
         GoogleMapManager.shared.manage(mapView: self.mapView, mapUIView: mapUIView)
         UserDefaults.standard.setValue(nil, forKey: "is_map_member_loaded")
         setupLocationAndMap()
+        
+        switchFake.isHidden = true
+        FirebaseClient.sharedInstance.isFakeData { (isOn) in
+            if isOn == true{
+                self.switchFake.isHidden = false
+            }
+        }
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -180,7 +187,7 @@ extension MapTabViewController {
                                 let position2d = CLLocationCoordinate2D(latitude: position[po].lat!, longitude: position[po].lng!)
                                 let marker = GMSMarker(position: position2d)
                                 marker.map = self.mapView
-                                let image = UIImage(named: "man_maker")
+                                let image = UIImage(named: "man_marker-1")
                                 marker.icon = image
                                 if let name = position[po].name{
                                     marker.title = name
