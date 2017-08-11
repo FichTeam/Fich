@@ -45,6 +45,10 @@ class WaypointsViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
 }
 extension WaypointsViewController : UITableViewDelegate, UITableViewDataSource{
     // MARK: *** UITableView

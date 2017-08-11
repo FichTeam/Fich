@@ -31,7 +31,7 @@ class MemberCell: UITableViewCell {
     
     var leader: Bool! {
         didSet {
-            leaderLabel.isHidden = leader
+            leaderLabel.isHidden = !leader
         }
     }
     
@@ -47,5 +47,7 @@ class MemberCell: UITableViewCell {
     }
 
     @IBAction func didCallPress(_ sender: UIButton) {
+        guard let number = URL(string: "tel://" + account.phoneNumber!) else { return }
+        UIApplication.shared.open(number)
     }
 }

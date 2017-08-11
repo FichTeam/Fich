@@ -20,7 +20,7 @@ class ChatMeCell: UITableViewCell {
             switch action.type! {
             case .text:
                 mesageLabel.text = action.message
-                mesageLabel.backgroundColor = UIColor.init(rgb: 0x3E75D2)
+                mesageLabel.backgroundColor = UIColor.init(rgb: 0xFFB573)
                 break
             case .lost:
                 mesageLabel.text = "I'm lost"

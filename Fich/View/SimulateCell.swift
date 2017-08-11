@@ -1,18 +1,15 @@
 //
-//  SettingCell.swift
+//  SimulateCell.swift
 //  Fich
 //
-//  Created by Triet on 8/8/17.
+//  Created by Triet on 8/11/17.
 //  Copyright © 2017 fichteam. All rights reserved.
 //
 
 import UIKit
 
-class SettingCell: UITableViewCell {
-  @IBOutlet weak var statusLabel: UILabel!
-  @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var button: UIButton!
-    
+class SimulateCell: UITableViewCell {
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,4 +20,5 @@ class SettingCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+
 }

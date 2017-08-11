@@ -40,6 +40,10 @@ class JoinLobbyViewController: UIViewController {
         
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         observeUserStatus()
     }
@@ -52,7 +56,7 @@ class JoinLobbyViewController: UIViewController {
     }
     
     @IBAction func onJoin(_ sender: UIButton) {
-        FirebaseClient.sharedInstance.joinTrip(tripId: (tripSearchResult?.id)!)
+        FirebaseClient.sharedInstance().joinTrip(tripId: (tripSearchResult?.id)!)
         phoneNumberTextField.text = ""
         editingChanged(phoneNumberTextField)
         joinButton.isHidden = true
@@ -77,7 +81,7 @@ class JoinLobbyViewController: UIViewController {
             else {
                 return
         }
-        FirebaseClient.sharedInstance.lookupTrip(phoneNumber: phoneNumberTextField.text!) { (trip: Trip?, error: Error?) in
+        FirebaseClient.sharedInstance().lookupTrip(phoneNumber: phoneNumberTextField.text!) { (trip: Trip?, error: Error?) in
             self.showTrip(trip: trip)
         }
     }

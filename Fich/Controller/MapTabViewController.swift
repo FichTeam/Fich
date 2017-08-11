@@ -27,7 +27,7 @@ class MapTabViewController: UIViewController {
     let MAX_FAKE_VELO = 8
     
     @IBAction func onBack(_ sender: UIButton) {
-        FirebaseClient.sharedInstance.leaveTrip(tripId: tripId)
+        FirebaseClient.sharedInstance().leaveTrip(tripId: tripId)
         dismiss(animated: true, completion: nil)
     }
     
@@ -44,21 +44,21 @@ class MapTabViewController: UIViewController {
 //        }
         
         let randomVelocity = Int.random(from: MIN_FAKE_VELO, to: MAX_FAKE_VELO)
-        FirebaseClient.sharedInstance.loadFakeData { (position) in
+        FirebaseClient.sharedInstance().loadFakeData { (position) in
             print(position.count)
-            FirebaseClient.sharedInstance.getStopUser(success: { (user) in
+            FirebaseClient.sharedInstance().getStopUser(success: { (user) in
                 if Auth.auth().currentUser!.uid == user{
                     for i in 1...5{
                         DispatchQueue.main.asyncAfter(deadline: .now() + Double(i * randomVelocity)) {
                             let location = CLLocation(latitude: position[i].lat!, longitude: position[i].lng!)
-                            FirebaseClient.sharedInstance.memberUpdatePosition(tripid: self.tripId, cllocation: location)
+                            FirebaseClient.sharedInstance().memberUpdatePosition(tripid: self.tripId, cllocation: location)
                         }
                     }
                 }else{
                     for i in 1...position.count-1{
                         DispatchQueue.main.asyncAfter(deadline: .now() + Double(i * randomVelocity)) {
                             let location = CLLocation(latitude: position[i].lat!, longitude: position[i].lng!)
-                            FirebaseClient.sharedInstance.memberUpdatePosition(tripid: self.tripId, cllocation: location)
+                            FirebaseClient.sharedInstance().memberUpdatePosition(tripid: self.tripId, cllocation: location)
                         }
                     }
                 }
@@ -86,11 +86,15 @@ class MapTabViewController: UIViewController {
         setupLocationAndMap()
         
         switchFake.isHidden = true
-        FirebaseClient.sharedInstance.isFakeData { (isOn) in
+        FirebaseClient.sharedInstance().isFakeData { (isOn) in
             if isOn == true{
                 self.switchFake.isHidden = false
             }
         }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     func setupLocationAndMap(){
@@ -171,7 +175,7 @@ extension MapTabViewController {
                     }
                 }
                 
-                FirebaseClient.sharedInstance.getAllMemberPosition(tripid: self.tripId, success: { (position) in
+                FirebaseClient.sharedInstance().getAllMemberPosition(tripid: self.tripId, success: { (position) in
                     if position.count > 0{
                         for po in 0...position.count-1{
                             if self.memberMarker.count == position.count {
@@ -193,7 +197,7 @@ extension MapTabViewController {
                                 self.memberMarker.append(marker)
                             }
                         }
-                        FirebaseClient.sharedInstance.getAllPosition(tripid: self.tripId, success: { (posit) in
+                        FirebaseClient.sharedInstance().getAllPosition(tripid: self.tripId, success: { (posit) in
                             print("is lost \(self.isLostConnection(posit: posit))")
                             if self.isLostConnection(posit: posit){
                                 AudioServicesPlayAlertSound(SystemSoundID(1015))
@@ -248,7 +252,7 @@ extension MapTabViewController: CLLocationManagerDelegate {
         }else{
             let location: CLLocation = locations.last!
             print("Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
-            FirebaseClient.sharedInstance.memberUpdatePosition(tripid: tripId, cllocation: location)
+            FirebaseClient.sharedInstance().memberUpdatePosition(tripid: tripId, cllocation: location)
             
             if UserDefaults.standard.string(forKey: "is_map_member_loaded") == nil{
                 let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,longitude: location.coordinate.longitude, zoom: zoomLevel)

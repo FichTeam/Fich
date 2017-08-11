@@ -56,6 +56,10 @@ class ActionViewController: UIViewController {
         }
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         registerForKeyboardNotifications()
     }
@@ -110,7 +114,7 @@ extension ActionViewController {
             } else {
                 message = TripAction(member: currentAccount!, type: .text, message: msg, messageUrl: nil)
             }
-            FirebaseClient.sharedInstance.sendAction(tripId: tripId, action: message!, completion: { (error: Error?) in
+            FirebaseClient.sharedInstance().sendAction(tripId: tripId, action: message!, completion: { (error: Error?) in
                 if let error = error {
                     print (error)
                 } else {
@@ -213,7 +217,7 @@ extension ActionViewController {
             sendButton.backgroundColor = UIColor.init(rgb: 0xD8524F)
             sendButton.setTitle("   BUZZ   ", for: .normal)
         } else {
-            sendButton.backgroundColor = UIColor.init(rgb: 0x3E75D2)
+            sendButton.backgroundColor = UIColor.init(rgb: 0xFFB573)
             sendButton.setTitle("   SEND   ", for: .normal)
         }
     }
