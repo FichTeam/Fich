@@ -143,7 +143,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
           print("section \(indexPath.section)")
           let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
           cell.titleLabel.text = "TRIP ID"
-          cell.statusLabel.text = "XXXX"
+          cell.statusLabel.text = self.trip?.tripcode ?? ""
           return cell
         case self.distanceSection:
           print("section \(indexPath.section)")
