@@ -12,6 +12,8 @@ import RxBluetoothKit
 import RxSwift
 import CoreBluetooth
 
+
+
 class GroupTabViewController: UIViewController {
     
     var tripId: String! {
@@ -28,7 +30,8 @@ class GroupTabViewController: UIViewController {
     var members = [Account]()
     var tripRef: DatabaseReference?
     var tripRefHandle: DatabaseHandle?
-    
+  var groupDelegate: SimulateDelegate!
+  
     //Initialize UIAlertController for Safe Distance action sheet
     
     var alertController : UIAlertController!
@@ -71,9 +74,9 @@ class GroupTabViewController: UIViewController {
     let tripIDSection = 0
     let distanceSection = 1
     let deviceSection = 2
-    let simulateSection = 3
-    let groupSection = 4
-    let memberSection = 5
+    let groupSection = 3
+    let memberSection = 4
+    let simulateSection = 5
   
     var distanceList : [Int: String] = [2: "2km", 3: "3km", 5: "5km"]
     var distanceSet = 2
@@ -144,6 +147,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
           let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
           cell.titleLabel.text = "TRIP ID"
           cell.statusLabel.text = self.trip?.tripcode ?? ""
+          cell.selectionStyle = .none
           return cell
         case self.distanceSection:
           print("section \(indexPath.section)")
@@ -170,6 +174,8 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case self.simulateSection:
           let cell = tableView.dequeueReusableCell(withIdentifier: "simulateCell") as! SimulateCell
+          cell.delegate = groupDelegate
+          cell.selectionStyle = .none
           return cell
 
         case self.groupSection:
@@ -199,6 +205,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
             if (BleApi.sharedInstance.checkBTstate() != BluetoothState.poweredOn ){
                 self.isBTOn = false
                 self.isBLEDeviceReady = false
+              alert(title: "Notify", message: "Turn on Bluetooth to connect with device")
               self.tableView.reloadSections(IndexSet(integer: self.deviceSection), with: .automatic)
                 break}
             
@@ -208,6 +215,7 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
                 print("Device ready")
                 self.isBLEDeviceReady = true
                 // show a message device is ready and reload this section
+                self.performSegue(withIdentifier: "BLESegueID", sender: self)
             }
             else
             {

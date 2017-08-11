@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol SimulateDelegate {
+  func update(isOnSimulate: Bool)
+}
+
 class SimulateCell: UITableViewCell {
 
+  var delegate: SimulateDelegate!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +26,7 @@ class SimulateCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+  @IBAction func isChange(_ sender: UISwitch) {
+    delegate.update(isOnSimulate: sender.isOn)
+  }
 }

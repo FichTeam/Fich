@@ -280,3 +280,28 @@ extension MapTabViewController: CLLocationManagerDelegate {
         print("Error: \(error)")
     }
 }
+
+extension MapTabViewController: SimulateDelegate {
+  func update(isOnSimulate: Bool) {
+    // do something
+    print("simulate \(isOnSimulate)")
+    let randomTimer = Int.random(from: 10, to: 20)
+    if isOnSimulate{
+        self.timer.invalidate()
+        
+        FirebaseClient.sharedInstance().loadFakeData { (position) in
+            print(position.count)
+            self.posArr = position
+            print(randomTimer)
+            self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(Float(randomTimer/10)), target: self, selector: #selector(self.timerAction), userInfo: nil, repeats: true)
+            self.posCount = 0
+        }
+    }
+    else{
+        print("off press")
+        self.posCount = 0
+        self.timer.invalidate()
+        FirebaseClient.sharedInstance().memberUpdatePosition(tripid: self.tripId, cllocation: saveLoc!)
+    }
+  }
+}

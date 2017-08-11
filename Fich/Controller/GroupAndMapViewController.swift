@@ -46,6 +46,7 @@ class GroupAndMapViewController: UIViewController {
         groupViewController = storyboard.instantiateViewController(withIdentifier: "groupViewController") as! GroupTabViewController
         mapViewController.tripId = tripId
         groupViewController.tripId = tripId
+        groupViewController.groupDelegate = mapViewController
         
         viewControllers = [mapViewController, groupViewController]
         
