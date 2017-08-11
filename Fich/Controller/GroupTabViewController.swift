@@ -12,6 +12,8 @@ import RxBluetoothKit
 import RxSwift
 import CoreBluetooth
 
+
+
 class GroupTabViewController: UIViewController {
     
     var tripId: String! {
@@ -28,7 +30,8 @@ class GroupTabViewController: UIViewController {
     var members = [Account]()
     var tripRef: DatabaseReference?
     var tripRefHandle: DatabaseHandle?
-    
+  var groupDelegate: SimulateDelegate!
+  
     //Initialize UIAlertController for Safe Distance action sheet
     
     var alertController : UIAlertController!
@@ -171,6 +174,8 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case self.simulateSection:
           let cell = tableView.dequeueReusableCell(withIdentifier: "simulateCell") as! SimulateCell
+          cell.delegate = groupDelegate
+          cell.selectionStyle = .none
           return cell
 
         case self.groupSection:

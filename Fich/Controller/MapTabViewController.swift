@@ -280,3 +280,10 @@ extension MapTabViewController: CLLocationManagerDelegate {
         print("Error: \(error)")
     }
 }
+
+extension MapTabViewController: SimulateDelegate {
+  func update(isOnSimulate: Bool) {
+    // do something
+    print("simulate \(isOnSimulate)")
+  }
+}
