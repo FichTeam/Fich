@@ -127,7 +127,7 @@ extension MapTabViewController: GMSMapViewDelegate{
         }
     }
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        print(marker.title!)
+        //print(marker.title!)
         return false
     }
 }

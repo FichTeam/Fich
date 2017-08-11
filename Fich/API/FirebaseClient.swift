@@ -70,6 +70,7 @@ class FirebaseClient {
                 ref.updateChildValues(tripLobby)
             }
         }
+        FirebaseClient.sharedInstance.joinTrip(tripId: key)
     }
     func lookupTrip(phoneNumber: String, completion: @escaping (Trip?, Error?) -> ()) {
         ref.child("trip_lobby").child(phoneNumber).observeSingleEvent(of: .value, with: { (snapshot) in
