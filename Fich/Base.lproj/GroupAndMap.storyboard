@@ -41,71 +41,59 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="142.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="45d-DR-bEZ">
-                                                            <rect key="frame" x="8" y="31.5" width="80" height="80"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="80" id="IvI-DI-Cu7"/>
-                                                                <constraint firstAttribute="width" constant="80" id="uBg-oH-Kog"/>
-                                                            </constraints>
-                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEADER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKd-ca-ggq">
-                                                            <rect key="frame" x="8" y="111.5" width="80" height="21"/>
+                                                            <rect key="frame" x="8" y="92" width="80" height="18"/>
                                                             <color key="backgroundColor" red="0.84771633148193359" green="0.32123422622680664" blue="0.30819252133369446" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <color key="textColor" red="0.99011482159218123" green="0.9890372235095688" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tran Tien Tin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06U-N5-yBA">
-                                                            <rect key="frame" x="96" y="31" width="121.5" height="27.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Tran Tien Tin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06U-N5-yBA">
+                                                            <rect key="frame" x="96" y="12" width="121.5" height="27.5"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0902675405" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OB-gX-lrH">
-                                                            <rect key="frame" x="96" y="68.5" width="121.5" height="23.5"/>
+                                                            <rect key="frame" x="96" y="49.5" width="121.5" height="23.5"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9EE-N6-nMk">
-                                                            <rect key="frame" x="270" y="32" width="50" height="101"/>
-                                                            <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSm-Am-HCe">
-                                                                    <rect key="frame" x="5.5" y="35.5" width="39" height="30"/>
-                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                                    <state key="normal" title="CALL">
-                                                                        <color key="titleColor" red="0.23137254900000001" green="0.3411764706" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    </state>
-                                                                    <connections>
-                                                                        <action selector="didCallPress:" destination="Fha-sk-Y7A" eventType="touchUpInside" id="hTQ-XP-Sa6"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVr-BT-8W3">
+                                                            <rect key="frame" x="272" y="12" width="40" height="98"/>
                                                             <color key="backgroundColor" red="0.99860984086990356" green="0.70792365074157715" blue="0.44983994960784912" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="101" id="5U5-mv-sSK"/>
-                                                                <constraint firstItem="CSm-Am-HCe" firstAttribute="centerX" secondItem="9EE-N6-nMk" secondAttribute="centerX" id="MfM-hg-6SQ"/>
-                                                                <constraint firstAttribute="width" constant="50" id="Pg4-sQ-AQ0"/>
-                                                                <constraint firstItem="CSm-Am-HCe" firstAttribute="centerY" secondItem="9EE-N6-nMk" secondAttribute="centerY" id="sxa-VU-l1D"/>
+                                                                <constraint firstAttribute="width" constant="40" id="jq5-oE-9lx"/>
                                                             </constraints>
-                                                        </view>
+                                                            <state key="normal" image="icon_phone"/>
+                                                        </button>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="45d-DR-bEZ">
+                                                            <rect key="frame" x="8" y="12" width="80" height="80"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="80" id="IvI-DI-Cu7"/>
+                                                                <constraint firstAttribute="width" constant="80" id="uBg-oH-Kog"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.99019607843137258" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="9EE-N6-nMk" firstAttribute="top" secondItem="45d-DR-bEZ" secondAttribute="top" id="2Al-fb-vl2"/>
                                                         <constraint firstItem="yKd-ca-ggq" firstAttribute="trailing" secondItem="45d-DR-bEZ" secondAttribute="trailing" id="CqP-rR-teA"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="yKd-ca-ggq" secondAttribute="bottom" constant="2" id="HiK-fi-FgF"/>
+                                                        <constraint firstItem="xVr-BT-8W3" firstAttribute="top" secondItem="45d-DR-bEZ" secondAttribute="top" id="EGI-Fk-eIo"/>
+                                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="yKd-ca-ggq" secondAttribute="bottom" constant="2" id="HiK-fi-FgF"/>
                                                         <constraint firstItem="1OB-gX-lrH" firstAttribute="leading" secondItem="06U-N5-yBA" secondAttribute="leading" id="Jry-NW-BSU"/>
-                                                        <constraint firstItem="45d-DR-bEZ" firstAttribute="centerY" secondItem="H1e-f7-uvm" secondAttribute="centerY" id="K4l-AL-fUs"/>
-                                                        <constraint firstAttribute="trailing" secondItem="9EE-N6-nMk" secondAttribute="trailing" id="KxD-qK-4O9"/>
+                                                        <constraint firstItem="xVr-BT-8W3" firstAttribute="bottom" secondItem="yKd-ca-ggq" secondAttribute="bottom" id="Kgl-LA-t9o"/>
                                                         <constraint firstItem="1OB-gX-lrH" firstAttribute="top" secondItem="06U-N5-yBA" secondAttribute="bottom" constant="10" id="LeI-28-ODT"/>
-                                                        <constraint firstItem="9EE-N6-nMk" firstAttribute="bottom" secondItem="yKd-ca-ggq" secondAttribute="bottom" id="aAA-l5-PnR"/>
+                                                        <constraint firstItem="xVr-BT-8W3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="06U-N5-yBA" secondAttribute="trailing" constant="4" id="Qfn-WG-gAr"/>
                                                         <constraint firstItem="yKd-ca-ggq" firstAttribute="top" secondItem="45d-DR-bEZ" secondAttribute="bottom" id="fZL-8T-snu"/>
                                                         <constraint firstItem="yKd-ca-ggq" firstAttribute="leading" secondItem="45d-DR-bEZ" secondAttribute="leading" id="gGC-GO-b5e"/>
                                                         <constraint firstItem="1OB-gX-lrH" firstAttribute="trailing" secondItem="06U-N5-yBA" secondAttribute="trailing" id="jLg-Xl-jC6"/>
+                                                        <constraint firstItem="xVr-BT-8W3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1OB-gX-lrH" secondAttribute="trailing" constant="4" id="maW-1D-CtX"/>
                                                         <constraint firstItem="45d-DR-bEZ" firstAttribute="leading" secondItem="H1e-f7-uvm" secondAttribute="leading" constant="8" id="oWv-zj-Sle"/>
                                                         <constraint firstItem="06U-N5-yBA" firstAttribute="top" secondItem="45d-DR-bEZ" secondAttribute="top" id="rhX-KR-rex"/>
                                                         <constraint firstItem="06U-N5-yBA" firstAttribute="leading" secondItem="45d-DR-bEZ" secondAttribute="trailing" constant="8" id="sXh-Y8-udg"/>
+                                                        <constraint firstItem="45d-DR-bEZ" firstAttribute="top" secondItem="H1e-f7-uvm" secondAttribute="topMargin" constant="4" id="uDh-P9-a9T"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="xVr-BT-8W3" secondAttribute="trailing" id="uos-sf-ZzA"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -817,6 +805,7 @@
         <image name="car_broken" width="36" height="25"/>
         <image name="connect_btn-1" width="85" height="30"/>
         <image name="get_lost" width="33" height="37"/>
+        <image name="icon_phone" width="28" height="32"/>
         <image name="mesage" width="27" height="23"/>
         <image name="navy_bg" width="320" height="568"/>
         <image name="red_btn_bg" width="146" height="78"/>
