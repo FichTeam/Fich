@@ -31,7 +31,7 @@ class AddInfoViewController: UIViewController, UIImagePickerControllerDelegate, 
                     self.present(viewController, animated: true)
                 }
             })
-            FirebaseClient.sharedInstance.update()
+            FirebaseClient.sharedInstance().update()
         }else{
             alert(title: "Oops", message: "Your name must have at least 4 characters and you must have avatar!")
         }

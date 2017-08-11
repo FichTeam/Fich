@@ -12,7 +12,7 @@ import RxSwift
 import CoreBluetooth
 
 class BleApi {
-    static var instance: BleApi? = nil
+    private static var instance: BleApi?
     
     static func sharedInstance() -> BleApi {
         if let instance = instance {

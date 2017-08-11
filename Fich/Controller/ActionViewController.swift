@@ -114,7 +114,7 @@ extension ActionViewController {
             } else {
                 message = TripAction(member: currentAccount!, type: .text, message: msg, messageUrl: nil)
             }
-            FirebaseClient.sharedInstance.sendAction(tripId: tripId, action: message!, completion: { (error: Error?) in
+            FirebaseClient.sharedInstance().sendAction(tripId: tripId, action: message!, completion: { (error: Error?) in
                 if let error = error {
                     print (error)
                 } else {

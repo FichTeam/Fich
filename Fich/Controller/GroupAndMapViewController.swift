@@ -136,7 +136,7 @@ extension GroupAndMapViewController {
     func sendInstantMessage(action: ActionType)
     {
         let message = TripAction(member: currentAccount!, type: action, message: nil, messageUrl: nil)
-        FirebaseClient.sharedInstance.sendAction(tripId: tripId, action: message, completion: { (error: Error?) in
+        FirebaseClient.sharedInstance().sendAction(tripId: tripId, action: message, completion: { (error: Error?) in
             if let error = error {
                 print (error)
             } else {

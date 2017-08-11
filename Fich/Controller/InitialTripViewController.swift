@@ -160,7 +160,7 @@ extension InitialTripViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
         print("Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
-        FirebaseClient.sharedInstance.updatePosition(cllocation: location)
+        FirebaseClient.sharedInstance().updatePosition(cllocation: location)
         
         if UserDefaults.standard.string(forKey: "is_map_loaded") == nil{
             let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,longitude: location.coordinate.longitude, zoom: zoomLevel)
@@ -224,13 +224,13 @@ extension InitialTripViewController: GMSMapViewDelegate{
             marker.snippet = "Added in your stops"
             let stop = Position(loc: marker.position, name: marker.title!, address: marker.snippet!)
             stopsLocation.append(stop)
-            FirebaseClient.sharedInstance.addStopToDatabase(dict: stop.toPositionDictionaryDetail())
+            FirebaseClient.sharedInstance().addStopToDatabase(dict: stop.toPositionDictionaryDetail())
             GoogleMapManager.shared.drawPathWithWaypoints(currentLocation: depLocation, destinationLoc: desLocation, waypoints: stopsLocation)
         }else if marker.snippet == "Added in your stops"{
             marker.snippet = "Not in your stops"
             let stop = Position(loc: marker.position, name: marker.title!, address: marker.snippet!)
             stopsLocation.removeAll()
-            FirebaseClient.sharedInstance.removeStopFromDatabase(dict: stop.toPositionDictionaryDetail())
+            FirebaseClient.sharedInstance().removeStopFromDatabase(dict: stop.toPositionDictionaryDetail())
             GoogleMapManager.shared.drawPathAgain(currentLocation: depLocation, destinationLoc: desLocation)
         }
         return false

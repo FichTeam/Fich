@@ -109,12 +109,12 @@ class GoogleMapManager{
     func drawPath(currentLocation: Position, destinationLoc : Position)
     {
         let tripDict: NSDictionary = [
-            "user_id": FirebaseClient.sharedInstance.getUserUID()!,
+            "user_id": FirebaseClient.sharedInstance().getUserUID()!,
             "source" : currentLocation.toPositionDictionaryDetail(),
             "destination" : destinationLoc.toPositionDictionaryDetail(),
             "status": TripStatus.prepare.rawValue
         ]
-        FirebaseClient.sharedInstance.createTripWithDict(dict: tripDict)
+        FirebaseClient.sharedInstance().createTripWithDict(dict: tripDict)
         
         let origin = "\(currentLocation.lat!),\(currentLocation.lng!)"
         let destination = "\(destinationLoc.lat!),\(destinationLoc.lng!)"

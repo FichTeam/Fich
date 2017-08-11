@@ -90,15 +90,15 @@ class GroupTabViewController: UIViewController {
       if (isLeader()){
         switch trip.status! {
         case TripStatus.prepare:
-          FirebaseClient.sharedInstance.startTrip(tripId: tripId)
+          FirebaseClient.sharedInstance().startTrip(tripId: tripId)
           break
         case TripStatus.run:
           // finish
-          FirebaseClient.sharedInstance.finishTrip(tripId: tripId)
+          FirebaseClient.sharedInstance().finishTrip(tripId: tripId)
           break
         case TripStatus.finish:
           // finish
-          FirebaseClient.sharedInstance.finishTrip(tripId: tripId)
+          FirebaseClient.sharedInstance().finishTrip(tripId: tripId)
           dismiss(animated: true, completion: nil)
           break
         }
@@ -272,7 +272,7 @@ extension GroupTabViewController {
     return false
   }
     func leaveTrip() {
-        FirebaseClient.sharedInstance.leaveTrip(tripId: tripId)
+        FirebaseClient.sharedInstance().leaveTrip(tripId: tripId)
         dismiss(animated: true, completion: nil)
     }
   

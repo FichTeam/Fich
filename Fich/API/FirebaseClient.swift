@@ -13,7 +13,17 @@ import CoreLocation
 import Firebase
 
 class FirebaseClient {
-    static let sharedInstance = FirebaseClient()
+    private static var instance: FirebaseClient?
+    
+    static func sharedInstance() -> FirebaseClient {
+        if let instance = instance {
+            return instance
+        } else {
+            return FirebaseClient()
+        }
+    }
+    
+    
     var ref: DatabaseReference!
     let storageRef = Storage.storage().reference()
     var uid = Auth.auth().currentUser?.uid
@@ -70,7 +80,7 @@ class FirebaseClient {
                 ref.updateChildValues(tripLobby)
             }
         }
-        FirebaseClient.sharedInstance.joinTrip(tripId: key)
+        FirebaseClient.sharedInstance().joinTrip(tripId: key)
     }
     func lookupTrip(phoneNumber: String, completion: @escaping (Trip?, Error?) -> ()) {
         ref.child("trip_lobby").child(phoneNumber).observeSingleEvent(of: .value, with: { (snapshot) in
