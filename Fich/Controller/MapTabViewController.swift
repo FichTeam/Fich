@@ -19,12 +19,15 @@ class MapTabViewController: UIViewController {
     @IBOutlet weak var switchFake: UISwitch!
     var memberMarker = [GMSMarker]()
     var locationManager = CLLocationManager()
-    var currentLocation: CLLocation?
+    var saveLoc : CLLocation?
     var mapView: GMSMapView!
     var zoomLevel: Float = 15.0
     let MAX_RANGE = 2000.0
     let MIN_FAKE_VELO = 3
     let MAX_FAKE_VELO = 8
+    var posCount = 1
+    var posArr = [Position]()
+    var timer = Timer()
     
     @IBAction func onBack(_ sender: UIButton) {
         FirebaseClient.sharedInstance().leaveTrip(tripId: tripId)
@@ -32,28 +35,35 @@ class MapTabViewController: UIViewController {
     }
     
     @IBAction func onSwitchFakeLocation(_ sender: UISwitch) {
-//        let start = 10.79313720899426
-//        let velocity = Int.random(from: MIN_FAKE_VELO, to: MAX_FAKE_VELO)
-//        print(velocity)
-//        for i in 1...20 {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i * 10)) {
-//                print(start + 0.000082 * Double(i))
-//                let location = CLLocation(latitude: start + 0.000082 * Double(i * velocity), longitude: 106.6265463013392)
-//                FirebaseClient.sharedInstance.memberUpdatePosition(tripid: self.tripId, cllocation: location)
-//            }
-//        }
-        
-        let randomVelocity = Int.random(from: MIN_FAKE_VELO, to: MAX_FAKE_VELO)
-        FirebaseClient.sharedInstance().loadFakeData { (position) in
-            print(position.count)
-            FirebaseClient.sharedInstance().getStopUser(success: { (user) in
-                for i in 1...position.count-1{
-                    DispatchQueue.main.asyncAfter(deadline: .now() + Double(i * randomVelocity)) {
-                        let location = CLLocation(latitude: position[i].lat!, longitude: position[i].lng!)
-                        FirebaseClient.sharedInstance().memberUpdatePosition(tripid: self.tripId, cllocation: location)
-                    }
-                }
-            })
+        print(sender.isOn)
+        let randomTimer = Int.random(from: 10, to: 20)
+        if sender.isOn{
+            self.timer.invalidate()
+            
+            FirebaseClient.sharedInstance().loadFakeData { (position) in
+                print(position.count)
+                self.posArr = position
+                print(randomTimer)
+                self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(Float(randomTimer/10)), target: self, selector: #selector(self.timerAction), userInfo: nil, repeats: true)
+                self.posCount = 0
+            }
+        }
+        else{
+            print("off press")
+            self.posCount = 0
+            self.timer.invalidate()
+            FirebaseClient.sharedInstance().memberUpdatePosition(tripid: self.tripId, cllocation: saveLoc!)
+        }
+    }
+    
+    // called every time interval from the timer
+    func timerAction() {
+        let location = CLLocation(latitude: posArr[posCount].lat!, longitude: posArr[posCount].lng!)
+        FirebaseClient.sharedInstance().memberUpdatePosition(tripid: self.tripId, cllocation: location)
+        self.posCount = self.posCount + 1
+        if self.posCount == 60{
+            self.timer.invalidate()
+            self.posCount = 0
         }
     }
     
@@ -217,7 +227,7 @@ extension MapTabViewController {
     }
     func isLostConnection(posit : [Position])->Bool{
         if posit.count > 1{
-            for i in 0...posit.count-1{
+            for i in 0...posit.count-2{
                 for j in (i+1)...posit.count-1{
                     if self.calculateDistance(location1: posit[i], location2: posit[j]) > MAX_RANGE{
                         return true
@@ -232,19 +242,9 @@ extension MapTabViewController {
 
 extension MapTabViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if switchFake.isOn{
-//            var fakePosition = [Position]()
-//            let beginCoord = CLLocationCoordinate2D(latitude: 10.776642, longitude: 106.683577)
-//            let beginPosition = Position(location: beginCoord)
-//
-//            for i in 0...10{
-//                let coord = CLLocationCoordinate2D(latitude: beginPosition.lat! + 0.000082 + Double(i) * 0.00002, longitude: 106.6814703)
-//                let pos = Position(location: coord)
-//                fakePosition.append(pos)
-//            }
-            
-        }else{
+        if !switchFake.isOn{
             let location: CLLocation = locations.last!
+            saveLoc = location
             print("Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
             FirebaseClient.sharedInstance().memberUpdatePosition(tripid: tripId, cllocation: location)
             
@@ -288,5 +288,23 @@ extension MapTabViewController: SimulateDelegate {
   func update(isOnSimulate: Bool) {
     // do something
     print("simulate \(isOnSimulate)")
+    let randomTimer = Int.random(from: 10, to: 20)
+    if isOnSimulate{
+        self.timer.invalidate()
+        
+        FirebaseClient.sharedInstance().loadFakeData { (position) in
+            print(position.count)
+            self.posArr = position
+            print(randomTimer)
+            self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(Float(randomTimer/10)), target: self, selector: #selector(self.timerAction), userInfo: nil, repeats: true)
+            self.posCount = 0
+        }
+    }
+    else{
+        print("off press")
+        self.posCount = 0
+        self.timer.invalidate()
+        FirebaseClient.sharedInstance().memberUpdatePosition(tripid: self.tripId, cllocation: saveLoc!)
+    }
   }
 }
