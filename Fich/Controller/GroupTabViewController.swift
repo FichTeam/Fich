@@ -77,10 +77,15 @@ class GroupTabViewController: UIViewController {
     var isBTOn = false
   
   @IBOutlet weak var tripStatusLabel: UILabel!
+  @IBOutlet weak var tripNextStatusLabel: UILabel!
   
   @IBAction func onTripStatusPressed(_ sender: UIButton) {
+}
+  
+  @IBAction func onLeavePressed(_ sender: UIButton) {
+
     if let trip = trip {
-      if (trip.userId == Auth.auth().currentUser?.uid){
+      if (isLeader()){
         switch trip.status! {
         case TripStatus.prepare:
           FirebaseClient.sharedInstance.startTrip(tripId: tripId)
@@ -95,17 +100,15 @@ class GroupTabViewController: UIViewController {
           dismiss(animated: true, completion: nil)
           break
         }
-      } else {
+      }
+      else {
         print("member")
+        leaveTrip()
+//        dismiss(animated: true, completion: nil)
       }
     } else {
       leaveTrip()
     }
-}
-  
-  @IBAction func onLeavePressed(_ sender: UIButton) {
-    leaveTrip()
-    dismiss(animated: true, completion: nil)
   }
 }
 
@@ -132,42 +135,29 @@ extension GroupTabViewController: UITableViewDelegate, UITableViewDataSource {
         case self.distanceSection:
           print("section \(indexPath.section)")
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
-            cell.titleLabel.text = "Safe Distance"
+            cell.titleLabel.text = "SAFE DISTANCE"
             cell.statusLabel.text = distanceList[distanceSet]
             // TODO-PHAT: You should put this data "distanceSet" on Firebase to compute distance
             return cell
         case self.deviceSection:
           print("section \(indexPath.section)")
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
-            cell.titleLabel.text = "Device Info"
+            cell.titleLabel.text = "DEVICE"
             if (self.isBLEDeviceReady){
-                cell.statusLabel.text =  "Device is connected"
+                cell.statusLabel.text =  "Connected"
             }
             else{
               if (self.isBTOn == false){
-                  cell.statusLabel.text =  "Turn on Bluetooth"
+                  cell.statusLabel.text =  "Turn On Bluetooth"
               }
               else{
-                  cell.statusLabel.text =  "Click to add Device"
+                  cell.statusLabel.text =  "Add Device"
               }
             }
             return cell
         case self.groupSection:
           print("section \(indexPath.section)")
           let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell") as! GroupCell
-          if let trip = trip {
-            switch trip.status! {
-            case TripStatus.prepare:
-              self.tripStatusLabel.text = "PLANING..."
-              break
-            case TripStatus.run:
-              self.tripStatusLabel.text = "RUNNING"
-              break
-            case TripStatus.finish:
-              self.tripStatusLabel.text = "FINISH"
-              break
-            }
-          }
           cell.selectionStyle = .none
           return cell
         case self.memberSection:
@@ -226,7 +216,9 @@ extension GroupTabViewController {
                 self.members = [Account](self.trip!.members.values)
                 if (self.tableView != nil){
                     self.tableView.reloadData()
+                  
                 }
+              self.reloadTripStatus()
                 if (self.trip?.status == TripStatus.finish) {
                     self.leaveTrip()
                 }
@@ -237,12 +229,45 @@ extension GroupTabViewController {
             
         })
     }
-    
+  func reloadTripStatus ()
+  {
+    if let trip = self.trip {
+          switch trip.status! {
+          case TripStatus.prepare:
+            if (isLeader())
+            {
+              self.tripNextStatusLabel.text = "START"
+            }
+            self.tripStatusLabel.text = "PLANNING..."
+            break
+          case TripStatus.run:
+            if (isLeader())
+            {
+              self.tripNextStatusLabel.text = "FINISH"
+            }
+            self.tripStatusLabel.text = "RUNNING..."
+            break
+          case TripStatus.finish:
+            self.tripStatusLabel.text = "FINISH"
+            break
+          }
+    }
+  }
+  func isLeader() -> Bool
+  {
+    if let trip = self.trip {
+      
+      if (trip.userId == Auth.auth().currentUser?.uid){
+        return true
+      }
+    }
+    return false
+  }
     func leaveTrip() {
         FirebaseClient.sharedInstance.leaveTrip(tripId: tripId)
-//        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
-    
+  
     func alertControlInit(){
         alertController = UIAlertController(title: "Chose Safe Distance", message: "Always keep all members in this distance", preferredStyle: UIAlertControllerStyle.actionSheet)
         let _2kmAction = UIAlertAction(title: "Distance: 2km", style: UIAlertActionStyle.default) { (action)-> Void in
@@ -296,6 +321,7 @@ extension GroupTabViewController {
             self.isBTOn = false
             print("BT off")
         }
+
 //        self.tripStatusLabel.text = "Planning..."
     }
   

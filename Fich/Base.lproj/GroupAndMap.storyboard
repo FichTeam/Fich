@@ -115,11 +115,11 @@
                                                     <outlet property="phoneNumberLabel" destination="1OB-gX-lrH" id="aAe-fa-fn8"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingCell" rowHeight="118" id="Grx-JY-j7T" userLabel="settingCell" customClass="SettingCell" customModule="Fich" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="171" width="320" height="118"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingCell" rowHeight="78" id="Grx-JY-j7T" userLabel="settingCell" customClass="SettingCell" customModule="Fich" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="171" width="320" height="78"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Grx-JY-j7T" id="CM2-Fy-xQC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="117.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="77.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peG-Bb-Hj4">
@@ -129,7 +129,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0E-GS-reI">
-                                                            <rect key="frame" x="239" y="64" width="48" height="25"/>
+                                                            <rect key="frame" x="239" y="23" width="48" height="26"/>
                                                             <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
                                                             <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -139,8 +139,8 @@
                                                         <constraint firstItem="peG-Bb-Hj4" firstAttribute="leading" secondItem="CM2-Fy-xQC" secondAttribute="leadingMargin" constant="10" id="DZL-Ma-XNk"/>
                                                         <constraint firstAttribute="bottomMargin" secondItem="p0E-GS-reI" secondAttribute="bottom" constant="20.5" id="Lhh-JP-P9d"/>
                                                         <constraint firstAttribute="trailingMargin" secondItem="p0E-GS-reI" secondAttribute="trailing" constant="25" id="M8e-oH-J4E"/>
+                                                        <constraint firstItem="p0E-GS-reI" firstAttribute="top" secondItem="peG-Bb-Hj4" secondAttribute="top" id="UHb-UJ-WT6"/>
                                                         <constraint firstItem="peG-Bb-Hj4" firstAttribute="top" secondItem="CM2-Fy-xQC" secondAttribute="topMargin" constant="15" id="ab5-Nk-2wW"/>
-                                                        <constraint firstItem="p0E-GS-reI" firstAttribute="top" secondItem="peG-Bb-Hj4" secondAttribute="bottom" constant="16" id="ndc-fM-lDX"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -150,7 +150,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" rowHeight="173" id="tcQ-KL-jTn" customClass="GroupCell" customModule="Fich" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="289" width="320" height="173"/>
+                                                <rect key="frame" x="0.0" y="249" width="320" height="173"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tcQ-KL-jTn" id="p4u-Z9-e6D">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="172.5"/>
@@ -268,6 +268,7 @@
                     <tabBarItem key="tabBarItem" title="Group" id="XZ7-WN-Ihm"/>
                     <connections>
                         <outlet property="tableView" destination="ggB-TK-BYl" id="7ej-ll-zxM"/>
+                        <outlet property="tripNextStatusLabel" destination="mot-ZK-4ZX" id="GJj-H3-gSP"/>
                         <outlet property="tripStatusLabel" destination="2MG-Nn-cLM" id="31g-M5-rUW"/>
                         <segue destination="6fr-x6-AeW" kind="presentation" identifier="BLESegueID" id="rj5-46-FcI"/>
                     </connections>
@@ -805,6 +806,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gVG-43-mZM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-483.75" y="550.35211267605632"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="4Zi-f0-Mwn">
+            <objects>
+                <viewController id="x1f-u0-QPB" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ghg-bh-wYH"/>
+                        <viewControllerLayoutGuide type="bottom" id="WKH-9O-IRg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gLy-gv-9t3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zD3-qq-rEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
