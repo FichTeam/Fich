@@ -81,11 +81,11 @@ class MapTabViewController: UIViewController {
         super.viewDidLoad()
         let camera = GMSCameraPosition.camera(withLatitude: 37.431573, longitude: -78.656894, zoom: zoomLevel)
         mapView = GMSMapView.map(withFrame: mapUIView.bounds, camera: camera)
-        mapView.delegate = self
+        
         GoogleMapManager.shared.manage(mapView: self.mapView, mapUIView: mapUIView)
         UserDefaults.standard.setValue(nil, forKey: "is_map_member_loaded")
         setupLocationAndMap()
-        
+        mapView.delegate = self
         switchFake.isHidden = true
         FirebaseClient.sharedInstance().isFakeData { (isOn) in
             if isOn == true{
@@ -108,7 +108,8 @@ class MapTabViewController: UIViewController {
         
         
         mapUIView.addSubview(mapView)
-        mapView.isHidden = true
+        
+        //mapView.isHidden = true
     }
     
     deinit {
@@ -242,21 +243,20 @@ extension MapTabViewController {
 
 extension MapTabViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if !switchFake.isOn{
-            let location: CLLocation = locations.last!
-            saveLoc = location
-            print("Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
-            FirebaseClient.sharedInstance().memberUpdatePosition(tripid: tripId, cllocation: location)
-            
-            if UserDefaults.standard.string(forKey: "is_map_member_loaded") == nil{
-                let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,longitude: location.coordinate.longitude, zoom: zoomLevel)
-                if mapView.isHidden {
-                    mapView.isHidden = false
-                    mapView.camera = camera
-                } else {
-                    UserDefaults.standard.setValue("Map loaded", forKey: "is_map_member_loaded")
-                    mapView.animate(to: camera)
-                }
+        let location: CLLocation = locations.last!
+        saveLoc = location
+        print("Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
+        mapView.animate(toLocation: CLLocationCoordinate2D(latitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude)))
+        FirebaseClient.sharedInstance().memberUpdatePosition(tripid: tripId, cllocation: location)
+        
+        if UserDefaults.standard.string(forKey: "is_map_member_loaded") == nil{
+            let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,longitude: location.coordinate.longitude, zoom: zoomLevel)
+            if mapView.isHidden {
+                mapView.isHidden = false
+                mapView.camera = camera
+            } else {
+                UserDefaults.standard.setValue("Map loaded", forKey: "is_map_member_loaded")
+                mapView.animate(to: camera)
             }
         }
     }
