@@ -179,13 +179,24 @@ extension MapTabViewController {
                 
                 FirebaseClient.sharedInstance().getAllMemberPosition(tripid: self.tripId, success: { (position) in
                     if position.count > 0{
+                      var erase1time = true
                         for po in 0...position.count-1{
+                            // if the marker count == position count mean location change so just need to refresh location
                             if self.memberMarker.count == position.count {
                                 for i in 0...self.memberMarker.count-1{
                                     let position2d = CLLocationCoordinate2D(latitude: position[i].lat!, longitude: position[i].lng!)
                                     self.memberMarker[i].position = position2d
                                 }
-                            }else{
+                            }
+                              // if someone joins/leaves trip, remove all marker and add again
+                            else{
+                                if (erase1time == true)
+                                {
+                                  erase1time = false
+                                  self.mapView.clear()
+                                  self.memberMarker.removeAll()
+                                }
+                              
                                 let position2d = CLLocationCoordinate2D(latitude: position[po].lat!, longitude: position[po].lng!)
                                 let marker = GMSMarker(position: position2d)
                                 marker.map = self.mapView
@@ -199,24 +210,23 @@ extension MapTabViewController {
                                 self.memberMarker.append(marker)
                             }
                         }
-                        FirebaseClient.sharedInstance().getAllPosition(tripid: self.tripId, success: { (posit) in
-                            print("is lost \(self.isLostConnection(posit: posit))")
-                          if (trip.status == TripStatus.run)
-                          {
-                            if self.isLostConnection(posit: posit){
-                              AudioServicesPlayAlertSound(SystemSoundID(1015))
-                              AudioServicesPlayAlertSound(SystemSoundID(1016))
-                              BleApi.sharedInstance.blink()
-                            }
-                          }
-                        })
                     }
                 })
-                
+                FirebaseClient.sharedInstance().getAllPosition(tripid: self.tripId, success: { (posit) in
+                  print("is lost \(self.isLostConnection(posit: posit))")
+                  if (trip.status == TripStatus.run)
+                  {
+                    if self.isLostConnection(posit: posit){
+                      AudioServicesPlayAlertSound(SystemSoundID(1015))
+                      AudioServicesPlayAlertSound(SystemSoundID(1016))
+                      BleApi.sharedInstance.blink()
+                    }
+                  }
+                })
             } else {
                 print("error to decode trip. stop trip")
             }
-            
+          
         })
     }
     func calculateDistance(location1 : Position, location2: Position)->CLLocationDistance{
