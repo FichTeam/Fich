@@ -15,6 +15,7 @@ import CoreLocation
 class InitialTripViewController: UIViewController {
 
     // MARK: *** Local variables
+    var isDone = false
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var mapView: GMSMapView!
@@ -76,6 +77,7 @@ class InitialTripViewController: UIViewController {
             let dest = segue.destination as! WaypointsViewController
             dest.depPlace = departureSearch.text!
             dest.desPlace = destinationSearch.text!
+            dest.dismissDelegate = self
         }
     }
     
@@ -93,6 +95,12 @@ class InitialTripViewController: UIViewController {
         self.resultsController = UITableViewController(style: .plain)
         self.resultsController.tableView.delegate = tableDataSource
         self.resultsController.tableView.dataSource = tableDataSource
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if isDone {
+            dismiss(animated: false, completion: nil)
+        }
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -322,6 +330,12 @@ extension InitialTripViewController: GMSAutocompleteTableDataSourceDelegate{
     
     func didRequestAutocompletePredictions(for tableDataSource: GMSAutocompleteTableDataSource) {
         resultsController.tableView.reloadData()
+    }
+}
+
+extension InitialTripViewController: DismissDelegate {
+    func setDismiss() {
+        isDone = true
     }
 }
 

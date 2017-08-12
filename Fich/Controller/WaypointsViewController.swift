@@ -9,9 +9,15 @@
 import UIKit
 import CoreLocation
 
+protocol DismissDelegate {
+    func setDismiss()
+}
+
 class WaypointsViewController: UIViewController {
     // MARK: *** Local variables
     
+    var dismissDelegate: DismissDelegate!
+    var isDone = false
     var depPlace : String!
     var desPlace: String!
     var steps: [Step] = []
@@ -31,6 +37,7 @@ class WaypointsViewController: UIViewController {
         let storyboard = UIStoryboard(name: "GroupAndMap", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier :"groupAndMapViewController") as! GroupAndMapViewController
         viewController.tripId = UserDefaults.standard.string(forKey: "tripId")
+        isDone = true
         present(viewController, animated: true)
     }
     
@@ -43,6 +50,13 @@ class WaypointsViewController: UIViewController {
         tableView.dataSource = self
         tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if (isDone) {
+            self.dismissDelegate.setDismiss()
+            dismiss(animated: false, completion: nil)
+        }
     }
     
     override var prefersStatusBarHidden: Bool {
