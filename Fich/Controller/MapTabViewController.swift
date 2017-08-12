@@ -205,12 +205,18 @@ extension MapTabViewController {
                                 if let name = position[po].name{
                                     marker.title = name
                                     marker.snippet = position[po].address!
+                                    self.memberMarker.append(marker)
                                 }
                                 
-                                self.memberMarker.append(marker)
+//                                self.memberMarker.append(marker)
                             }
                         }
                     }
+                  else
+                  {
+                    self.mapView.clear()
+                    self.memberMarker.removeAll()
+                  }
                 })
                 FirebaseClient.sharedInstance().getAllPosition(tripid: self.tripId, success: { (posit) in
                   print("is lost \(self.isLostConnection(posit: posit))")
