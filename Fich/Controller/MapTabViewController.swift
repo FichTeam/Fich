@@ -179,13 +179,44 @@ extension MapTabViewController {
                 
                 FirebaseClient.sharedInstance().getAllMemberPosition(tripid: self.tripId, success: { (position) in
                     if position.count > 0{
+                        var erase1time = false
                         for po in 0...position.count-1{
-                            if self.memberMarker.count == position.count {
+                            if self.memberMarker.count == position.count { //ve marker roi nhung ma thay doi location
                                 for i in 0...self.memberMarker.count-1{
                                     let position2d = CLLocationCoordinate2D(latitude: position[i].lat!, longitude: position[i].lng!)
                                     self.memberMarker[i].position = position2d
                                 }
-                            }else{
+                            }
+//                            else if self.memberMarker.count > position.count{
+//                                for i in 0...self.memberMarker.count-1{
+//                                    self.memberMarker[i].map = nil
+//                                }
+//                                self.memberMarker.removeAll()
+//                                FirebaseClient.sharedInstance().getAllMemberPosition(tripid: self.tripId, success: { (postition2) in
+//                                    if postition2.count > 0{
+//                                        for po in 0...postition2.count-1{
+//                                            let position2d = CLLocationCoordinate2D(latitude: position[po].lat!, longitude: position[po].lng!)
+//                                            let marker = GMSMarker(position: position2d)
+//                                            marker.map = self.mapView
+//                                            let image = UIImage(named: "man_marker-1")
+//                                            marker.icon = image
+//                                            if let name = position[po].name{
+//                                                marker.title = name
+//                                                marker.snippet = position[po].address!
+//                                            }
+//
+//                                            self.memberMarker.append(marker)
+//                                        }
+//                                    }
+//                                })
+//                            }
+                            else{ // ve marker lan dau tien
+                                if (erase1time == false)
+                                {
+                                    self.memberMarker.removeAll()
+                                    erase1time = true
+                                    
+                                }
                                 let position2d = CLLocationCoordinate2D(latitude: position[po].lat!, longitude: position[po].lng!)
                                 let marker = GMSMarker(position: position2d)
                                 marker.map = self.mapView
@@ -199,19 +230,20 @@ extension MapTabViewController {
                                 self.memberMarker.append(marker)
                             }
                         }
-                        FirebaseClient.sharedInstance().getAllPosition(tripid: self.tripId, success: { (posit) in
-                            print("is lost \(self.isLostConnection(posit: posit))")
-                          if (trip.status == TripStatus.run)
-                          {
-                            if self.isLostConnection(posit: posit){
-                              AudioServicesPlayAlertSound(SystemSoundID(1015))
-                              AudioServicesPlayAlertSound(SystemSoundID(1016))
-                              BleApi.sharedInstance.blink()
-                            }
-                          }
-                        })
+                        
                     }
                 })
+//                FirebaseClient.sharedInstance().getAllPosition(tripid: self.tripId, success: { (posit) in
+//                    print("is lost \(self.isLostConnection(posit: posit))")
+//                  if (trip.status == TripStatus.run)
+//                  {
+//                    if self.isLostConnection(posit: posit){
+//                      AudioServicesPlayAlertSound(SystemSoundID(1015))
+//                      AudioServicesPlayAlertSound(SystemSoundID(1016))
+//                      BleApi.sharedInstance.blink()
+//                    }
+//                  }
+//                })
                 
             } else {
                 print("error to decode trip. stop trip")
