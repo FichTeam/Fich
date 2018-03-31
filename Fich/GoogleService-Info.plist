@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>883304852679-6k2cc5tiq5qf4btsaolptd7n79r2nthh.apps.googleusercontent.com</string>
+	<string>883304852679-5c40dvfsbfuq5js2il5o421v8vn8ev8l.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.883304852679-6k2cc5tiq5qf4btsaolptd7n79r2nthh</string>
+	<string>com.googleusercontent.apps.883304852679-5c40dvfsbfuq5js2il5o421v8vn8ev8l</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAFGMJmmWXXAMd_hLUc1wWfb2_UENL5hZM</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.fichteam.fich</string>
+	<string>com.fichteam.fichapp</string>
 	<key>PROJECT_ID</key>
 	<string>fich-7e2b3</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:883304852679:ios:edf42626dee5a0c0</string>
+	<string>1:883304852679:ios:7877499960757ca1</string>
 	<key>DATABASE_URL</key>
 	<string>https://fich-7e2b3.firebaseio.com</string>
 </dict>

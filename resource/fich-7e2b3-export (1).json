@@ -1,0 +1,145 @@
+{
+  "account": {
+    "26XnlUyXL6QQ3B7phPEF28jB5Qt2": {
+      "account_id": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "avatar": "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/17309174_1451648118192501_7257638711077975293_n.jpg?oh=7d3a68823b8d6123a44a30e544a4dba6&oe=59E82413",
+      "created_at": 1497787630826,
+      "modified_at": 1497787630826,
+      "name": "Tran Tien Tin 123",
+      "phone_number": "0902675405"
+    }
+  },
+  "trip": {
+    "ZiKbIKQcdRYq3NfAoO8R91y7Eev2": {
+      "created_at": 1497787630826,
+      "destination": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "end_time": 1497787630826,
+      "id": "ZiKbIKQcdRYq3NfAoO8R91y7Eev2",
+      "members": {
+        "26XnlUyXL6QQ3B7phPEF28jB5Qt2": {
+          "account_id": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+          "avatar": "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/17309174_1451648118192501_7257638711077975293_n.jpg?oh=7d3a68823b8d6123a44a30e544a4dba6&oe=59E82413",
+          "name": "Tran Tien Tin",
+          "owner": true
+        }
+      },
+      "modified_at": 1497787630826,
+      "name": "CoderSchool Group 3 Trip",
+      "source": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "start_time": 1497787630826,
+      "status": "PREPARE",
+      "stops": [{
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      }, {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      }, {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      }]
+    }
+  },
+  "trip_action": {
+    "ZiKbIKQcdRYq3NfAoO8R91y7Eev2": [{
+      "action": "Alert",
+      "created_at": 1497787630826,
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "modified_at": 1497787630826,
+      "type": "Lost"
+    }, {
+      "action": "Message",
+      "created_at": 1497787630826,
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "message": "Help me",
+      "modified_at": 1497787630826,
+      "type": "Text"
+    }, {
+      "action": "Message",
+      "created_at": 1497787630826,
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "message_url": "https://firebasestorage.googleapis.com/v0/b/fich-7e2b3.appspot.com/o/5966f978f03306.92919929.mp3?alt=media&token=e3b40903-996b-4114-9630-34e8639ce2c6",
+      "modified_at": 1497787630826,
+      "type": "Audio"
+    }, {
+      "action": "Alert",
+      "created_at": 1497787630826,
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "modified_at": 1497787630826,
+      "type": "BikeBroken"
+    }]
+  },
+  "trip_history": {
+    "26XnlUyXL6QQ3B7phPEF28jB5Qt2": {
+      "ZiKbIKQcdRYq3NfAoO8R91y7Eev2": {
+        "end_time": 1497787630826,
+        "id": "ZiKbIKQcdRYq3NfAoO8R91y7Eev2",
+        "name": "CoderSchool Group 3 Trip",
+        "start_time": 1497787630826,
+        "status": "PREPARE"
+      }
+    }
+  },
+  "trip_lobby": {
+    "0902675405": {
+      "created_at": 1497787630826,
+      "id": "ZiKbIKQcdRYq3NfAoO8R91y7Eev2",
+      "location": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "modified_at": 1497787630826,
+      "name": "CoderSchool Group 3 Trip",
+      "owner": {
+        "account_id": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+        "avatar": "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/17309174_1451648118192501_7257638711077975293_n.jpg?oh=7d3a68823b8d6123a44a30e544a4dba6&oe=59E82413",
+        "name": "Tran Tien Tin"
+      }
+    }
+  },
+  "trip_position": {
+    "ZiKbIKQcdRYq3NfAoO8R91y7Eev2": [{
+      "created_at": 1497787630826,
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "modified_at": 1497787630826,
+      "position": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "time": 1497787630826
+    }, {
+      "created_at": 1497787630826,
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "modified_at": 1497787630826,
+      "position": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "time": 1497787630826
+    }, {
+      "created_at": 1497787630826,
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "modified_at": 1497787630826,
+      "position": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "time": 1497787630826
+    }, {
+      "created_at": 1497787630826,
+      "member": "26XnlUyXL6QQ3B7phPEF28jB5Qt2",
+      "modified_at": 1497787630826,
+      "position": {
+        "lat": 10.7949361,
+        "lon": 106.6939804
+      },
+      "time": 1497787630826
+    }]
+  }
+}

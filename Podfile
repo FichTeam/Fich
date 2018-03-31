@@ -6,10 +6,19 @@ target 'Fich' do
   use_frameworks!
 
   # Pods for Fich
+  pod 'FacebookLogin'
   pod 'RxBluetoothKit'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
-  
+  pod ‘Onboard’
+  pod 'PhoneNumberKit'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
+  pod ‘Alamofire’
+  pod 'SwiftyJSON'
+  pod 'SnapKit'
+  pod ‘AFNetworking’
 end

@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import RxBluetoothKit
+import RxSwift
+import CoreBluetooth
 
 class DeviceCell: UITableViewCell {
 
-    @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var nameLabel: UILabel!
+  
+  var PairBtnPress: ((UITableViewCell) -> Void)?
+  var AnimateBtnPress: ((UITableViewCell) -> Void)?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,6 +29,10 @@ class DeviceCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func onPair(_ sender: UIButton) {
+  @IBAction func onPair(_ sender: UIButton) {
+      PairBtnPress?(self)
+    }
+  @IBAction func onAnimate(_ sender: UIButton) {
+      AnimateBtnPress?(self)
     }
 }
